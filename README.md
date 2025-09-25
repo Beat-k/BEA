@@ -51,5 +51,7 @@ The **Beatek** project is currently focused on software implementations, with po
 *   Commercial License: Required for commercial products, services, or research applications. Contact [Your Contact Information] for licensing inquiries.
 *   Ethical Guidelines: Given the **Beatek** system’s ability to simulate emotional escalation, careful monitoring and responsible development practices are paramount. Developers must clearly document the role of **Beatek** modules in decision-making systems and transparently label any simulated empathy or symbolic responses.
 
+*   © 2025 Jeremy F. Jackson. All Rights Reserved. **Beat⊕k™** is a trademark of Jeremy F. Jackson.
+
 
 
