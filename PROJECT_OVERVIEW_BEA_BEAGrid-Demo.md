@@ -270,4 +270,6 @@ The BEA framework is designed to be:
 
 **The BEA framework represents our commitment to creating more emotionally intelligent technology that enhances human experience rather than replacing human connection.**
 
+https://github.com/Beat-k/BEAGrid-Demo_Unity
+
 © 2025 Jeremy F. Jackson. All Rights Reserved. **Beat⊕k™** is a trademark of Jeremy F. Jackson.
