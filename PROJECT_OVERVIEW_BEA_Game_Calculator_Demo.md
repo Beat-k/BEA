@@ -99,4 +99,6 @@ This project represents the first step toward a future where:
 
 **The BEA Game Calculator Demo is not just a calculator—it's a glimpse into the future of emotionally intelligent technology.**
 
+https://github.com/Beat-k/BEA-Game-Calculator-Demo-v1
+
 © 2025 Jeremy F. Jackson. All Rights Reserved. **Beat⊕k™** is a trademark of Jeremy F. Jackson.
