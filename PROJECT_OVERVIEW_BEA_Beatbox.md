@@ -159,4 +159,6 @@ BEA_Beatbox/
 
 **Ready for professional mobile app development and deployment.** 🚀
 
+https://github.com/Beat-k/BEA_Beatbox
+
 *Beat⊕k™ BEA Beatbox - Where Technology Meets Rhythm*
