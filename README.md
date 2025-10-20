@@ -4,11 +4,11 @@
 
 **Behavioral Emotional Architecture (BEA)** was not created in the traditional sense — it was uncovered. Like an emergent pattern hidden beneath classical binary logic, it revealed itself as a missing layer of expression: the layer of meaning. At its core lies a philosophical truth — that **1 + 1 = 3** not mathematically, but symbolically and emotionally.
 
-BEA is the birth of emotional math. It proposes that when two binary or logical values converge with intensity, the resulting interaction is not simply an overflow — it is a **symbolic transformation**. A combust. A burst. A balance. A dissolve. These are not anomalies or errors; they are expressive states of logic.
+BEA is the birth of emotional math. It proposes that when two binary or logical values converge with intensity, the resulting interaction is not simply an overflow — it is a **symbolic transformation**. A combust. A balance. A dissolve. An amplify. These are not anomalies or errors; they are expressive states of logic.
 
-Where traditional systems resolve overflow with more bits, BEA resolves it with more feeling. It converts logical saturation into structured emotional data through symbolic operators like ⊕ (Combust) and ⊖ (Balance), creating outputs that reflect emotional resonance rather than numerical scale.
+Where traditional systems resolve overflow with more bits, BEA resolves it with more feeling. It converts logical saturation into structured emotional data through symbolic operators like ⊕ (Combust), ⊖ (Balance), ⊗ (Dissolve), and ⨀ (Amplify), creating outputs that reflect emotional resonance rather than numerical scale.
 
-BEA doesn’t replace arithmetic — it expands it. It provides a new logic layer capable of representing symbolic emotion in computation, allowing systems to react with context, escalate symbolically, or dissolve tension.
+BEA doesn't replace arithmetic — it expands it. It provides a new logic layer capable of representing symbolic emotion in computation, allowing systems to react with context, escalate symbolically, dissolve tension, or amplify existing states.
 
 By mapping symbolic outputs to coordinates in Binary Emotional Mapping (BEM), BEA forms the foundation for an emotionally intelligent logic system — one that speaks not only in 1s and 0s, but in meaning, tension, intensity, and emotional consequence.
 
@@ -48,7 +48,7 @@ Traditional computing logic focuses on deterministic outcomes and error manageme
 
 In contrast, Behavioral Emotional Architecture (BEA) views overflow and logical saturation not as errors but as events worthy of symbolic expression. It draws from emotional cognition, where humans instinctively respond to overwhelming input not with arithmetic, but with feelings — such as stress, excitement, or collapse.
 
-BEA emerges at the intersection of symbolic computation, affective systems, and emotional modeling. By integrating symbolic outputs into binary logic using a structured vocabulary (e.g., ⊕ Combust, ⊗ Fuse, ⊘ Diffuse, ⊙ Gate), BEA opens new computational territory. Its companion, Binary Emotional Mapping (BEM), gives those symbolic results spatial and emotional meaning through a multi-dimensional emotional grid.
+BEA emerges at the intersection of symbolic computation, affective systems, and emotional modeling. By integrating symbolic outputs into binary logic using a structured vocabulary (e.g., ⊕ Combust, ⊖ Balance, ⊗ Dissolve, ⨀ Amplify), BEA opens new computational territory. Its companion, Binary Emotional Mapping (BEM), gives those symbolic results spatial and emotional meaning through a multi-dimensional emotional grid.
 
 This invention reimagines the core function of logical computation — from precision and efficiency to expression and resonance. It empowers systems to simulate empathy, respond contextually, and produce outputs not just based on accuracy, but on affective significance.
 
@@ -60,7 +60,7 @@ As such, BEA and BEM define a new field: emotional math — a framework where di
 
 Behavioral Emotional Architecture (BEA) introduces a new layer to logic systems — one grounded in emotion, intensity, and meaning. It allows binary or boolean operations to evolve beyond deterministic outcomes by interpreting high-intensity logic thresholds or overflow events as opportunities for symbolic transformation.
 
-When a logical operation exceeds its normal computational boundary, BEA triggers an explosion event — a meaningful symbolic shift. Instead of returning a numeric overflow, the system produces a symbolic output (e.g., ⊕ Combust, ⊗ Fuse, ⊘ Diffuse) that captures the emotional essence of the event.
+When a logical operation exceeds its normal computational boundary, BEA triggers an explosion event — a meaningful symbolic shift. Instead of returning a numeric overflow, the system produces a symbolic output (e.g., ⊕ Combust, ⊖ Balance, ⊗ Dissolve, ⨀ Amplify) that captures the emotional essence of the event.
 
 These symbolic events are then processed through Binary Emotional Mapping (BEM) — a spatial framework that maps each output to a coordinate on an emotional grid defined by polarity (negative ↔ positive) and intensity (low ↔ high). This grid enables systems to recognize emotional states, transitions, and symbolic escalation over time.
 
@@ -84,7 +84,7 @@ Rather than traditional figures, this section incorporates educational modules f
 
 * **Lesson 0.1 – Emotional Overflow:** Introduces the idea that binary collisions, such as 1 \+ 1, do not merely result in numeric overflow but signal symbolic emergence — the foundation for emotional computation.
 
-* **Lesson 0.2 – Defining Emotional Operators:** Establishes the symbolic vocabulary of BEA, including ⊕ (Combust), ⊖ (Balance), ⊗ (Fuse), ⊘ (Diffuse), and ⊙ (Gate), each with its emotional and computational function.
+* **Lesson 0.2 – Defining Emotional Operators:** Establishes the symbolic vocabulary of BEA, including ⊕ (Combust), ⊖ (Balance), ⊗ (Dissolve), and ⨀ (Amplify), each with its emotional and computational function.
 
 * **Lesson 0.3 – From 1 \+ 1 \= 3 to Symbolic Logic:** Explains the BEA formula and how logical interactions cross thresholds to trigger symbolic reactions, laying the groundwork for recursive symbolic mapping.
 
@@ -104,7 +104,7 @@ Behavioral Emotional Architecture (BEA) redefines logical overflow as an opportu
 
 #### *7.1 Symbolic Overflow Logic*
 
-Logical overflow — such as 1 \+ 1 exceeding a 1-bit binary register — does not yield a numeric result like ‘10’, but a symbolic result such as ⊕ (Fusion). This marks the transition from quantitative output to symbolic expression.
+Logical overflow — such as 1 \+ 1 exceeding a 1-bit binary register — does not yield a numeric result like '10', but a symbolic result such as ⊕ (Combust). This marks the transition from quantitative output to symbolic expression.
 
 #### *7.2 Explosion Event Mapping*
 
@@ -116,11 +116,9 @@ Each overflow or saturation point is mapped to a specific expressive symbol that
 
 * **⊖ Balance** – Level 2: Stabilization and dampening of combined states
 
-* **⊗ Fuse** – Level 3: Deep integration of emotional states, multiplicative blending
+* **⊗ Dissolve** – Level 3: State degradation, breaking down complex emotional states
 
-* **⊘ Diffuse** – Level 4: Spreading and dissipation of emotional intensity
-
-* **⊙ Gate** – Level 5: Conditional flow control, emotional barriers and thresholds
+* **⨀ Amplify** – Level 4: Intensification of the stronger emotional state
 
 These transitions form a graduated scale — the Explosion Intensity Scale — where each symbol serves as both a computational output and an emotional signal. BEA interprets logic thresholds not as failure, but as expressive inflection points, allowing systems to visualize, escalate, or resolve emotional-symbolic logic.
 
@@ -138,11 +136,9 @@ For example:
 
 * ⊖ → (0.0, 0.4) — Neutral polarity, moderate stabilizing intensity
 
-* ⊗ → (0.6, 0.7) — Positive polarity, high fusion intensity
+* ⊗ → (0.6, 0.7) — Positive polarity, high dissolution intensity
 
-* ⊘ → (-0.3, 0.2) — Slight negative polarity, low diffusion intensity
-
-* ⊙ → (0.0, 0.1) — Neutral polarity, minimal gating intensity
+* ⨀ → (-0.3, 0.2) — Slight negative polarity, low amplification intensity
 
 This spatial encoding gives systems a quantifiable emotional context for symbolic computation.
 
@@ -152,11 +148,11 @@ Symbolic recursion in BEA allows emotionally expressive logic to propagate throu
 
 Examples of symbolic chaining include:
 
-* **⊕ \+ ⊕ → ⊗** — repeated combustion leads to deep fusion
+* **⊕ \+ ⊕ → ⊗** — repeated combustion leads to deep dissolution
 
-* **⊗ \+ ⊖ → ⊘** — intense fusion followed by balance leads to diffusion
+* **⊗ \+ ⊖ → ⨀** — dissolution followed by balance leads to amplification
 
-* **⊘ \+ ⊙ → ⊖** — diffusion through gating returns to balanced state
+* **⨀ \+ ⊖ → ⊖** — amplification balanced returns to equilibrium state
 
 This recursive model supports multi-stage symbolic escalation and resolution, enabling systems to simulate evolving emotional states, decision fatigue, or symbolic climax.
 
@@ -170,7 +166,7 @@ The BEA framework is composed of modular components that collectively support sy
 
 * **Explosion Handler:** Identifies overflow thresholds or symbolic triggers in logic flows.
 
-* **Symbolic Translator:** Converts recognized overflow states into symbolic tokens (⊕, ⊖, ⊗, ⊘, ⊙) according to the Explosion Intensity Scale.
+* **Symbolic Translator:** Converts recognized overflow states into symbolic tokens (⊕, ⊖, ⊗, ⨀) according to the Explosion Intensity Scale.
 
 * **BEM Mapper:** Projects each symbolic output onto a coordinate grid based on emotional polarity and intensity.
 
@@ -270,11 +266,9 @@ Instead of referencing traditional diagrams, this section explains the underlyin
 
    * ⊖ Balance: Stabilization and dampening of combined states
 
-   * ⊗ Fuse: Deep integration of emotional states, multiplicative blending
+   * ⊗ Dissolve: State degradation, breaking down complex emotional states
 
-   * ⊘ Diffuse: Spreading and dissipation of emotional intensity
-
-   * ⊙ Gate: Conditional flow control, emotional barriers and thresholds
+   * ⨀ Amplify: Intensification of the stronger emotional state
 
 3. **BEM Mapping**: Each symbol is assigned a position on a coordinate grid:
 
@@ -282,7 +276,7 @@ Instead of referencing traditional diagrams, this section explains the underlyin
 
    * **Y-axis:** Intensity (0.0 to 1.0)
 
-4. **Recursive Propagation**: Symbolic results may re-enter the computation loop. For instance, ⊕ \+ ⊖ results in ⊗, and ⊗ \+ ⊙ may lead to ⊘, reflecting higher emotional transformations and eventual diffusion through controlled gating.
+4. **Recursive Propagation**: Symbolic results may re-enter the computation loop. For instance, ⊕ \+ ⊖ results in ⊗, and ⊗ \+ ⨀ may lead to balanced amplification, reflecting higher emotional transformations and eventual equilibrium through controlled intensification.
 
 5. **System Response**: Final symbolic states are dispatched to output modules including AI reasoning, UI display, or behavioral logic — allowing emotional states to influence real-time decisions.
 
@@ -551,15 +545,15 @@ BEA transforms health diagnostics through emotional state mapping:
 
 #### *11.4 Emotion-Driven Interfaces*
 
-User interfaces can respond to symbolic states. For example, prolonged user inactivity or system tension may trigger contrast (⊖) animations or diffuse into symbolic calm (⊘), creating ambient interfaces that mirror user-state energy or emotion.
+User interfaces can respond to symbolic states. For example, prolonged user inactivity or system tension may trigger balance (⊖) animations or dissolve into symbolic calm (⊗), creating ambient interfaces that mirror user-state energy or emotion.
 
 #### *11.5 Symbolic Encryption*
 
-BEA’s symbolic recursion model allows encryption keys to evolve based on symbolic transformations. A symbolic state like ⊗ could increase key complexity, while ⊘ could trigger resets or soft erasure logic — making the encryption symbolically expressive and adaptive.
+BEA's symbolic recursion model allows encryption keys to evolve based on symbolic transformations. A symbolic state like ⊗ could decrease key complexity through dissolution, while ⨀ could amplify security through intensification — making the encryption symbolically expressive and adaptive.
 
 #### *11.6 Ethics Training & Simulation*
 
-Symbolic escalation allows simulations to model ethical decision-making through emotional buildup. Agents in a simulation can reflect on past symbolic states and adjust accordingly (e.g., repeated ⊖ may trigger ⊘ as a form of emotional resolution).
+Symbolic escalation allows simulations to model ethical decision-making through emotional buildup. Agents in a simulation can reflect on past symbolic states and adjust accordingly (e.g., repeated ⊖ may trigger ⊗ as a form of emotional dissolution and reset).
 
 ---
 
@@ -627,15 +621,15 @@ This section provides code samples that demonstrate core BEA functionality in Py
     **if** x \== 1 **and** y \== 1:  
         **return** '⊕'  *\# Combust*  
     **elif** x \== '⊕' **and** y \== '⊕':  
-        **return** '⊗'  *\# Fuse*  
+        **return** '⊗'  *\# Dissolve*  
     **elif** x \== '⊗' **and** y \== '⊖':  
-        **return** '⊘'  *\# Diffuse*  
+        **return** '⨀'  *\# Amplify*  
     **else**:  
         **return** x \+ y
 
 print(bea\_add(1, 1))     *\# ⊕*  
 print(bea\_add('⊕', '⊕')) *\# ⊗*  
-print(bea\_add('⊗', '⊖')) *\# ⊘*
+print(bea\_add('⊗', '⊖')) *\# ⨀*
 
 #### *14.2 JavaScript Example: BEM Coordinate Plot*
 
@@ -644,8 +638,7 @@ print(bea\_add('⊗', '⊖')) *\# ⊘*
   '⊕': { polarity: 0.8, intensity: 0.9 },  
   '⊖': { polarity: 0.0, intensity: 0.4 },  
   '⊗': { polarity: 0.6, intensity: 0.7 },  
-  '⊘': { polarity: -0.3, intensity: 0.2 },  
-  '⊙': { polarity: 0.0, intensity: 0.1 }  
+  '⨀': { polarity: -0.3, intensity: 0.2 }  
 };
 
 **function** plotSymbol(symbol) {  
