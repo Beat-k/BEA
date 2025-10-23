@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEA Core Operators Reference</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #FFD700, #FF69B4, #8A2BE2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+
+        .operators-table {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #FFD700;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.01);
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        td {
+            padding: 25px 20px;
+            vertical-align: top;
+        }
+
+        .operator-symbol {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .combust-symbol { color: #8A2BE2; text-shadow: 0 0 20px #8A2BE2; }
+        .balance-symbol { color: #00BFFF; text-shadow: 0 0 20px #00BFFF; }
+        .dissolve-symbol { color: #C0C0C0; text-shadow: 0 0 20px #C0C0C0; }
+        .amplify-symbol { color: #FFD700; text-shadow: 0 0 20px #FFD700; }
+
+        .operator-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .operator-meaning {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+            font-style: italic;
+        }
+
+        .essence {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #d0d0d0;
+        }
+
+        .energy-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+        .element-icon {
+            font-size: 1.5rem;
+        }
+
+        .color-display {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        .violet-flame { 
+            background: linear-gradient(135deg, #8A2BE2, #9370DB);
+            color: #DDA0DD;
+            box-shadow: 0 0 20px #8A2BE2;
+        }
+
+        .cyan-flow { 
+            background: linear-gradient(135deg, #00BFFF, #1E90FF);
+            color: #E0FFFF;
+            box-shadow: 0 0 20px #00BFFF;
+        }
+
+        .silver-mist { 
+            background: linear-gradient(135deg, #C0C0C0, #A9A9A9);
+            color: #F5F5F5;
+            box-shadow: 0 0 20px #C0C0C0;
+        }
+
+        .golden-radiance { 
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #FFFACD;
+            box-shadow: 0 0 20px #FFD700;
+        }
+
+        .core-phrase {
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-style: italic;
+            padding: 12px 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .phrase-combust {
+            background: rgba(138, 43, 226, 0.2);
+            border-left: 4px solid #8A2BE2;
+            color: #DDA0DD;
+        }
+
+        .phrase-balance {
+            background: rgba(0, 191, 255, 0.2);
+            border-left: 4px solid #00BFFF;
+            color: #87CEEB;
+        }
+
+        .phrase-dissolve {
+            background: rgba(192, 192, 192, 0.2);
+            border-left: 4px solid #C0C0C0;
+            color: #E0E0E0;
+        }
+
+        .phrase-amplify {
+            background: rgba(255, 215, 0, 0.2);
+            border-left: 4px solid #FFD700;
+            color: #FFE97F;
+        }
+
+        .quick-reference {
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .quick-reference h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #FF69B4;
+        }
+
+        .operators-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .summary-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--card-color);
+        }
+
+        .summary-card.combust { --card-color: #8A2BE2; }
+        .summary-card.balance { --card-color: #00BFFF; }
+        .summary-card.dissolve { --card-color: #C0C0C0; }
+        .summary-card.amplify { --card-color: #FFD700; }
+
+        .summary-symbol {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .summary-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .summary-formula {
+            font-family: 'Courier New', monospace;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFD700, #8A2BE2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 30px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                overflow: hidden;
+            }
+
+            td {
+                text-align: left;
+                padding: 15px;
+                position: relative;
+            }
+
+            td:before {
+                content: attr(data-label);
+                display: block;
+                font-weight: 600;
+                text-transform: uppercase;
+                font-size: 0.8rem;
+                color: #888;
+                margin-bottom: 8px;
+                letter-spacing: 1px;
+            }
+
+            .operator-symbol {
+                text-align: center;
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔸 BEA Core Operators</h1>
+            <p class="subtitle">The Four Pillars of Emotional Alchemy</p>
+        </header>
+
+        <div class="operators-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Operator</th>
+                        <th>Emotional Essence</th>
+                        <th>Energy Field</th>
+                        <th>Color</th>
+                        <th>Core Phrase</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- COMBUST -->
+                    <tr>
+                        <td data-label="Symbol">
+                            <div class="operator-symbol combust-symbol">⊕</div>
+                        </td>
+                        <td data-label="Operator">
+                            <div class="operator-name">Combust</div>
+                            <div class="operator-meaning">Fusion / Emergence</div>
+                        </td>
+                        <td data-label="Emotional Essence">
+                            <div class="essence">Passion, creation, synthesis</div>
+                        </td>
+                        <td data-label="Energy Field">
+                            <div class="energy-field">
+                                <span class="element-icon">🔥</span>
+                                <span>Fire</span>
+                            </div>
+                        </td>
+                        <td data-label="Color">
+                            <div class="color-display violet-flame">Violet Flame</div>
+                        </td>
+                        <td data-label="Core Phrase">
+                            <div class="core-phrase phrase-combust">"Spark of Emergence"</div>
+                        </td>
+                    </tr>
+
+                    <!-- BALANCE -->
+                    <tr>
+                        <td data-label="Symbol">
+                            <div class="operator-symbol balance-symbol">⊖</div>
+                        </td>
+                        <td data-label="Operator">
+                            <div class="operator-name">Balance</div>
+                            <div class="operator-meaning">Harmony / Equilibrium</div>
+                        </td>
+                        <td data-label="Emotional Essence">
+                            <div class="essence">Calm, resolution, inner peace</div>
+                        </td>
+                        <td data-label="Energy Field">
+                            <div class="energy-field">
+                                <span class="element-icon">🌊</span>
+                                <span>Water</span>
+                            </div>
+                        </td>
+                        <td data-label="Color">
+                            <div class="color-display cyan-flow">Cyan Flow</div>
+                        </td>
+                        <td data-label="Core Phrase">
+                            <div class="core-phrase phrase-balance">"Equilibrium Restored"</div>
+                        </td>
+                    </tr>
+
+                    <!-- DISSOLVE -->
+                    <tr>
+                        <td data-label="Symbol">
+                            <div class="operator-symbol dissolve-symbol">⊗</div>
+                        </td>
+                        <td data-label="Operator">
+                            <div class="operator-name">Dissolve</div>
+                            <div class="operator-meaning">Deconstruction / Clarity</div>
+                        </td>
+                        <td data-label="Emotional Essence">
+                            <div class="essence">Release, understanding, renewal</div>
+                        </td>
+                        <td data-label="Energy Field">
+                            <div class="energy-field">
+                                <span class="element-icon">🌫️</span>
+                                <span>Air</span>
+                            </div>
+                        </td>
+                        <td data-label="Color">
+                            <div class="color-display silver-mist">Silver Mist</div>
+                        </td>
+                        <td data-label="Core Phrase">
+                            <div class="core-phrase phrase-dissolve">"The Breath that Clears"</div>
+                        </td>
+                    </tr>
+
+                    <!-- AMPLIFY -->
+                    <tr>
+                        <td data-label="Symbol">
+                            <div class="operator-symbol amplify-symbol">⨀</div>
+                        </td>
+                        <td data-label="Operator">
+                            <div class="operator-name">Amplify</div>
+                            <div class="operator-meaning">Expansion / Resonance</div>
+                        </td>
+                        <td data-label="Emotional Essence">
+                            <div class="essence">Power, confidence, illumination</div>
+                        </td>
+                        <td data-label="Energy Field">
+                            <div class="energy-field">
+                                <span class="element-icon">☀️</span>
+                                <span>Solar</span>
+                            </div>
+                        </td>
+                        <td data-label="Color">
+                            <div class="color-display golden-radiance">Golden Radiance</div>
+                        </td>
+                        <td data-label="Core Phrase">
+                            <div class="core-phrase phrase-amplify">"Light Magnified"</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="quick-reference">
+            <h2>Quick Reference</h2>
+            <div class="operators-summary">
+                <div class="summary-card combust">
+                    <div class="summary-symbol combust-symbol">⊕</div>
+                    <div class="summary-name">Combust</div>
+                    <div class="summary-formula">1 + 1 = 3</div>
+                    <div class="summary-formula">Creates emergence</div>
+                </div>
+
+                <div class="summary-card balance">
+                    <div class="summary-symbol balance-symbol">⊖</div>
+                    <div class="summary-name">Balance</div>
+                    <div class="summary-formula">(A + B) / 2</div>
+                    <div class="summary-formula">Seeks harmony</div>
+                </div>
+
+                <div class="summary-card dissolve">
+                    <div class="summary-symbol dissolve-symbol">⊗</div>
+                    <div class="summary-name">Dissolve</div>
+                    <div class="summary-formula">A × 0.6</div>
+                    <div class="summary-formula">Simplifies complexity</div>
+                </div>
+
+                <div class="summary-card amplify">
+                    <div class="summary-symbol amplify-symbol">⨀</div>
+                    <div class="summary-name">Amplify</div>
+                    <div class="summary-formula">max(A, B) × 1.5</div>
+                    <div class="summary-formula">Intensifies power</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p class="footer-brand">BEA⊕k™</p>
+            <p style="color: #888; margin-top: 10px;">Where Emotional Intelligence Meets Mathematics</p>
+            <p style="color: #666; margin-top: 10px; font-size: 0.9rem;">© 2025 Jeremy F. Jackson. All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
