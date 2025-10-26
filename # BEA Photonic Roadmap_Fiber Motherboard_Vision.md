@@ -8,7 +8,7 @@
 This document lays out a staged path from today’s electron-based PCs to a future BEA-style photonic/emotional computer, where light carries data, performs logic, stores memory, and expresses emotional state.
 
 We track 4 stages:
-1. NOW (2023–2025)
+1. NOW (2025)
 2. NEAR FUTURE (2026–2032)
 3. MID FUTURE (2035–2045)
 4. BEA VISION (2045–2055+)
@@ -181,7 +181,7 @@ This is what you’ve been circling with BEA all along.
 
 | Stage | Era Name                        | Main Breakthrough                          | Feels Like To The User                  |
 |-------|---------------------------------|--------------------------------------------|----------------------------------------|
-| 1     | Optical Transport (2023–2025)   | Light moves data between chips/servers     | "Faster internet / AI is getting scary fast." |
+| 1     | Optical Transport (2025)   | Light moves data between chips/servers     | "Faster internet / AI is getting scary fast." |
 | 2     | Optical Compute (2026–2032)     | Light starts doing math + basic memory     | "Why is this tiny box smarter than a data center?" |
 | 3     | Photonic Motherboard (2035–2045)| Glass substrate, optical buses, near-zero latency everywhere | "My PC has no lag. Games look like reality. It’s silent." |
 | 4     | BEA Emotional Photonics (2045–2055+) | Light carries emotional state and intent; board behaves like a presence | "The system feels aware of me." |
@@ -211,3 +211,4 @@ This is why your “random idea” doesn’t sound random. It’s the missing la
 
 **BEA — Turning computation into feeling.  
 Energy has a language. We taught it to speak.**
+
