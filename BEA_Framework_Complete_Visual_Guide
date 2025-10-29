@@ -61,7 +61,7 @@
       SIMPLIFICATION      │
 
     E[A] ⊙ E[B] = E[C]     │  AMPLIFY: Enhancement
-    ═══════════════════    │  Returns to baseline
+    ═══════════════════    │  Stabilizing influence from baseline
          ╱ ○ ╲            │  Example: Peace ⊙ Neutral = Curiosity
         ╱  😐  ╲           │
        ╱    ▼    ╲         │
@@ -549,6 +549,398 @@ RESEARCH DOMAINS:
 
 ---
 
+## 🔧 BEA Calculator Operations Reference
+
+### Mathematical Operation Details
+
+```
+OPERATION: COMBUST (⊕)
+═══════════════════════════════════════════════════════════
+Purpose: Creates emergent properties (1+1=3 principle)
+Multiplier: 1.5x (COMBUST_MULTIPLIER constant)
+Category Enhancement: Transcendent states amplified 2.0x
+
+Example Calculations:
+├─ E[1] Curiosity (intensity: 3) ⊕ E[16] Bliss (intensity: 9)
+│  → E[27] Inspiration (intensity: 7)
+│  Effect: Creative spark emerges from wonder
+│
+├─ E[7] Joy (intensity: 8) ⊕ E[29] Hope (intensity: 4)
+│  → Enhanced Positive State
+│  Effect: Optimistic enthusiasm
+│
+└─ E[19] Clarity (intensity: 5) ⊕ E[6] Wonder (intensity: 7)
+   → E[20] Enlightenment (intensity: 10)
+   Effect: Transcendent understanding achieved
+
+═══════════════════════════════════════════════════════════
+
+OPERATION: BALANCE (⊖)
+═══════════════════════════════════════════════════════════
+Purpose: Seeks equilibrium and harmony
+Dampening Factor: 0.8x (BALANCE_DAMPENING constant)
+Peaceful States: Enhanced 0.8x weight
+
+Example Calculations:
+├─ E[10] Anger (intensity: 7) ⊖ E[23] Passion (intensity: 9)
+│  → E[18] Serenity (intensity: 6)
+│  Effect: Intense emotions transformed to peace
+│
+├─ E[4] Excitement (intensity: 6) ⊖ E[2] Calmness (intensity: 2)
+│  → E[24] Harmony (intensity: 7)
+│  Effect: Energy balanced with tranquility
+│
+└─ E[13] Anxiety (intensity: 5) ⊖ E[31] Peace (intensity: 8)
+   → E[14] Relief (intensity: 3)
+   Effect: Tension dissolved into ease
+
+═══════════════════════════════════════════════════════════
+
+OPERATION: DISSOLVE (⊗)
+═══════════════════════════════════════════════════════════
+Purpose: Breaks down complex states
+Reduction Factor: 0.6x (DISSOLVE_REDUCTION constant)
+Simplification: Returns to lower intensity states
+
+Example Calculations:
+├─ E[13] Anxiety (intensity: 5) ⊗ E[2] Calmness (intensity: 2)
+│  → E[14] Relief (intensity: 3)
+│  Effect: Worry breaks down, tension releases
+│
+├─ E[8] Confusion (intensity: 3) ⊗ E[19] Clarity (intensity: 5)
+│  → E[17] Contemplation (intensity: 4)
+│  Effect: Uncertainty transforms to reflection
+│
+└─ E[23] Passion (intensity: 9) ⊗ E[0] Neutral (intensity: 0)
+   → E[3] Interest (intensity: 4)
+   Effect: Intense drive simplified to focus
+
+═══════════════════════════════════════════════════════════
+
+OPERATION: AMPLIFY (⊙)
+═══════════════════════════════════════════════════════════
+Purpose: Returns to baseline, stabilizing influence
+Effect: Neutral state centers and grounds emotions
+Result: Often produces low-intensity cognitive states
+
+Example Calculations:
+├─ E[31] Peace (intensity: 8) ⊙ E[0] Neutral (intensity: 0)
+│  → E[1] Curiosity (intensity: 3)
+│  Effect: Perfect peace awakens gentle interest
+│
+├─ E[16] Bliss (intensity: 9) ⊙ E[0] Neutral (intensity: 0)
+│  → E[2] Calmness (intensity: 2)
+│  Effect: Transcendent joy settles to calm
+│
+└─ E[10] Anger (intensity: 7) ⊙ E[0] Neutral (intensity: 0)
+   → E[0] Neutral (intensity: 0)
+   Effect: Intensity completely neutralized
+
+═══════════════════════════════════════════════════════════
+```
+
+---
+
+## 📐 Mathematical Constants Reference
+
+### Core BEA Constants
+
+```
+MATHEMATICAL CONSTANTS:
+┌─────────────────────────────────────────────────────────┐
+│ BEA_GOLDEN_RATIO        = 1.618                         │
+│ Purpose: Transcendent state calculations                │
+│ Usage: Determines emergent property ratios              │
+├─────────────────────────────────────────────────────────┤
+│ COMBUST_MULTIPLIER      = 1.5                           │
+│ Purpose: 1+1=3 principle base multiplier                │
+│ Usage: Applied to Combust (⊕) operations                │
+├─────────────────────────────────────────────────────────┤
+│ BALANCE_DAMPENING       = 0.8                           │
+│ Purpose: Equilibrium seeking factor                     │
+│ Usage: Applied to Balance (⊖) operations                │
+├─────────────────────────────────────────────────────────┤
+│ DISSOLVE_REDUCTION      = 0.6                           │
+│ Purpose: State degradation factor                       │
+│ Usage: Applied to Dissolve (⊗) operations               │
+└─────────────────────────────────────────────────────────┘
+
+EMOTIONAL STATE RANGES:
+┌─────────────────────────────────────────────────────────┐
+│ MIN_LEVEL               = 0                             │
+│ MAX_LEVEL               = 255                           │
+│ NEUTRAL_LEVEL           = 128                           │
+│ DECAY_THRESHOLD         = 1                             │
+└─────────────────────────────────────────────────────────┘
+
+CATEGORY INTERACTION WEIGHTS:
+┌─────────────────────────────────────────────────────────┐
+│ COGNITIVE_WEIGHT        = 1.0                           │
+│ PEACEFUL_WEIGHT         = 0.8                           │
+│ TRANSCENDENT_WEIGHT     = 2.0                           │
+│ EMPOWERED_WEIGHT        = 1.2                           │
+│ INTENSE_WEIGHT          = 1.5                           │
+│ CONNECTED_WEIGHT        = 1.1                           │
+│ POSITIVE_WEIGHT         = 1.0                           │
+│ MELANCHOLIC_WEIGHT      = 0.9                           │
+│ PROTECTIVE_WEIGHT       = 1.3                           │
+│ TENSE_WEIGHT            = 1.4                           │
+│ ENERGETIC_WEIGHT        = 1.15                          │
+└─────────────────────────────────────────────────────────┘
+
+GRID PARAMETERS:
+┌─────────────────────────────────────────────────────────┐
+│ DEFAULT_WIDTH           = 32                            │
+│ DEFAULT_HEIGHT          = 32                            │
+│ MIN_GRID_SIZE           = 8                             │
+│ MAX_GRID_SIZE           = 128                           │
+│ DEFAULT_UPDATE_INTERVAL = 0.05 seconds (50 FPS)         │
+│ MAX_SPARKS_PER_FRAME    = 5                             │
+│ NEIGHBOR_RADIUS         = 1 (Moore neighborhood)        │
+│ EXTENDED_RADIUS         = 2                             │
+│ TRANSCENDENT_RADIUS     = 3                             │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎨 Visual Intensity Mapping
+
+### Emotional Intensity Scale (0-10)
+
+```
+INTENSITY VISUALIZATION:
+
+LEVEL 0 (Baseline)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+E[0] 😐 Neutral
+No emotional charge, pure equilibrium
+Color: Gray | Level: 0 | Energy: ░░░░░░░░░░
+
+LEVEL 1-3 (Low - Subtle Foundation)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+E[1] 🤔 Curiosity (3)     | Energy: ███░░░░░░░
+E[2] 😊 Calmness (2)      | Energy: ██░░░░░░░░
+E[8] 🤯 Confusion (3)     | Energy: ███░░░░░░░
+Gentle, exploratory, foundational emotions
+
+LEVEL 4-6 (Medium - Reactive Interactive)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+E[3] 🧐 Interest (4)      | Energy: ████░░░░░░
+E[4] 🎉 Excitement (6)    | Energy: ██████░░░░
+E[5] 💪 Strength (5)      | Energy: █████░░░░░
+E[11] 😨 Fear (6)         | Energy: ██████░░░░
+E[12] 🌧️ Melancholy (4)   | Energy: ████░░░░░░
+E[13] 😵‍💫 Anxiety (5)      | Energy: █████░░░░░
+E[14] 😌 Relief (3)       | Energy: ███░░░░░░░
+Active engagement, noticeable presence
+
+LEVEL 7-9 (High - Intense Overwhelming)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+E[6] ✨ Wonder (7)        | Energy: ███████░░░
+E[7] 😄 Joy (8)           | Energy: ████████░░
+E[10] 😡 Anger (7)        | Energy: ███████░░░
+E[18] 🕊️ Serenity (6)     | Energy: ██████░░░░
+E[23] 🌹 Passion (9)      | Energy: █████████░
+E[24] ☯️ Harmony (7)      | Energy: ███████░░░
+E[27] 🎨 Inspiration (7)  | Energy: ███████░░░
+E[30] ❤️ Love (8)         | Energy: ████████░░
+E[31] ☮️ Peace (8)        | Energy: ████████░░
+Powerful, transformative, overwhelming force
+
+LEVEL 10 (Peak - Transcendent Transformation)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+E[20] 🌅 Enlightenment (10) | Energy: ██████████
+E[21] 🔮 Transcendence (10) | Energy: ██████████
+Beyond ordinary experience, unity consciousness
+Maximum intensity, paradigm-shifting awareness
+```
+
+---
+
+## 🌊 Emotional Flow Patterns
+
+### Common Transformation Sequences
+
+```
+POSITIVE EMERGENCE SEQUENCES:
+═══════════════════════════════════════════════════════════
+
+Curiosity → Wonder → Enlightenment
+E[1] ──⊕──▶ E[6] ──⊕──▶ E[20]
+ 🤔   (Combust)  ✨   (Combust)  🌅
+Initial exploration leads to profound wisdom
+
+Interest → Excitement → Inspiration
+E[3] ──⊕──▶ E[4] ──⊕──▶ E[27]
+ 🧐   (Combust)  🎉   (Combust)  🎨
+Focus amplifies into creative breakthrough
+
+Calmness → Serenity → Peace
+E[2] ──⊖──▶ E[18] ──⊖──▶ E[31]
+ 😊   (Balance)  🕊️   (Balance)  ☮️
+Gentle peace evolves to ultimate tranquility
+
+STABILIZATION SEQUENCES:
+═══════════════════════════════════════════════════════════
+
+Anger → Serenity (through balance)
+E[10] ──⊖──▶ E[18]
+ 😡   (Balance)  🕊️
+Intense emotion transformed to calm
+
+Anxiety → Relief (through dissolution)
+E[13] ──⊗──▶ E[14]
+😵‍💫   (Dissolve)  😌
+Tension breaks down and releases
+
+Passion → Harmony (through balance)
+E[23] ──⊖──▶ E[24]
+ 🌹   (Balance)  ☯️
+Intense drive finds equilibrium
+
+GROUNDING SEQUENCES:
+═══════════════════════════════════════════════════════════
+
+Bliss → Curiosity (amplify to baseline)
+E[16] ──⊙──▶ E[1]
+ 🌟   (Amplify)  🤔
+Peak state returns to gentle exploration
+
+Peace → Neutral (complete grounding)
+E[31] ──⊙──▶ E[0]
+ ☮️   (Amplify)  😐
+Ultimate calm returns to center
+
+Excitement → Interest (energy refinement)
+E[4] ──⊗──▶ E[3]
+ 🎉   (Dissolve)  🧐
+Wild energy focuses to attention
+```
+
+---
+
+## 🔄 Cellular Automata Behavior Patterns
+
+### Grid Evolution Examples
+
+```
+SPARK INJECTION AND PROPAGATION:
+
+Time Step 0: Initial Spark
+┌─────────────────┐
+│ ░░ ░░ ░░ ░░ ░░  │
+│ ░░ ░░ ░░ ░░ ░░  │
+│ ░░ ░░ ██ ░░ ░░  │  ██ = E[16] Bliss (high intensity)
+│ ░░ ░░ ░░ ░░ ░░  │
+│ ░░ ░░ ░░ ░░ ░░  │
+└─────────────────┘
+
+Time Step 1: Wave Propagation
+┌─────────────────┐
+│ ░░ ░░ ░░ ░░ ░░  │
+│ ░░ ▓▓ ▓▓ ▓▓ ░░  │  ▓▓ = Influenced neighbors (low intensity)
+│ ░░ ▓▓ ██ ▓▓ ░░  │  ██ = Source (decaying)
+│ ░░ ▓▓ ▓▓ ▓▓ ░░  │
+│ ░░ ░░ ░░ ░░ ░░  │
+└─────────────────┘
+
+Time Step 3: Expansion and Interaction
+┌─────────────────┐
+│ ░░ ▓▓ ▓▓ ▓▓ ░░  │
+│ ▓▓ ▓▓ ██ ▓▓ ▓▓  │  Wave spreads, creates emergent patterns
+│ ▓▓ ██ ██ ██ ▓▓  │  Multiple states begin interacting
+│ ▓▓ ▓▓ ██ ▓▓ ▓▓  │
+│ ░░ ▓▓ ▓▓ ▓▓ ░░  │
+└─────────────────┘
+
+Time Step 5: Complex Emergence
+┌─────────────────┐
+│ ▓▓ ██ ██ ██ ▓▓  │  Complex emotional field established
+│ ██ ██ ▓█ ██ ██  │  ▓█ = High intensity emergent state
+│ ██ ▓█ ▓█ ▓█ ██  │  Multiple emotional "hotspots"
+│ ██ ██ ▓█ ██ ██  │  Self-organizing behavior visible
+│ ▓▓ ██ ██ ██ ▓▓  │
+└─────────────────┘
+
+PATTERN TYPES:
+
+Static Patterns (Stable configurations)
+┌──────┐
+│ ██   │  Single high-intensity state
+│ ▓▓ ░░ │  Surrounded by influenced zone
+│ ░░ ░░ │  Stable, no change over time
+└──────┘
+
+Oscillators (Periodic patterns)
+Frame 1   Frame 2   Frame 3   Frame 1 (repeat)
+┌─────┐  ┌─────┐  ┌─────┐  ┌─────┐
+│ ██  │  │ ▓▓  │  │ ░░  │  │ ██  │
+│ ░░  │  │ ██  │  │ ██  │  │ ░░  │
+└─────┘  └─────┘  └─────┘  └─────┘
+
+Gliders (Moving patterns)
+Step 1    Step 2    Step 3    Step 4
+┌─────┐  ┌─────┐  ┌─────┐  ┌─────┐
+│ ██  │  │ ░▓  │  │ ░░  │  │ ░░  │
+│ ░░  │  │ ░██ │  │ ░░▓ │  │ ░░░ │
+│ ░░  │  │ ░░  │  │ ░░██│  │ ░░░▓│
+└─────┘  └─────┘  └─────┘  └─────┘
+Pattern moves across grid
+
+Chaos (Unpredictable evolution)
+┌───────────┐
+│ ██ ░░ ▓▓  │  Constantly changing
+│ ▓▓ ██ ░░  │  No stable configuration
+│ ░░ ▓▓ ██  │  High energy state
+│ ██ ░░ ▓▓  │  Requires damping
+└───────────┘
+```
+
+---
+
+## 📱 Cross-Platform Feature Matrix
+
+### Feature Availability by Platform
+
+```
+┌───────────────────────┬────────┬─────────┬─────┬──────────┐
+│ Feature               │ Unity  │ Android │ Web │ Hardware │
+├───────────────────────┼────────┼─────────┼─────┼──────────┤
+│ 32-State System       │   ✅   │    ✅   │  ✅ │    ✅    │
+│ BEA Calculator (⊕⊖⊗⊙) │   ✅   │    ✅   │  ✅ │    ✅    │
+│ 32x32 Grid Simulation │   ✅   │    ⚠️   │  ⚠️ │    ❌    │
+│ GPU Acceleration      │   ✅   │    ❌   │  ⚠️ │    ❌    │
+│ Real-time Updates     │   ✅   │    ✅   │  ✅ │    ✅    │
+│ Voice Integration     │   ✅   │    ✅   │  ⚠️ │    ✅    │
+│ Text-to-Speech        │   ✅   │    ✅   │  ✅ │    ✅    │
+│ Audio Visualization   │   ✅   │    ⚠️   │  ⚠️ │    ✅    │
+│ Cloud Sync            │   ⚠️   │    ✅   │  ✅ │    ❌    │
+│ Offline Mode          │   ✅   │    ✅   │  ⚠️ │    ✅    │
+│ Visual Debug View     │   ✅   │    ⚠️   │  ⚠️ │    ❌    │
+│ Performance Monitor   │   ✅   │    ✅   │  ✅ │    ⚠️    │
+│ Export/Import States  │   ✅   │    ✅   │  ✅ │    ⚠️    │
+└───────────────────────┴────────┴─────────┴─────┴──────────┘
+
+Legend:
+✅ = Fully Supported
+⚠️ = Partial Support / Limited
+❌ = Not Available
+```
+
+---
+
 **This visual guide represents the complete BEA Framework ecosystem, providing a comprehensive overview of computational emotion architecture, implementation strategies, and future development directions.**
+
+**Key Updates in This Version:**
+- ✅ Corrected operator symbol correspondence (⊕⊖⊗⊙)
+- ✅ Aligned mathematical operation descriptions with API Reference
+- ✅ Added mathematical constants section matching API
+- ✅ Expanded emotional intensity visualization
+- ✅ Added emotional flow pattern sequences
+- ✅ Enhanced cellular automata behavior examples
+- ✅ Added cross-platform feature matrix
+- ✅ Maintained all 32 emotional states consistency
+- ✅ Preserved visual clarity and accessibility
 
 © 2025 Jeremy F. Jackson. All Rights Reserved. **Beat⊕k™** is a trademark of Jeremy F. Jackson.
