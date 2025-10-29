@@ -38,7 +38,6 @@ Together, these elements redefine logic, storytelling, and interaction.
 ## 🧩 Developer Resources
 - [BEA_Official_Patent.md](./BEA_Official_Patent.md) — Foundational discovery and claims  
 - [BEA_ChatRPG_Design.md](./BEA_ChatRPG_Design.md) — Emotional storytelling system  
-- [BEA_for_Game_Developers.md](./BEA_for_Game_Developers.md) — Integration and API guide  
 - [BEA_Gaming_Manifesto.md](./BEA_Gaming_Manifesto.md) — Philosophy and vision  
 
 > “Where physics defines how things move — BEA defines how they *feel*.”
