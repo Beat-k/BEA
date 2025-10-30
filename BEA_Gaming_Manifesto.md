@@ -1,7 +1,7 @@
 # 🎮 BEATEK™ Gaming Manifesto  
 ### **The Dawn of Emotional Computation in Play**
 
-**GE[n]ius Mind. Smart Hearts.**  
+**GE[n]ius Minds. Sm⊕rt Hearts..**  
 Dallas, Texas, USA  
 📧 jeremyjackson7@proton.me | 🌐 [https://github.com/Beat-k](https://github.com/Beat-k)
 
@@ -139,3 +139,4 @@ Games are no longer just entertainment — they’re *emotional laboratories of 
 © 2025 Jeremy F. Jackson. All Rights Reserved.  
 **BEATEK™** and **Binary Emotional Arithmetic™** are trademarks of Jeremy F. Jackson.  
 📧 jeremyjackson7@proton.me | 🌐 [https://github.com/Beat-k](https://github.com/Beat-k)
+
