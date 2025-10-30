@@ -1,6 +1,6 @@
 # 💼 BEATEK™ Investor Pitch Deck  
 ### **Binary Emotional Arithmetic (BEA) — The Birth of Emotional Math**  
-**GE[n]ius Mind. Smart Hearts.**
+**GE[n]ius Minds. Sm⊕rt Hearts.**
 
 ---
 
@@ -174,3 +174,4 @@ We invite investors, universities, and visionaries to partner in building **the 
 
 © 2025 Jeremy F. Jackson. All Rights Reserved.  
 **BEATEK™** and **Binary Emotional Arithmetic™** are trademarks of Jeremy F. Jackson.
+
