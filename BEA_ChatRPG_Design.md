@@ -1,6 +1,6 @@
 # BEA ChatRPG™ — Design Document
 **Powered by BEATEK™ | Binary Emotional Arithmetic (BEA)**  
-**GE[n]ius Mind. Smart Hearts.**  
+**GE[n]ius Minds. Sm⊕rt Hearts.**  
 Dallas, Texas, USA  
 📧 jeremyjackson7@proton.me | 🌐 [https://github.com/Beat-k](https://github.com/Beat-k)
 
