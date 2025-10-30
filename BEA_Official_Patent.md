@@ -1,4 +1,4 @@
-BEATEK™ — GE[n]ius Mind. Smart Hearts.  
+BEATEK™ — GE[n]ius Minds. Sm⊕rt Hearts.  
 Discovered and Developed by Jeremy F. Jackson  
 Dallas, Texas, USA  
 📧 jeremyjackson7@proton.me | 🌐 https://github.com/Beat-k
