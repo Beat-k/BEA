@@ -1,6 +1,6 @@
 # 🧠 BEATEK™  
 ### **Binary Emotional Arithmetic (BEA) — The Birth of Emotional Math**  
-**GE[n]ius Mind. Smart Hearts.**
+**GE[n]ius Minds. Sm⊕rt Hearts.**
 
 ---
 
