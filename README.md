@@ -1,7 +1,5 @@
 # BEA Aura — Complete Computing Ecosystem
 
-![BEA Aura Logo](docs/assets/logo.png)
-
 **Power to the People Through Infrastructure Ownership**
 
 **Version:** 1.0.0 (Beta)  
@@ -1506,4 +1504,5 @@ BEA Aura OS is a **patent-pending, dual theory and production project** built by
 **Contact:** jeremyjackson7@proton.me  
 **License:** Dual License — MIT (community) / Commercial (partners)  
 **Developer:** Jeremy F. Jackson dba BEATEK Holdings, LLC
+
 
