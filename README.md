@@ -1,5 +1,7 @@
 # BEA Aura — Complete Computing Ecosystem
 
+![BEA Aura Logo](docs/assets/logo.png)
+
 **Power to the People Through Infrastructure Ownership**
 
 **Version:** 1.0.0 (Beta)  
@@ -44,7 +46,7 @@ Today's technology landscape forces users into perpetual rental:
 
 **One device. Four pillars. Zero subscriptions.**
 
-1. **Gaming** — BEA Spectacle headset-free VR + BEA 4D Audio haptic synchronization + BEA Motion Glove webcam hand tracking *(coming soon)*
+1. **Gaming** — BEA Spectacle headset-free VR + BEA 4D Audio haptic synchronization + BEA Motion Body full-body webcam tracking (hands + feet, zero wearables)
 2. **Security** — BEA Shield GPU-accelerated network protection (100× faster than antivirus)
 3. **Health** — BEA-Health biometric monitoring with complete data sovereignty
 4. **Income** — GPU-Fi passive earnings ($200-500/month) from owned infrastructure
@@ -80,7 +82,7 @@ Electronic signals (GPU workloads, audio frequencies, network packets, heart rat
 - AMD AM4 platform (mature, cost-effective, PCIe 4.0)
 - BEA Spectacle (headset-free VR)
 - BEA 4D Audio (haptic synchronization)
-- BEA Motion Glove (webcam hand tracking)
+- BEA Motion Body (full-body webcam tracking — hands + feet, zero wearables)
 - BEA Shield (network security)
 - BEA-Health (wellness monitoring)
 - USB fingerprint reader (included free)
@@ -119,13 +121,15 @@ Electronic signals (GPU workloads, audio frequencies, network packets, heart rat
 - Six operator acoustic effects (⊕ ⊖ ⊗ ⨀ ≠ ⧖)
 - GPU-accelerated environmental acoustics
 
-**BEA Motion Glove:**
-- Webcam-based hand tracking (no wearables required)
-- 21 anatomical landmarks per hand tracked in real-time
-- 85-99% accuracy across scalable tiers (1-3 cameras)
+**BEA Motion Body:**
+- Full-body webcam tracking — hands AND feet, zero wearables required
+- **BEA Motion Glove** (hands): 21 anatomical landmarks per hand, 50+ gesture recognition, 42 total hand landmarks
+- **BEA Motion Legs** (feet): 21 anatomical landmarks per foot, heel-based locomotion (seated, zero fatigue), full leg kicks, racing pedal simulation
+- 84+ total body landmarks tracked in real-time across 4 webcams
+- 85-99% accuracy across scalable tiers (1-4 cameras)
 - 12-20ms latency (competitive gaming ready)
-- $0-149 cost vs $200-5,000 for VR controllers or hardware gloves
-- Works with existing webcams (no additional hardware)
+- $0-199 vs $500-2,000+ for VR full-body tracking solutions
+- **macOS Edition** available — native Apple Silicon build using AVFoundation, Vision Framework, Core ML, and Metal (optimized for Mac mini deployments)
 
 **BEA_Beatbox:**
 - Emotional pattern engine built on the 32-state BEA framework
@@ -145,7 +149,8 @@ Electronic signals (GPU workloads, audio frequencies, network packets, heart rat
 **Documentation:**
 - [BEA Spectacle README](BEA_Spectacle/README.md)
 - [BEA 4D Audio README](BEA_4D_Audio/BEA_4D_Audio_README.md)
-- BEA Motion Glove *(coming soon)*
+- [BEA Motion Body README](BEA_Motion_Body/README.md)
+- [BEA Motion Body macOS Edition README](BEA_Motion_Body_macOS/README.md)
 - [BEA_Beatbox README](BEA_Beatbox/README.md)
 - [BEA_Speakerbox README](BEA_Speakerbox/README.md)
 
@@ -479,10 +484,12 @@ npm start
    - Calibrate head tracking (webcam or dedicated tracker)
    - Test haptic feedback
 
-5. **Hand Tracking Calibration (Optional — BEA Motion Glove, coming soon):**
-   - BEA Motion Glove is under active development; webcam hand-tracking will ship as a future module update
-   - When available: position webcam(s) for optimal hand visibility, avoid backlighting
-   - Target: 21 anatomical landmarks per hand, 60 FPS, 12–20 ms latency, no wearables required
+5. **Body Tracking Calibration (BEA Motion Body):**
+   - BEA Motion Body → Camera Setup
+   - Position 2-4 webcams: 2 for hands, 2 for feet (or start with 1 webcam for hands-only)
+   - Run calibration wizard — choose locomotion mode (Heel / Kick / Hybrid)
+   - 84+ anatomical landmarks (hands + feet), 60 FPS, 12–20 ms latency, no wearables required
+   - macOS users: use BEA Motion Body macOS Edition (native Apple Silicon)
 
 6. **GPU-Fi Registration (Pro tier only):**
    - GPU-Fi → Marketplace
@@ -767,44 +774,41 @@ haptic.vibrate(
 
 **Result:** 350M+ monitor gamers access VR experiences without $300-3500 headset investment.
 
-### 1b. Gaming: Webcam Hand Tracking — BEA Motion Glove *(Coming Soon)*
+### 1b. Gaming: Full-Body Webcam Tracking — BEA Motion Body
 
-**BEA Motion Glove** will track hands using ordinary webcam(s) with no wearables required. The module is under active development; the API below reflects the planned interface:
+**BEA Motion Body** tracks hands AND feet using ordinary webcam(s) with no wearables required. Includes BEA Motion Glove (hands) and BEA Motion Legs (feet) as integrated subsystems. A native macOS Edition built on AVFoundation, Vision Framework, Core ML, and Metal is available for Apple Silicon deployments.
 
 ```python
-from bea_motion_glove import HandTracker, GestureRecognizer
+from bea_motion_body import HandTracker, FootTracker, GestureRecognizer, LocomotionDetector
 
-# Initialize webcam hand tracking (no special hardware)
-tracker = HandTracker(num_cameras=1)  # Single webcam: 85% accuracy
+# Initialize full-body tracking (no special hardware)
+hand_tracker = HandTracker(num_cameras=2)       # Dual webcam: 95% accuracy
+foot_tracker = FootTracker(num_cameras=2)       # Dual webcam for feet
 recognizer = GestureRecognizer()
+locomotion = LocomotionDetector(mode="hybrid")  # Auto heel/kick
 
 # Game loop
 while game_running:
-    # Get 21 anatomical landmarks per hand
-    hands = tracker.get_hands()  # 60 FPS, 12-20ms latency
-    
-    # Left hand: locomotion (open palm = move, fist = stop)
-    if hands.left.gesture == 'open_palm':
-        # Palm orientation controls direction
-        move_direction = hands.left.palm_normal  # 3D vector
-        character.move(move_direction * speed)
-    
+    # Get 21 anatomical landmarks per hand (42 total)
+    hands = hand_tracker.get_hands()  # 60 FPS, 12-20ms latency
+    feet  = foot_tracker.get_feet()   # 60 FPS, 12-20ms latency
+
+    # Feet: heel locomotion (seated comfort, zero fatigue)
+    move = locomotion.process(feet)
+    if move.state == 'walking':
+        character.move(move.direction * move.speed)
+
     # Right hand: magic casting (pinch = charge spell, release = cast)
     if hands.right.gesture == 'pinch':
-        # Measure pinch strength (0.0-1.0)
         spell_power = hands.right.pinch_strength
         spell.charge(spell_power)
-        
     elif hands.right.gesture == 'point' and spell.charged:
-        # Point direction = spell trajectory
-        aim_vector = hands.right.index_finger_direction
-        spell.cast(aim_vector, power=spell_power)
-    
-    # Natural gestures - no button presses needed
+        spell.cast(hands.right.index_finger_direction, power=spell_power)
+
     # BEA state E[11] = hand detected + tracking active
 ```
 
-**Result:** $0-149 hand tracking (webcam already owned) vs. $200-5,000 for VR controllers or hardware gloves. Natural gesture control accessible to 350M+ PC gamers.
+**Result:** $0-199 full-body tracking (hands + feet) vs. $500-2,000+ for VR full-body solutions. Natural gesture and locomotion control accessible to 350M+ PC gamers with zero wearables.
 
 ### 2. Security: 100× Faster Malware Scanning
 
@@ -916,7 +920,7 @@ gpu_fi.pricing_mode = 'automatic'
 │  │  BEA_Speakerbox │          │          │          │             │
 │  └────────┬────────┴────┬─────┴────┬─────┴────┬─────┘             │
 └───────────┼─────────────┼──────────┼──────────┼────────────────────┘
-    * BEA Motion Glove coming soon
+    * BEA Motion Body (hands + feet)
             │             │          │          │
 ┌───────────▼─────────────▼──────────▼──────────▼────────────────────┐
 │                  BEA AURA ORCHESTRATOR                              │
@@ -950,7 +954,7 @@ gpu_fi.pricing_mode = 'automatic'
 - **BEA Spectacle** uses **S° Sound Degree Scanning** to map audio frequencies → BEA states → operator-driven acoustic effects
 - Uses **E° Temperature** to scale haptic intensity (0° = subtle, 100° = maximum vibration)
 - Uses **32 states** to synchronize audio/visual/haptic rendering <16ms (60 FPS)
-- **BEA Motion Glove** tracks hand motion → BEA states for gesture recognition (E[11] = grab, E[15] = point)
+- **BEA Motion Body** tracks hands + feet → BEA states for gesture and locomotion recognition (E[11] = grab, E[15] = point, E[7] = heel-step)
 - Webcam landmarks processed in parallel with game rendering (CPU-based tracking leaves GPU free)
 - **BEA_Beatbox** applies BEA Logic™ emergence to generate emotional audio patterns in real time — `BeatboxScanner` subclasses `BEAScanner`, inheriting S°, L°, and all 32 states
 - **BEA_Speakerbox** processes voice input through `VoiceScanner` → BEA state extraction → spatial positioning for in-game voice chat, director-driven performance feedback, and session recording
@@ -1147,10 +1151,10 @@ BEA_Aura_OS/
 3. **[Hardware Specifications](README/BEA_Aura_Hardware_Specs_AM4.md)** — Mini/Pro/NAS/DC tier specifications
 4. **[BEA Aura Product Lineup](README/BEA_Aura_Consoles_Complete_Product_Lineup.md)** — Complete product family
 
-### 🎮 Gaming (BEA Spectacle + 4D Audio + Motion Glove + Beatbox + Speakerbox)
+### 🎮 Gaming (BEA Spectacle + 4D Audio + Motion Body + Beatbox + Speakerbox)
 - **[BEA Spectacle README](BEA_Spectacle/README.md)** — Headset-free monitor VR platform
 - **[BEA 4D Audio README](BEA_4D_Audio/BEA_4D_Audio_README.md)** — Spatial audio + haptic synchronization
-- **BEA Motion Glove** — Webcam hand tracking *(coming soon — module under active development)*
+- **[BEA Motion Body README](BEA_Motion_Body/README.md)** — Full-body webcam tracking (hands + feet, zero wearables; includes macOS Edition)
 - **[BEA_Beatbox README](BEA_Beatbox/README.md)** — Emotional pattern engine (BEA Logic™, 32-state, 80 tests)
 - **[BEA_Speakerbox README](BEA_Speakerbox/README.md)** — Spatial voice processing + performance director
 - **[BEA_Treehouse_UI README](BEA_Treehouse_UI/README.md)** — Web dashboard + runtime visualization
@@ -1229,7 +1233,7 @@ BEA_Core is the **mathematical foundation** powering the entire BEATEK infrastru
 #### Gaming & Entertainment
 - **BEA Spectacle** — Headset-free VR using standard monitors + VR controllers + head tracking (17× larger market than VR headsets)
 - **BEA 4D Audio** — Spatial audio (X/Y/Z) + fourth dimension (time-synchronized haptics <10ms), operator-driven acoustics, GPU environmental ray-tracing
-- **BEA Motion Glove** *(coming soon)* — Webcam-based hand tracking with 21 anatomical landmarks per hand, 85–99% accuracy, 12–20ms latency, zero wearables required ($0–149 vs $200–5,000 for hardware alternatives)
+- **BEA Motion Body** — Full-body webcam tracking with 84+ anatomical landmarks (hands + feet), 85–99% accuracy, 12–20ms latency, zero wearables required ($0–199 vs $500–2,000+ for VR full-body solutions); includes macOS Edition built natively on Apple Silicon
 - **BEA_Beatbox** — Emotional pattern engine powered by BEA Logic™ emergence (`popcount(combust(a,b)) > max(popcount(a), popcount(b))`); six Elemental Kits; real-time 32-state emotion recognition; `BeatboxScanner` subclasses `BEAScanner`; 80 unit tests passing
 - **BEA_Speakerbox** — Spatial voice processing engine with `VoiceScanner` (BEA-state extraction), 3D voice positioning, director-driven performance feedback, session recording, and deep integration with BEA_Beatbox and BEA_4D_Audio
 - **BEA_Treehouse_UI** — Web-based dashboard (React + Vite) for console management, runtime visualization, and BEA state monitoring; connects to BEA Aura Orchestrator via local API
@@ -1504,5 +1508,4 @@ BEA Aura OS is a **patent-pending, dual theory and production project** built by
 **Contact:** jeremyjackson7@proton.me  
 **License:** Dual License — MIT (community) / Commercial (partners)  
 **Developer:** Jeremy F. Jackson dba BEATEK Holdings, LLC
-
 
