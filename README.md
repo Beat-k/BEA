@@ -1,7 +1,5 @@
 # BEA Aura — Complete Computing Ecosystem
 
-![BEA Aura Logo](docs/assets/logo.png)
-
 **Power to the People Through Infrastructure Ownership**
 
 **Version:** 1.0.0 (Beta)  
@@ -1466,6 +1464,7 @@ Building infrastructure democracy through GPU sharing, network security, health 
 ```
 
 **The Fifth Freedom: Own the infrastructure running your software.**
+
 
 
 
