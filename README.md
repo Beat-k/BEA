@@ -1,5 +1,7 @@
 # BEA Aura — Complete Computing Ecosystem
 
+![BEA Aura Logo](docs/assets/logo.png)
+
 **Power to the People Through Infrastructure Ownership**
 
 **Version:** 1.0.0 (Beta)  
@@ -8,6 +10,21 @@
 **Hardware Platform:** AMD AM4 (Ryzen 5000 series) · AM5 available — see [Platform Comparison](README/BEA_Aura_Platform_Comparison_AM4_AM5_Intel.md)  
 **Lead GPU:** NVIDIA RTX 5060 Ti 16GB  
 **Patent:** Provisional Application Filed February 3, 2026 — 111 Claims (Jeremy F. Jackson)
+
+---
+
+> **⚠️ Project Status: Theory & Production**
+>
+> BEA Aura OS exists in both **active theoretical development and working production code**. Some pillars are fully implemented with tests and documentation. Others are architected, specified, and in progress. All work is grounded in the patented BEA™ E-motion framework — not vaporware.
+>
+> **Patents have been filed.** Provisional application covering the BEA™ Binary E-motion Arithmetic framework, BEA Aura hardware platform, and cross-pillar Physiological Duress Detection was filed **February 3, 2026** (Jeremy F. Jackson — 111+ claims).
+>
+> **We are actively seeking:**
+> - 🤝 **Collaborators** — Engineers and open-source contributors ready to help build the remaining pillars
+> - 🔧 **Technologists** — GPU engineers, CV/ML specialists, embedded systems and full-stack developers
+> - 💼 **Business Partners** — Hardware manufacturers, distributors, security firms, health tech companies, and investors
+>
+> **Contact:** jeremyjackson7@proton.me · **License:** Dual (MIT / Commercial)
 
 ---
 
@@ -1465,6 +1482,28 @@ Building infrastructure democracy through GPU sharing, network security, health 
 
 **The Fifth Freedom: Own the infrastructure running your software.**
 
+---
 
+## Get Involved
 
+BEA Aura OS is a **patent-pending, dual theory and production project** built by a solo founder. The framework is real, the code is real, and the patents are filed — now it's time to build with partners.
+
+### We Are Seeking
+
+| Role | What We Need |
+|------|--------------|
+| **Collaborators** | Open-source contributors, engineers, and researchers who want to co-build the remaining pillars (BEA_Pulse, BEA_Lens, BEA_Vault, BEA_Flow, and more — see [PILLARS_ROADMAP.md](PILLARS_ROADMAP.md)) |
+| **Technologists** | GPU engineers · CV/ML specialists · Embedded systems devs · Full-stack engineers with interest in edge computing and local-first infrastructure |
+| **Business Partners** | Hardware manufacturers · OEM distributors · Security firms · Health tech companies · Investors aligned with the "own your infrastructure" mission |
+
+### Why Now
+
+- Provisional patent filed February 3, 2026 — **111+ claims** protecting the BEA™ framework, hardware platform, and duress detection system
+- Core pillars are built and running — Gaming, Security, Health, and Income are all operational
+- The ecosystem is designed from the ground up for third-party integration via the [BEA Aura Developer SDK](BEA_Aura_Developer_SDK/)
+- First-mover opportunity in owned-infrastructure consumer computing
+
+**Contact:** jeremyjackson7@proton.me  
+**License:** Dual License — MIT (community) / Commercial (partners)  
+**Developer:** Jeremy F. Jackson dba BEATEK Holdings, LLC
 
