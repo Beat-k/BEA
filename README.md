@@ -1,5 +1,7 @@
 # BEA Aura — Complete Computing Ecosystem
 
+![BEA Aura Logo](docs/assets/logo.png)
+
 **Power to the People Through Infrastructure Ownership**
 
 **Version:** 1.0.0 (Beta)  
@@ -101,7 +103,37 @@ Electronic signals (GPU workloads, audio frequencies, network packets, heart rat
 
 ---
 
+## Platform Architecture — Biological Layer Model
+
+BEA Aura OS is organized as a biological computing architecture. Each layer has a
+specific role, and the layers interact through BEA E-motion states (E[0–31]).
+
+The **Four Pillars of Value** below describe what the platform does for users.
+This section describes the technical architecture that makes it possible.
+
+| Layer | Pillars | Role |
+|---|---|---|
+| **Sensing** | BEA_Lens, BEA_Health, BEA_4D_Audio, BEA_Motion_Body | Perceive the environment and user state |
+| **Nervous System** | BEA_Pulse | Inter-pillar event bus — heartbeat of the platform |
+| **Reflex Layer** | BEA_Flow | Cross-pillar automation — react to events without user action |
+| **Memory Layer** | BEA_Vault | Encrypted storage — health records, evidence, financial logs |
+| **Metabolic Layer** | BEA_Clear, BEA_Cache | Resource lifecycle — GPU/RAM/NVMe hygiene |
+| **Economic Layer** | BEA_Grid, BEA_Ledger | Energy management and financial accounting |
+| **Social Layer** | BEA_Relay | Multi-node mesh networking — household sync |
+| **Interface Layer** | BEA_Shell, BEA_Treehouse_UI, Developer SDK | User-facing command surface and visual environment |
+| **Runtime** | BEA Aura Orchestrator | Job scheduling, container lifecycle, VRAM management |
+
+All layers communicate exclusively through BEA E-motion states on BEA_Pulse.
+No layer directly calls another — they publish events and respond to them.
+This makes the platform composable, testable, and extensible via the Developer SDK.
+
+---
+
 ## Four Pillars of Value
+
+> **User-facing market framing.** The biological architecture above describes the
+> technical implementation. The Four Pillars below describe what that architecture
+> delivers for the person using it.
 
 ### 1. Gaming — Headset-Free VR
 
@@ -144,6 +176,14 @@ Electronic signals (GPU workloads, audio frequencies, network packets, heart rat
 - Deep integration with BEA_Beatbox and BEA_4D_Audio pipelines
 - Console-as-cloud: processes locally on the BEA Aura, streams to thin-client apps via BEA_Shield VPN
 
+**BEA_Director:**
+- AI Camera Crew system that reads BEA Motion Body intelligence and automatically selects, times, and routes camera angles with broadcast-quality anticipatory editing
+- `DirectorScanner(BEAScanner)` maps 14 cut lifecycle events to BEA 32-state E-motion values — `CUT_EXECUTED`→E[18], `EMERGENCE_HOLD`→E[29], `ALL_CAMERAS_FAILED`→E[8] (critical)
+- Four integration adapters: `AudioDirectorAdapter` (spatial mix via BEA_4D_Audio), `HealthDirectorAdapter` (duress-aware cut pacing), `BeatboxDirectorAdapter` (E-motion sync), `ConsoleDirectorAdapter` (AMD VCN GPU 4K multi-stream encode)
+- `DirectorShellAdapter` registered in BEA_Shell — commands: `status`, `cameras`, `angles`, `cut <id>`, `start`, `stop`
+- 76 unit tests, all passing
+- **macOS is a separate platform** — `BEA_Director_macOS` is a standalone package built exclusively for Apple Silicon users. It is not embedded inside BEA_Aura_OS. macOS users connect to a BEA Aura Console remotely via BEA_Shield VPN to offload 4K encode, Beatbox state sync, and AI grading to the Console GPU (Console-as-Cloud). All AVFoundation camera capture and Apple Neural Engine inference run locally on the Mac.
+
 **Documentation:**
 - [BEA Spectacle README](BEA_Spectacle/README.md)
 - [BEA 4D Audio README](BEA_4D_Audio/BEA_4D_Audio_README.md)
@@ -151,6 +191,7 @@ Electronic signals (GPU workloads, audio frequencies, network packets, heart rat
 - [BEA Motion Body macOS Edition README](BEA_Motion_Body_macOS/README.md)
 - [BEA_Beatbox README](BEA_Beatbox/README.md)
 - [BEA_Speakerbox README](BEA_Speakerbox/README.md)
+- [BEA_Director README](BEA_Director/README.md)
 
 ### 2. Security — GPU-Accelerated Protection
 
@@ -733,6 +774,73 @@ recorder.stop()
 print(f"Session saved: {recorder.last_session_path}")
 ```
 
+### BEA_Director (AI Camera Crew)
+
+```python
+from bea_director import BEADirector, DirectorScanner, DirectorEventType
+from bea_director import AudioDirectorAdapter, BeatboxDirectorAdapter
+
+# Initialize AI camera crew
+scanner   = DirectorScanner()
+audio_adp = AudioDirectorAdapter()
+beatbox   = BeatboxDirectorAdapter()
+
+# BEA Motion Body feeds confidence scores from each webcam
+camera_confidences = [0.91, 0.76, 0.43, 0.88]  # 4-camera rig
+result = scanner.scan_confidence_list(camera_confidences)
+
+print(f"BEA State: E[{result.bea_state}]")   # E[22] — confidence_high
+print(f"Cut ready: {not result.is_critical}") # True
+
+# Director executes cut — syncs spatial audio azimuth
+cut = scanner.scan_event(DirectorEventType.CUT_EXECUTED, camera_id=3, confidence=0.88)
+audio_adp.on_cut(camera_id=3)               # Rotates AVAudioEngine azimuth to 90° (right)
+
+# Beatbox emergence hold — director pauses for E-motion peak
+if beatbox.is_emergence():
+    hold = scanner.scan_event(DirectorEventType.EMERGENCE_HOLD)
+    print(f"Hold at: E[{hold.bea_state}]")  # E[29] — emergence sustained
+
+# Recency-weighted history aggregate across the session
+aggregate = scanner.scan_history()
+print(f"Session aggregate: E[{aggregate}]")  # weighted toward most recent cuts
+```
+
+### BEA_Shell (Unified CLI)
+
+```python
+from BEA_Shell import build_default_engine
+
+# Build the default engine with all 8 pillar adapters registered
+engine = build_default_engine()
+
+# Dispatch commands to any pillar
+shield_status = engine.dispatch("shield",   "status")
+health_status = engine.dispatch("health",   "status")
+grid_roi      = engine.dispatch("grid",     "roi")
+director_cut  = engine.dispatch("director", "cut", "3")
+
+print(shield_status.output)         # BEA Shield v1.0.0 — active
+print(f"E[{shield_status.bea_state}]")   # E[18] — normal-active
+
+# List all registered pillars
+pillars = engine.dispatch("shell", "pillars")
+print(pillars.output)
+# shield     BEA Shield VPN + GPU-accelerated security        v1.0.0  E[18]
+# health     BEA Health biometric analytics                   v1.0.0  E[18]
+# gpu-fi     GPU-Fi passive income marketplace                v1.0.0  E[18]
+# grid       Energy & power management (time-of-use ROI)      v1.0.0  E[18]
+# ledger     BEA Ledger financial tracking                    v1.0.0  E[18]
+# beatbox    BEA Beatbox emotional pattern engine             v2.0.0  E[18]
+# director   AI camera crew — multi-angle cut direction       v1.1.0  E[18]
+# shell      BEA Shell meta commands                          v1.0.0  E[18]
+
+# CLI equivalent (from terminal):
+#   python BEA_Shell/cli.py director status
+#   python BEA_Shell/cli.py grid roi
+#   python BEA_Shell/cli.py shield status
+```
+
 ---
 
 ## Use Cases
@@ -905,6 +1013,9 @@ gpu_fi.pricing_mode = 'automatic'
 │                        USER APPLICATIONS                            │
 │  Games • Security Console • Health Dashboard • GPU-Fi               │
 │  BEA_Treehouse_UI (Web Dashboard) • Thin-Client Apps (via VPN)      │
+│                                                                     │
+│  BEA_Shell  ─────  bea shield status  •  bea director cut 1        │
+│  (Unified CLI)     bea gpu-fi pause   •  bea grid roi               │
 └────────────────────────────┬────────────────────────────────────────┘
                              │
 ┌────────────────────────────▼────────────────────────────────────────┐
@@ -913,12 +1024,15 @@ gpu_fi.pricing_mode = 'automatic'
 │  │     GAMING      │   BEA    │   BEA    │  GPU-Fi  │             │
 │  │  BEA Spectacle  │  Shield  │  Health  │GPU-Verse │             │
 │  │  BEA 4D Audio   │(Security)│ (Health) │ (Income) │             │
-│  │  Motion Glove*  │          │          │          │             │
-│  │  BEA_Beatbox    │          │          │          │             │
-│  │  BEA_Speakerbox │          │          │          │             │
+│  │  Motion Body*   │          │          │          │             │
+│  │  BEA_Beatbox    │          │ BEA_Grid │          │             │
+│  │  BEA_Speakerbox │          │ (Power)  │          │             │
+│  │  BEA_Director** │          │          │          │             │
 │  └────────┬────────┴────┬─────┴────┬─────┴────┬─────┘             │
 └───────────┼─────────────┼──────────┼──────────┼────────────────────┘
-    * BEA Motion Body (hands + feet)
+    * BEA Motion Body (hands + feet, zero wearables)
+    ** BEA_Director_macOS is a separate standalone package for macOS users
+       (connects to BEA Aura Console GPU remotely via BEA_Shield VPN)
             │             │          │          │
 ┌───────────▼─────────────▼──────────▼──────────▼────────────────────┐
 │                  BEA AURA ORCHESTRATOR                              │
@@ -936,7 +1050,8 @@ gpu_fi.pricing_mode = 'automatic'
 │  32 E-motion States • 6 Operators (⊕⊖⊗⨀≠⧖)                        │
 │  S° Sound Scanning • L° Lumen Scanning • E° Temp                   │
 │  BEA Logic™ (Emergence) • BeatboxScanner • VoiceScanner            │
-│  ** SIGNAL COORDINATION LAYER **                                    │
+│  DirectorScanner • ShellScanner • GridScanner                      │
+│  ** SIGNAL COORDINATION LAYER — all scanners subclass BEAScanner ** │
 └────────────────────────────┬────────────────────────────────────────┘
                              │
 ┌────────────────────────────▼────────────────────────────────────────┐
@@ -948,7 +1063,7 @@ gpu_fi.pricing_mode = 'automatic'
 
 ### How BEA_Core Powers the Pillars
 
-**1. Gaming Pillar (BEA Spectacle + 4D Audio + Motion Glove + Beatbox + Speakerbox):**
+**1. Gaming Pillar (BEA Spectacle + 4D Audio + Motion Body + Beatbox + Speakerbox + Director):**
 - **BEA Spectacle** uses **S° Sound Degree Scanning** to map audio frequencies → BEA states → operator-driven acoustic effects
 - Uses **E° Temperature** to scale haptic intensity (0° = subtle, 100° = maximum vibration)
 - Uses **32 states** to synchronize audio/visual/haptic rendering <16ms (60 FPS)
@@ -956,6 +1071,7 @@ gpu_fi.pricing_mode = 'automatic'
 - Webcam landmarks processed in parallel with game rendering (CPU-based tracking leaves GPU free)
 - **BEA_Beatbox** applies BEA Logic™ emergence to generate emotional audio patterns in real time — `BeatboxScanner` subclasses `BEAScanner`, inheriting S°, L°, and all 32 states
 - **BEA_Speakerbox** processes voice input through `VoiceScanner` → BEA state extraction → spatial positioning for in-game voice chat, director-driven performance feedback, and session recording
+- **BEA_Director** reads BEA Motion Body camera intelligence and automatically selects/times camera angles with broadcast-quality editing — `DirectorScanner` maps 14 cut events to BEA 32-state values; `ConsoleDirectorAdapter` handles AMD VCN 4K multi-stream encode on the Aura Console GPU. macOS users run the separate `BEA_Director_macOS` standalone package and GPU-offload to the Console remotely over BEA_Shield VPN.
 
 **2. BEA Shield (Security):**
 - Uses **BEA states** to classify packet behavior (E[21] ≠ Divergence = anomaly detected)
@@ -1037,6 +1153,55 @@ BEA_Aura_OS/
 │   ├── integration.py                   # Cross-module integration
 │   ├── demo_standalone.py               # Standalone demo
 │   └── tests/test_speakerbox.py         # Unit tests
+│
+├── 📁 BEA_Director/                     # AI Camera Crew System (v1.1.0)
+│   ├── bea_director/
+│   │   ├── director_scanner.py          # DirectorScanner (BEAScanner subclass) — 14 event types
+│   │   ├── integration.py               # AudioDirectorAdapter, HealthDirectorAdapter,
+│   │   │                                #   BeatboxDirectorAdapter, ConsoleDirectorAdapter,
+│   │   │                                #   DirectorBroadcaster
+│   │   ├── director.py                  # BEADirector — angle selection + cut timing
+│   │   ├── crew_roles.py                # CameraRole, CameraConfig, CrewRoster
+│   │   ├── shot_selector.py             # Confidence-based angle selection
+│   │   ├── confidence_evaluator.py      # Per-camera quality scoring
+│   │   ├── cut_timer.py                 # Anticipatory E-motion cut timer
+│   │   ├── output_switcher.py           # OutputMode routing
+│   │   └── __init__.py                  # Full export surface (v1.1.0)
+│   └── tests/test_director_scanner.py   # 76 unit tests (all passing)
+│
+├── 📁 BEA_Director_macOS/               # Placeholder — macOS Edition is a SEPARATE PACKAGE
+│   │  (BEA_Director_macOS is a standalone repo for Apple Silicon users.         │
+│   │   macOS users connect to the BEA Aura Console GPU remotely via             │
+│   │   BEA_Shield VPN for 4K encode offload, Beatbox sync, and AI grading.      │
+│   │   AVFoundation capture and Apple Neural Engine inference run locally.)      │
+│   └── bea_motion_body_macos/
+│       ├── camera_manager.py            # AVFoundationBridge, CameraManager
+│       └── __init__.py                  # Minimal exports (v0.1.0)
+│
+├── 📁 BEA_Shell/                        # Unified BEA Aura OS CLI (v1.0.0)
+│   ├── shell_schema.py                  # ShellEventType, CommandDef, CommandResult, PillarInfo
+│   ├── shell_registry.py                # PillarAdapter base class + PillarRegistry
+│   ├── shell_engine.py                  # ShellEngine — dispatch + routing
+│   ├── shell_scanner.py                 # ShellScanner (BEAScanner subclass)
+│   ├── shell_coloring.py                # ANSI color output + BEA state badges
+│   ├── integration.py                   # 8 pillar adapters (Shield, Health, GPU-Fi, Grid,
+│   │                                    #   Ledger, Beatbox, Director, Meta) + ShellBroadcaster
+│   ├── cli.py                           # Entry point — build_default_engine()
+│   ├── demo_standalone.py               # Standalone demo
+│   └── tests/test_shell.py              # 67 unit tests (all passing)
+│
+├── 📁 BEA_Grid/                         # Energy & Power Management Engine (v1.0.0)
+│   ├── grid_schema.py                   # PowerSource, GridZone, GridEventType, PowerSample,
+│   │                                    #   RateSchedule, EarningsSnapshot, GridScanResult
+│   ├── power_sampler.py                 # PowerSampler — per-pillar GPU/CPU watt sampling
+│   ├── rate_scheduler.py                # TOU rate scheduling — DEFAULT_TOU_SCHEDULE,
+│   │                                    #   flat_rate_schedule, super_tou_schedule
+│   ├── grid_engine.py                   # GridEngine — off-peak pausing, earnings ROI
+│   ├── grid_scanner.py                  # GridScanner (BEAScanner subclass)
+│   ├── integration.py                   # GPUFiGridAdapter, LedgerGridAdapter,
+│   │                                    #   ClearGridAdapter, GridBroadcaster
+│   ├── demo_standalone.py               # Standalone demo
+│   └── tests/test_grid.py               # Unit tests
 │
 ├── 📁 BEA_Motion_Glove/                 # Webcam hand tracking — **coming soon**
 │   └── (module under active development; will ship as a future update)
@@ -1131,6 +1296,9 @@ BEA_Aura_OS/
 - **[BEA_4D_Audio/README.md](BEA_4D_Audio/BEA_4D_Audio_README.md)** — 4D Audio platform documentation
 - **[BEA_Beatbox/README.md](BEA_Beatbox/README.md)** — Emotional pattern engine documentation
 - **[BEA_Speakerbox/README.md](BEA_Speakerbox/README.md)** — Spatial voice engine documentation
+- **[BEA_Director/bea_director/director_scanner.py](BEA_Director/bea_director/director_scanner.py)** — DirectorScanner (BEAScanner subclass, 14 event types, 76 tests)
+- **[BEA_Shell/cli.py](BEA_Shell/cli.py)** — Unified BEA CLI entry point (8 pillar adapters, 67 tests)
+- **[BEA_Grid/grid_engine.py](BEA_Grid/grid_engine.py)** — GridEngine — TOU-aware off-peak scheduling + earnings ROI
 - **[BEA_Treehouse_UI/README.md](BEA_Treehouse_UI/README.md)** — Web dashboard documentation
 - **[BEA_Clear/README.md](BEA_Clear/README.md)** — Smart Dual-Resource Lifecycle System documentation (v2.0)
 - **[BEA_Clear/BEA_Clear_Summary.md](BEA_Clear/BEA_Clear_Summary.md)** — Full BEA Clear v2.0 technical spec (GPU + RAM + NVMe)
@@ -1149,12 +1317,14 @@ BEA_Aura_OS/
 3. **[Hardware Specifications](README/BEA_Aura_Hardware_Specs_AM4.md)** — Mini/Pro/NAS/DC tier specifications
 4. **[BEA Aura Product Lineup](README/BEA_Aura_Consoles_Complete_Product_Lineup.md)** — Complete product family
 
-### 🎮 Gaming (BEA Spectacle + 4D Audio + Motion Body + Beatbox + Speakerbox)
+### 🎮 Gaming (BEA Spectacle + 4D Audio + Motion Body + Beatbox + Speakerbox + Director)
 - **[BEA Spectacle README](BEA_Spectacle/README.md)** — Headset-free monitor VR platform
 - **[BEA 4D Audio README](BEA_4D_Audio/BEA_4D_Audio_README.md)** — Spatial audio + haptic synchronization
 - **[BEA Motion Body README](BEA_Motion_Body/README.md)** — Full-body webcam tracking (hands + feet, zero wearables; includes macOS Edition)
 - **[BEA_Beatbox README](BEA_Beatbox/README.md)** — Emotional pattern engine (BEA Logic™, 32-state, 80 tests)
 - **[BEA_Speakerbox README](BEA_Speakerbox/README.md)** — Spatial voice processing + performance director
+- **[BEA_Director README](BEA_Director/README.md)** — AI Camera Crew (DirectorScanner, 14 events, 76 tests)
+- **BEA_Director_macOS** — Separate standalone package for Apple Silicon users (not in this repo); connects to BEA Aura Console GPU via BEA_Shield VPN
 - **[BEA_Treehouse_UI README](BEA_Treehouse_UI/README.md)** — Web dashboard + runtime visualization
 - **[BEA Aura VR Platform](README/BEA_Aura_VR_Platform.md)** — Console VR vision
 
@@ -1197,6 +1367,11 @@ BEA_Aura_OS/
 - **[Test Suite](tests/)** — Unit tests for BEA_Core scanner
 - **[BEA Aura Orchestrator](BEA_Aura_Orchestrator/README.md)** — GPU container orchestration (TypeScript)
 - **[BEA Clear v2.0](BEA_Clear/README.md)** — Smart Dual-Resource Lifecycle System (Python)
+- **[BEA_Shell](BEA_Shell/)** — Unified BEA Aura OS CLI (8 pillar adapters, 67 tests)
+- **[BEA_Grid](BEA_Grid/)** — On-device energy & power management (TOU scheduling, earnings ROI)
+- **[BEA_Director](BEA_Director/)** — AI Camera Crew integration module (76 tests)
+- **[BEA Aura Developer SDK](BEA_Aura_Developer_SDK/)** — Third-party integration SDK
+- **BEA_Director_macOS** — Separate standalone package for Apple Silicon (own repo; GPU offloads to Console via BEA_Shield VPN)
 
 ### 📊 Business & Strategy
 - **[BEA Aura Final Tier Structure Summary](README/BEA_Aura_Final_Tier_Structure_Summary_2026.md)** — Product strategy 2026
@@ -1234,6 +1409,7 @@ BEA_Core is the **mathematical foundation** powering the entire BEATEK infrastru
 - **BEA Motion Body** — Full-body webcam tracking with 84+ anatomical landmarks (hands + feet), 85–99% accuracy, 12–20ms latency, zero wearables required ($0–199 vs $500–2,000+ for VR full-body solutions); includes macOS Edition built natively on Apple Silicon
 - **BEA_Beatbox** — Emotional pattern engine powered by BEA Logic™ emergence (`popcount(combust(a,b)) > max(popcount(a), popcount(b))`); six Elemental Kits; real-time 32-state emotion recognition; `BeatboxScanner` subclasses `BEAScanner`; 80 unit tests passing
 - **BEA_Speakerbox** — Spatial voice processing engine with `VoiceScanner` (BEA-state extraction), 3D voice positioning, director-driven performance feedback, session recording, and deep integration with BEA_Beatbox and BEA_4D_Audio
+- **BEA_Director** — AI Camera Crew system reading BEA Motion Body intelligence to automatically select, time, and route camera angles with broadcast-quality anticipatory editing. `DirectorScanner(BEAScanner)` maps 14 cut lifecycle events (CUT_EXECUTED=E[18], EMERGENCE_HOLD=E[29], ALL_CAMERAS_FAILED=E[8]) to BEA 32-state values. Four integration adapters: AudioDirectorAdapter (spatial mix), HealthDirectorAdapter (duress-aware cut pacing), BeatboxDirectorAdapter (E-motion sync), ConsoleDirectorAdapter (AMD VCN 4K multi-stream encode). 76 unit tests passing. macOS users run the separate **BEA_Director_macOS** standalone package and connect to the Console GPU remotely via BEA_Shield VPN for encode offload.
 - **BEA_Treehouse_UI** — Web-based dashboard (React + Vite) for console management, runtime visualization, and BEA state monitoring; connects to BEA Aura Orchestrator via local API
 
 #### Security & Privacy
@@ -1252,6 +1428,8 @@ BEA_Core is the **mathematical foundation** powering the entire BEATEK infrastru
 - **BEA Aura GPU Validator** — Pre-flight systemd service that runs before all other BEA services. Enforces NVIDIA RTX vendor lock (RTX 3000/4000/5000 series only), 16GB VRAM minimum, 32GB soft-max. Auto-detects console tier (MINI/PRO/NAS) and writes `/run/bea-aura/gpu-validation.json` + `/run/bea-aura/tier.env` for downstream services. Exits 1 to block boot on unsupported hardware.
 - **BEA Aura Orchestrator** — TypeScript/Node.js GPU container orchestration service. Manages Docker containers with isolated VRAM slices, enforces job quotas, streams results to VPN clients. Integrates BEA Clear for GPU lifecycle management
 - **BEA Clear v2.0** — Smart Dual-Resource Lifecycle System. When the GPU goes idle between jobs, BEA Clear drops it from the PCIe bus and rescans (clearing VRAM fragmentation in under 10 seconds) while simultaneously running Tier 1 RAM compaction during the GPU's 3-second discharge window. A dual GPU+RAM reset completes in the same ~10 seconds as a GPU-only reset. Tier 3 RAM deep resets use the BEA Aura Console NVMe as an interim swap bridge — no process killed, no service interrupted. Strategy (PARALLEL / SEQUENTIAL / GPU_ONLY / RAM_ONLY) is selected from live GPU temperature, RAM fragmentation, and NVMe wear data. Telemetry logged per cycle to `/var/log/bea/clear_thermal.log` and `/var/log/bea/sequencer_cycles.log`
+- **BEA_Shell** — Unified CLI for BEA Aura OS. A single `bea` command routes to all pillar subsystems via self-registering `PillarAdapter` classes. Built-in adapters: `ShieldShellAdapter`, `HealthShellAdapter`, `GPUFiShellAdapter`, `GridShellAdapter`, `LedgerShellAdapter`, `BeatboxShellAdapter`, `DirectorShellAdapter`, `ShellMetaAdapter`. `ShellScanner(BEAScanner)` encodes command lifecycle events into BEA 32-state E-motion values. 67 unit tests passing.
+- **BEA_Grid** — On-device energy and power management engine. Tracks per-pillar GPU/CPU power consumption against time-of-use utility rates, schedules GPU-Fi jobs during off-peak hours, and computes real-time earnings-per-kWh ROI. Adapters connect to GPU-Fi, BEA_Ledger, and BEA Clear. All computation runs locally on the BEA Aura Console — no cloud, no subscription.
 - **ARIA Protocol** — E-motion state networking (packet headers carry BEA metadata for distributed coordination)
 - **Beatrice** — E-motion intelligence layer (interprets BEA states into human-readable meaning)
 - **TANYA** — Tiny Autonomous Neural Yield Assistant (micro-inference on 4-bit BEA states, 20ms preprocessing)
@@ -1350,6 +1528,9 @@ BEATEK's success **requires** user success:
 - **BEA 4D Audio:** Enhance acoustic operators, improve haptic patterns, optimize GPU ray-tracing
 - **BEA_Beatbox:** Add elemental kit variants, improve BEA Logic™ emergence detection, extend emotion recognition
 - **BEA_Speakerbox:** Add vocal analysis models, improve spatial positioning, extend session recording features
+- **BEA_Director:** Add new event types, improve confidence evaluation, extend AMD VCN GPU encode support, improve multi-camera angle selection heuristics
+- **BEA_Shell:** Add new PillarAdapter subclasses for upcoming pillars, improve ANSI coloring, extend ShellScanner mappings
+- **BEA_Grid:** Improve TOU schedule accuracy (regional utility rate feeds), add solar/battery source support, extend GridScanner state coverage
 - **BEA Spectacle:** Add controller support, improve head tracking algorithms, optimize parallax rendering
 - **BEA_Treehouse_UI:** Improve runtime visualization, add new dashboard panels, enhance BEA Aura Orchestrator integration
 - **BEA Shield:** Enhance threat detection models, improve GPU acceleration, add new security features
@@ -1464,15 +1645,18 @@ Building infrastructure democracy through GPU sharing, network security, health 
 ┌───────────────────────────────────────────────────────────────────┐
 │                    Four Pillars of Value                          │
 ├───────────────────────────────────────────────────────────────────┤
-│  🎮 Gaming   — Spectacle + 4D Audio + Motion Glove               │
+│  🎮 Gaming   — Spectacle + 4D Audio + Motion Body                │
 │                + BEA_Beatbox + BEA_Speakerbox                     │
+│                + BEA_Director (AI Camera Crew)                    │
 │  🛡️ Security — BEA Shield (VPN + GPU-powered + Duress Detection) │
 │  🏥 Health   — BEA-Health (sovereignty + predictive analytics)   │
+│                + BEA_Grid (energy & power ROI)                    │
 │  💰 Income   — GPU-Fi + GPU-Verse                                 │
 │                                                                   │
 │  🖥️  BEA_Treehouse_UI — Web Dashboard + Runtime Visualization    │
 │  🎛️  BEA Aura Orchestrator — Container + GPU Coordination         │
 │  ⚡  BEA Clear v2.0 — GPU + RAM Lifecycle (PCIe reset + NVMe swap) │
+│  💻  BEA_Shell — Unified CLI (bea shield status, bea director cut) │
 └───────────────────────────────────────────────────────────────────┘
 
           Own It Once • Benefit Forever
