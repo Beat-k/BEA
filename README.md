@@ -6,7 +6,7 @@
 **Patent:** Provisional Filed February 3, 2026 — 111+ Claims
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
-**Tests:** 718 passing across 13 core pillar modules
+**Tests:** 1,968 passing across 25 pillar modules
 
 ---
 
@@ -91,6 +91,22 @@ Every tier includes: USB fingerprint reader · BEA Spectacle · BEA 4D Audio · 
 
 ## Module Overview
 
+### BEA_Core — Foundational Signal-Physics Layer
+**163 tests | `BEA_Core/`**
+
+The mathematical bedrock of the entire BEA ecosystem. All pillars depend on this module for signal encoding, operator definitions, and state scanning. Zero async — pure, deterministic computation.
+
+Key files: `scanner.py` · `estates.py` · `operators.py` · `s_degree.py` · `l_degree.py`
+
+- 32-state 5-bit encoding: Intensity · Frequency · Phase · Coherence · Latency
+- `EState` IntEnum with all 32 named emotional states
+- 6 pure BEA operators: ⊕ Fire · ⊖ Water · ⊗ Air · ⨀ Solar · ≠ Ether · ⧖ Temporal
+- `S°` formula: maps audio frequency to BEA state
+- `L°` formula: maps visible wavelength to BEA state
+- `BEAScanner` base class: all pillar scanners subclass this
+
+---
+
 ### BEA_Pulse — Inter-Pillar Event Bus
 **44 tests | `BEA_Pulse/`**
 
@@ -125,9 +141,9 @@ AES-256-GCM on-device file vault for health records, financial data, and identit
 
 Key files: `vault_core.py` · `vault_manager.py` · `vault_record.py` · `decoy_vault.py` · `vault_scanner.py` · `integration.py`
 
-- File categories: HEALTH_RECORDS · FINANCIAL · IDENTITY · GPU_FI · CUSTOM
+- File categories: HEALTH_RECORDS · FINANCIAL · EVIDENCE · USER_FILES · SECURITY_AUDIT
 - Duress-mode decoy vault: show attacker a plausible fake vault under coercion
-- States: VAULT_LOCKED · VAULT_UNLOCKED · VAULT_CORRUPTED
+- States: LOCKED · UNLOCKED · DECOY
 - Integrates with BEA_Shield (duress), BEA_Health (records), BEA_GPU_Fi (earnings)
 
 ---
@@ -275,11 +291,11 @@ Key files: `checkpoint_engine.py` · `recovery_engine.py` · `reconciliation_eng
 ---
 
 ### BEA_Firefly_Sprite — USB Installer & Hardware Validator
-**71 tests | `BEA_Firefly_Sprite/`**
+**162 tests | `BEA_Firefly_Sprite/`**
 
 The 64 GB USB bootable entry point for all BEA Aura Console setup. Validates hardware, installs the OS, hosts live demos, and performs disaster recovery.
 
-Sub-modules: `sprite_agent/` · `discovery/` · `validation/` · `installer/` · `demo/` · `recovery/` · `launcher/` · `autorun/`
+Sub-modules: `sprite_agent/` · `discovery/` · `validation/` · `installer/` · `demo/` · `recovery/` · `launcher/` · `autorun/` · `sprite_sdk/` · `sprite_core/` · `sprite_partition/` · `sprite_certifier/` · `onsite_dlc/`
 
 - Three operating modes: INSTALL · DEMO · RECOVERY
 - Validates hardware against BEATEK certified hardware database
@@ -288,6 +304,95 @@ Sub-modules: `sprite_agent/` · `discovery/` · `validation/` · `installer/` ·
 - Live BEA Aura demo environment on host PC — no console required
 - Vault data preservation during recovery wipe
 - Autorun scripts for Windows (.inf), macOS (.command), and Linux (.sh)
+- `sprite_core`: SpriteMode · TinyAIDimension · SpriteEdition · SpriteCapabilityProfile · DimensionalContentLayer · DimensionalContentMap
+- `sprite_partition`: 4-partition layout (boot, OS, BEA_Cache cold tier, recovery)
+- `sprite_certifier`: BEATEK hardware certification pipeline
+- `onsite_dlc`: invisible Console DLC delivery — zero host awareness required
+
+---
+
+### BEA_SpriteCache — Predictive SSD Asset Prefetch Engine
+**43 tests | `BEA_SpriteCache/`**
+
+Onboard predictive caching engine that runs on the **Firefly Sprite's TinyAI processor**. Watches game state, predicts what assets the host iGPU needs next, and pre-loads them into host system RAM before the GPU asks for them. Zero host CPU cost. Zero network dependency. The core invention enabling PS2–PS4 quality on the 1.2 billion PCs in active use with integrated graphics only.
+
+Key files: `sprite_cache_manager.py` · `tinyai_engine.py` · `asset_graph.py` · `prefetch_buffer.py` · `console_handoff.py`
+
+- TinyAI on Sprite silicon predicts next 2–3 seconds of asset demand
+- USB-C UASP (450 MB/s) or Thunderbolt 4 (3,500 MB/s) DMA reads from NAND
+- Per-session reinforcement learning: edge probability +0.08 on hit, −0.03 on miss
+- Console handoff state machine: NOT_PRESENT → DETECTED → SYNCING → ACTIVE
+- On Console detected: dumps full asset library to BEA_Cache cold tier, then retires
+- Confidence score: `ln(1+n) / ln(6)` — saturates near 1.0 after ~5 sessions
+
+---
+
+### BEA_Cache — NVMe Storage Tiering Engine
+**78 tests | `BEA_Cache/`**
+
+Three-tier NVMe cache manager coordinating hot, warm, and cold storage across all pillars. Atomic SHA-256 verified writes prevent silent data corruption. Priority-driven eviction keeps the most latency-sensitive assets closest to the GPU.
+
+Key files: `cache_engine.py` · `tier_manager.py` · `cache_schema.py` · `cache_scanner.py` · `integration.py`
+
+- Tiers: HOT (VRAM-adjacent) · WARM (system RAM) · COLD (NVMe pool)
+- Priority map: audio=4 · vpn=3 · gpu=2 · ai=1
+- Atomic writes with SHA-256 integrity verification — no partial writes
+- BEA_SpriteCache deposits to cold tier on Console handoff
+- BEA_AI DLC downloads land in cold tier before silent promotion
+
+---
+
+### BEA_AI — Platform Intelligence Coordination Layer
+**100 tests | `BEA_AI/`**
+
+The intelligence coordination layer of the BEA Aura platform. Not an LLM wrapper. Not a cloud API. The module that owns every AI decision across the platform — from TinyAI running on a Firefly Sprite, to the full Console BEA_AI receiving that context when the player walks through their front door, to the background compute delivering DLC while the player is already in the game.
+
+Sub-modules: `tinyai/` · `console_ai/` · `dlc/` · `transition/` · `fusion/` · `context/` · `integration.py`
+
+**TinyAI (Sprite silicon — 500 MB → 4 GB GGUF Q4_K_M):**
+- Dimensional host assessment on plug-in: 1D / 2D / 3D / 4D tier selection
+- Drives BEA_SpriteCache prefetch prediction
+- Domain Q&A for Sprite Agent — fully offline, no network required
+- Per-session player model learning; packages full context for Console handoff
+
+**Console BEA_AI (RTX 5060 Ti → RTX 5080):**
+- Receives TinyAI handoff on Sprite LAN arrival — upgrades dimension automatically
+- NPC intelligence enrichment with cross-session memory
+- Silent DLC orchestration via `dlc/` — background download to BEA_Cache cold tier
+- Dimensional transition effects: 1D CRT scanline · 2D mip-map weave · 3D Matrix/Animus · 4D BEA-Verse tesseract fold
+- BEA Fusion GPU pool: host GPU + Console GPU unified; latency-aware remote fallback via BEA_Shield VPN
+- HRV → stress level → difficulty model adjustment via BEA_Health
+
+**Design constraints enforced:** zero host CPU · absolute privacy boundary (no raw biometrics) · base game always complete without DLC · graceful fallback 4D→1D · no cloud dependency in core path
+
+---
+
+### BEA_Context_Bridge — Emotional Memory Engine
+**91 tests | `BEA_Context_Bridge/`**
+
+Cross-session emotional memory for the BEA ecosystem. Records and replays BEU (BEA Emotional Unit) state transitions within and across sessions, enabling the Console to remember how a user felt — not just what they did. Also ships an MCP server for direct Claude Desktop integration.
+
+Key files: `context_engine.py` · `beu_schema.py` · `context_scanner.py` · `session_bridge.py` · `mcp_server.py` · `integration.py`
+
+- BEU state transition log: session-scoped emotional trajectory
+- Cross-session retrieval: context-aware recall of prior emotional states
+- MCP server: exposes BEU history to Claude Desktop for emotionally-aware AI responses
+- Feeds BEA_AI player model context and BEA_Health trend analysis
+
+---
+
+### BEA_Aura_Orchestrator — Central Coordination Brain
+**TypeScript | `BEA_Aura_Orchestrator/`**
+
+The central nervous system of the BEA Aura Console at the system level. Orchestrates GPU container allocation, slices VRAM across competing pillar workloads, receives WireGuard VPN tunnel intake from BEA_Shield, and maintains a live registry of all active subsystems.
+
+Key files: `orchestrator.ts` · `gpu_scheduler.ts` · `vram_slicer.ts` · `subsystem_registry.ts` · `wireguard_intake.ts`
+
+- GPU container orchestration: per-pillar VRAM budgets enforced at runtime
+- VRAM slicing: BEA_AI · BEA_Shield · BEA_GPU_Fi compete on a priority queue
+- WireGuard intake: routes remote console sessions from BEA_Shield VPN
+- Subsystem registry: live health map of all running BEA pillars
+- Graceful degradation: evicts lower-priority containers under pressure, never drops Security or Duress workloads
 
 ---
 
@@ -364,6 +469,21 @@ AR/VR vision wear integration for immersive gaming and daily life on monitors pe
 
 ---
 
+### BEA_Speakerbox — Professional Voice-Over Production
+**84 tests | `BEA_Speakerbox/`**
+
+Professional voice-over production engine grounded in the BEA E-motion mathematical framework. Not a standalone app — a Console component that processes locally and streams to thin-client apps via BEA_Shield VPN.
+
+Key files: `vocal_processor.py` · `voice_scanner.py` · `spatial_voice.py` · `session_recorder.py` · `performance_engine.py` · `director_engine.py` · `bea_logic.py` · `integration.py`
+
+- `VoiceScanner` subclasses `BEAScanner` — voice frequencies → S° → E[0–31]
+- 6 BEA operators (⊕⊖⊗⨀≠⧖) map to vocal character + 6 performance metrics
+- 15 emergent vocal effects from operator combinations
+- BEA Logic™: Emergence (1⊕1=3) and Divergence applied to voice dynamics
+- SpeakerboxBridge feeds → BEA_Beatbox, BEA_4D_Audio, BEA_Health
+
+---
+
 ### BEA_Motion_Body — Full-Body Motion Capture
 **`BEA_Motion_Body/`**
 
@@ -379,6 +499,23 @@ Sub-modules: `bea_motion_body/` · `bea_motion_glove/` · `bea_motion_legs/` · 
 
 ---
 
+### BEA_Lumin_Pi — TV & Speaker Satellite
+**311 tests | `BEA_Lumin_Pi/`**
+
+Raspberry Pi-based satellite node that turns any TV and speaker system into a BEA-aware display terminal. Connects to the BEA Aura Console over LAN, receives E-motion state from BEA_Pulse, and adapts its audio-visual output accordingly. Operates in 7 auto-selected modes based on detected LAN services.
+
+Key files: `lumin_core.py` · `lumin_hardware.py` · `lumin_modes.py` · `lumin_scanner.py` · `integration.py`
+
+- 7 operating modes auto-selected from LAN environment (TV, Speaker, Mirror, Ambient, Gaming, Health, Security)
+- UDP heartbeat on port 7474 — low-latency state sync from Console
+- `LuminPiHardwareValidator`: 10 certification categories, validates against REFERENCE_HARDWARE spec
+- `LuminPiHardwareMonitor`: real-time hardware health telemetry (simulate=True for CI)
+- `LuminPiSystemHealth`: aggregates CPU, GPU, memory, temperature into a single health state
+- BEA_Shield VPN opt-in (disabled by default) — enable for remote satellite access
+- `LuminCompanionSpec` resides in Firefly Sprite SDK — zero circular dependency
+
+---
+
 ## Architecture
 
 ```
@@ -386,8 +523,8 @@ Sub-modules: `bea_motion_body/` · `bea_motion_glove/` · `bea_motion_legs/` · 
 │                    BEA_Aura_OS                          │
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
-│  BEA_Shell (unified CLI)                                │
-│                                                         │
+│  BEA_Shell (unified CLI)          BEA_Aura_Orchestrator │
+│                                   (GPU · VRAM · VPN)    │
 │  ┌─────────────────────────────────────────────────┐   │
 │  │             BEA_Pulse (event bus)               │   │
 │  │   pub/sub · asyncio · BEA operators · Redis     │   │
@@ -400,16 +537,19 @@ Sub-modules: `bea_motion_body/` · `bea_motion_glove/` · `bea_motion_legs/` · 
 │   │Audio │  │Shield│  │Health│  │Grid  │  │Relay │   │
 │   │Spec- │  │Ident-│  │      │  │Ledger│  │Flow  │   │
 │   │tacle │  │ity   │  │      │  │      │  │      │   │
-│   │Motion│  │Recov-│  │      │  │      │  │Lens  │   │
-│   │Body  │  │ery   │  │      │  │      │  │      │   │
+│   │Motion│  │Recov-│  │      │  │      │  │Cache │   │
+│   │Body  │  │ery   │  │      │  │      │  │Lens  │   │
 │   └──────┘  └──────┘  └──────┘  └──────┘  └──────┘   │
 │                                                         │
-│  Foundation: BEA™ E-motion Framework                   │
+│  Foundation: BEA_Core — BEA™ E-motion Framework        │
 │  BEAScanner base · 32 states · S° · L° · E°            │
+│                                                         │
+│  Satellites: BEA_Lumin_Pi (TV/speaker) ←── LAN         │
 │                                                         │
 └─────────────────────────────────────────────────────────┘
 
 Network: BEA_Relay (mesh sync) ↔ BEA_Firefly_Sprite (install/boot)
+Context: BEA_Context_Bridge ↔ Claude Desktop (MCP server)
 ```
 
 ### BEAScanner Contract
@@ -453,7 +593,7 @@ pip install -e .
 ### Run Tests
 
 ```bash
-make test        # Run all 718 tests
+make test        # Run all 1,968 pillar tests
 make check       # Tests + linting
 make lint        # Linting only
 ```
@@ -490,6 +630,7 @@ bea ledger summary   # Income and tax summary
 
 | Module | Tests | Domain |
 |---|---|---|
+| BEA_Core | 163 | Signal-physics foundation |
 | BEA_Pulse | 44 | Event bus |
 | BEA_Beatbox | 80 | Emotional audio |
 | BEA_Vault | 51 | Encrypted storage |
@@ -502,8 +643,19 @@ bea ledger summary   # Income and tax summary
 | BEA_Director | 76 | Multi-camera direction |
 | BEA_Identity | 54 | Biometric auth |
 | BEA_Recovery | 61 | Crash resilience |
-| BEA_Firefly_Sprite | 71 | Installer / validator |
-| **Total** | **718** | **All passing** |
+| BEA_Firefly_Sprite | 162 | Installer / validator / DLC / certification |
+| BEA_SpriteCache | 43 | Predictive asset prefetch, TinyAI session learning, Console handoff |
+| BEA_Cache | 78 | NVMe tiering (hot/warm/cold), priority eviction, atomic SHA-256 writes |
+| BEA_AI | 100 | TinyAI, Console AI, DLC, transitions, fusion, context, integration |
+| BEA_Speakerbox | 84 | Voice-over production, S° vocal scanning, BEA operator effects |
+| BEA_Context_Bridge | 91 | Emotional memory engine, BEU state transitions, MCP server |
+| BEA_Notify | 67 | Push notifications — DASHBOARD / TOAST / MOBILE / EMERGENCY; CRITICAL gate |
+| BEA_Voice | 62 | On-device voice commands — "Hey BEA" → intent → BEA_Shell; duress E[28+] path |
+| BEA_Update | 57 | OTA pillar update manager — SHA-256 + Ed25519, BEA_Grid scheduling, auto-rollback |
+| BEA_Plugin | 53 | Pillar Extension SDK — BEAPillar base class, shell/pulse/flow bridges, entry-point discovery |
+| BEA_Lumin_Pi | 311 | TV/speaker satellite — 7 LAN modes, hardware validator, system health |
+| BEA_Aura_Orchestrator | TS | GPU containers, VRAM slicing, WireGuard intake, subsystem registry |
+| **Total** | **1,968** | **All passing** |
 
 ---
 
@@ -523,6 +675,7 @@ BEA_Aura_OS/
 ├── scanner.py                  # BEAScanner core implementation
 ├── __init__.py                 # Root package: BEAScanner, quick_scan helpers
 │
+├── BEA_Core/                   # Signal-physics foundation (32-state, operators, S°/L°)
 ├── BEA_Pulse/                  # Inter-pillar event bus
 ├── BEA_Beatbox/                # Emotional beat engine
 ├── BEA_Vault/                  # AES-256-GCM file vault
@@ -536,13 +689,36 @@ BEA_Aura_OS/
 ├── BEA_Director_macOS/         # macOS companion
 ├── BEA_Identity/               # Biometric auth
 ├── BEA_Recovery/               # Crash resilience
-├── BEA_Firefly_Sprite/         # USB installer
+├── BEA_Firefly_Sprite/         # USB installer + sprite_core/partition/certifier/onsite_dlc
 ├── BEA_4D_Audio/               # Spatial audio
 ├── BEA_Shield/                 # Security daemon
 ├── BEA_Health/                 # Health monitoring
 ├── BEA_GPU_Fi/                 # GPU rental income
 ├── BEA_Spectacle/              # Vision wear integration
 ├── BEA_Motion_Body/            # Full-body tracking
+├── BEA_Speakerbox/             # Professional voice-over production
+├── BEA_SpriteCache/            # Predictive SSD asset prefetch engine
+│   ├── sprite_cache_manager.py #   Main orchestrator
+│   ├── tinyai_engine.py        #   Prediction + session learning
+│   ├── asset_graph.py          #   Cluster + transition graph
+│   ├── prefetch_buffer.py      #   Host RAM prefetch store
+│   └── console_handoff.py      #   BEA_Cache handoff state machine
+├── BEA_Cache/                  # NVMe tiering: hot/warm/cold, priority eviction
+├── BEA_AI/                     # Platform intelligence coordination layer
+│   ├── integration.py          #   BEA_Pulse broadcaster
+│   ├── tinyai/                 #   TinyAI: dimensions, domain, session, core
+│   ├── console_ai/             #   Console AI: handoff, NPC, world state
+│   ├── dlc/                    #   Silent DLC: registry, network, loader
+│   ├── transition/             #   Effects 1D–4D + world swap manager
+│   ├── fusion/                 #   GPU pool: remote bridge, handoff, fusion
+│   └── context/                #   Player model, sync, biometric context
+├── BEA_Context_Bridge/         # Emotional memory engine + MCP server
+├── BEA_Aura_Orchestrator/      # TypeScript: GPU/VRAM orchestration, WireGuard intake
+├── BEA_Notify/                 # Push notifications (4 channels, CRITICAL gate)
+├── BEA_Voice/                  # Voice commands ("Hey BEA" wake word)
+├── BEA_Update/                 # OTA update manager (SHA-256 + Ed25519, auto-rollback)
+├── BEA_Plugin_SDK/             # Pillar Extension SDK (BEAPillar ABC, entry-point discovery)
+├── BEA_Lumin_Pi/               # TV/speaker satellite (7 modes, hardware validator)
 │
 ├── tests/
 │   ├── test_integration.py     # Cross-pillar integration tests
@@ -614,5 +790,3 @@ That same software running on your BEA Aura Console means you profit from your i
 ---
 
 *BEATEK Holdings, LLC · Founded by Jeremy F. Jackson · Patent Pending · 2026*
-
-
