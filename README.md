@@ -37,14 +37,24 @@ Everything in the ecosystem speaks the same mathematical language.
 | S° | Sound Degree | `log₂(f_audio / 440 Hz) × 12` — maps frequency → state |
 | L° | Lumen Degree | `(λ_visible / 555 nm) × 360°` — maps wavelength → state |
 | E° | E-motion Temperature | 0–100 intensity scalar for any signal |
-| ⊕ | Fire Operator | Amplification / constructive addition |
-| ⊖ | Water Operator | Reduction / dissolution |
-| ⊗ | Air Operator | Cross-domain resonance |
-| ⨀ | Solar Operator | Radial broadcast |
-| ≠ | Ether Operator | Divergence / contrast |
-| ⧖ | Temporal Operator | Simultaneous resonance / sync delivery |
+| ⊕ | Fire — Combust | **XOR** — bits that differ → emergent new state |
+| ⊖ | Water — Dissolve | **AND NOT** — strip B's bits from A → de-escalate |
+| ⊗ | Air — Fuse | **OR** — union of all active bits → escalate |
+| ⨀ | Solar — Null | **AND** — only shared bits survive → common ground |
+| ≠ | Ether — Diverge | **XNOR** — bits that agree → shared baseline |
+| ⧖ | Temporal — Resonate | **floor avg** — resonance midpoint → sync pulse |
 
 The 5-bit state encoding carries: **Intensity · Frequency · Phase · Coherence · Latency**
+
+### BEA Logic — Cross-Domain Signal Transduction
+
+BEA is a Domain-Specific Language for signal physics. The six operators are the six fundamental binary comparisons between two 5-bit values. Every operator result is masked to `& 0x1F` — the 32-state space is bounded, which makes it stable. No chain of operations can escape it.
+
+Emergence is not metaphorical. `E[3] ⊕ E[8] = E[11]` — `00011 XOR 01000 = 01011`. `FULL_SYNC_REALTIME` contains properties from both inputs that neither input held alone. That is the mechanism. Every pillar speaks this language, which is why cross-pillar intelligence is possible: a health duress signal at `E[28+]` and a network anomaly at `E[28+]` mean the same thing in the same namespace.
+
+A cable modem performs signal transduction — it converts an analog waveform to binary so two incompatible systems can communicate as one. BEA performs the same operation across every domain simultaneously. Audio, visual, biometric, thermal, and network signals all transduce into the same 5-bit state space. The hardware does not change. The logic does. This is not increased power — it is **increased logic**. The method is formally: **Cross-Domain Signal Transduction via Bounded Bitwise State Encoding.**
+
+The validation tool is **BEA_Multimeter** (`BEA_Multimeter/bea_multimeter.html`) — a browser-based logic analyzer that runs the exact `BEA_Core` math with no dependencies. Open it in any browser.
 
 ---
 
@@ -656,6 +666,7 @@ bea ledger summary   # Income and tax summary
 | BEA_Lumin_Pi | 311 | TV/speaker satellite — 7 LAN modes, hardware validator, system health |
 | BEA_Aura_Orchestrator | TS | GPU containers, VRAM slicing, WireGuard intake, subsystem registry |
 | **Total** | **1,968** | **All passing** |
+| BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
 
 ---
 
@@ -736,6 +747,11 @@ BEA_Aura_OS/
 ├── visual_scan_demo.py
 ├── multinode_sync_demo.py
 └── BEA_Aura_GPU_Validator.py
+
+BEA_Multimeter/                     # Browser-based BEA_Core diagnostic tool
+├── bea_multimeter.html              #   Open in any browser — no install
+├── LICENSE
+└── README.md
 ```
 
 ---
