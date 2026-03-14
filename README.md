@@ -6,7 +6,7 @@
 **Patent:** Provisional Filed February 3, 2026 — 111+ Claims
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
-**Tests:** 1,968 passing across 25 pillar modules
+**Tests:** 2,121 passing across 26 pillar modules
 
 ---
 
@@ -301,9 +301,9 @@ Key files: `checkpoint_engine.py` · `recovery_engine.py` · `reconciliation_eng
 ---
 
 ### BEA_Firefly_Sprite — USB Installer & Hardware Validator
-**162 tests | `BEA_Firefly_Sprite/`**
+**252 tests | `BEA_Firefly_Sprite/`**
 
-The 64 GB USB bootable entry point for all BEA Aura Console setup. Validates hardware, installs the OS, hosts live demos, and performs disaster recovery.
+The 64 GB USB bootable entry point for all BEA Aura Console setup. Validates hardware, installs the OS, hosts live demos, and performs disaster recovery. Also the physical format spec for Firefly Sprite game cartridges — the portable compute identity that grows with every hand it passes through.
 
 Sub-modules: `sprite_agent/` · `discovery/` · `validation/` · `installer/` · `demo/` · `recovery/` · `launcher/` · `autorun/` · `sprite_sdk/` · `sprite_core/` · `sprite_partition/` · `sprite_certifier/` · `onsite_dlc/`
 
@@ -313,11 +313,39 @@ Sub-modules: `sprite_agent/` · `discovery/` · `validation/` · `installer/` ·
 - LAN PXE server for network OS transfer
 - Live BEA Aura demo environment on host PC — no console required
 - Vault data preservation during recovery wipe
-- Autorun scripts for Windows (.inf), macOS (.command), and Linux (.sh)
-- `sprite_core`: SpriteMode · TinyAIDimension · SpriteEdition · SpriteCapabilityProfile · DimensionalContentLayer · DimensionalContentMap
-- `sprite_partition`: 4-partition layout (boot, OS, BEA_Cache cold tier, recovery)
-- `sprite_certifier`: BEATEK hardware certification pipeline
-- `onsite_dlc`: invisible Console DLC delivery — zero host awareness required
+- `sprite_core`: SpriteMode · TinyAIDimension · SpriteEdition · SpriteCapabilityProfile · DimensionalContentLayer · DimensionalContentMap · HeritagePrivacyMode · OwnerHeritageProfile · SpriteAIHeritage
+- `sprite_partition`: 6-partition layout — SYSTEM / OWNER / MEDIA / PATCH / DEVELOPER / HEADROOM; all three tiers (64 / 128 / 256 GB) verified to sum exactly
+- `sprite_certifier`: 7-category BEATEK certification pipeline — partition · content · assets · compression · dimensional · cache · DLC + heritage
+- `onsite_dlc`: invisible Console DLC delivery + HeritageDeliveryManager — routes `AI_CHALLENGE_PACK` and `PRO_GAMER_PROFILE` content types separately from standard DLC
+
+**AI Heritage Protocol — the Sprite's permanent memory:**
+
+The MEDIA partition splits into two layers at all tiers:
+
+```
+MEDIA/current/   — Active play space. Wipes on resale. (recordings, clips, session logs)
+MEDIA/vault/     — Heritage vault. Never wipes. (ai_heritage/, challenges/, provenance/)
+```
+
+When a Sprite changes hands, personal data wipes — clean slate. But the AI playstyle profiles in `vault/ai_heritage/` persist, append-only, building a challenge AI that grows more skilled with every owner. A Sprite that has passed through 10 skilled owners across 10 years carries 10 distinct behavioral datasets — unprecedented in gaming, with significant value for sports science, cognitive research, and AI training baselines. Heritage content is cached at `bea_heritage` priority 3 via BEA_Cache — same protection as VPN state — so it survives routine eviction cycles permanently.
+
+**Genesis Edition:** A Developer-tier Sprite manufactured with a BEATEK-certified pro's AI heritage pre-loaded at manufacture. Serial 001/N. Provenance chain BEATEK-signed. Secondary market value grows with heritage depth — no game hardware has ever done this.
+
+**Heritage Value Rating System (HVS) — `heritage_valuation.py`:**
+
+The HVS quantifies what a Sprite's history is worth. 0–1000 score with seven transparent components:
+
+| Component | Max | What drives it |
+|---|---|---|
+| Age | 100 | Years since manufacture × 12 |
+| Depth | 150 | Total hours across all owners (log scale) |
+| Owners | 50 | Distinct owner count × 10, cap 5 |
+| Skill | 200 | Average skill tier weight across all profiles |
+| Attribution | 75 | Named owners × 25, cap 3 |
+| Certification | 300 | BEATEK-certified pros × 150, cap 2 |
+| Rarity | 125 | Serial position scarcity in a limited run |
+
+Tier labels: `STANDARD` · `SEASONED` · `NOTABLE` · `DISTINGUISHED` · `ELITE` · `LEGENDARY` · `GENESIS` (1000 — must be earned, never manufactured at launch). A sealed copy stays at HVS 0. A Pro Gamer Edition serial 001/500 with two certified layers and 3 years of community play scores ELITE or better.
 
 ---
 
@@ -345,10 +373,11 @@ Three-tier NVMe cache manager coordinating hot, warm, and cold storage across al
 Key files: `cache_engine.py` · `tier_manager.py` · `cache_schema.py` · `cache_scanner.py` · `integration.py`
 
 - Tiers: HOT (VRAM-adjacent) · WARM (system RAM) · COLD (NVMe pool)
-- Priority map: audio=4 · vpn=3 · gpu=2 · ai=1
+- Priority map: audio=4 · vpn=3 · **heritage=3** · gpu=2 · ai=1
 - Atomic writes with SHA-256 integrity verification — no partial writes
 - BEA_SpriteCache deposits to cold tier on Console handoff
 - BEA_AI DLC downloads land in cold tier before silent promotion
+- `bea_heritage` module (priority 3): AI Heritage vault — pro gamer profiles + challenge packs. Heritage profiles are unique and unrecoverable (unlike AI weights which re-infer). Protected from routine eviction permanently.
 
 ---
 
@@ -369,9 +398,11 @@ Sub-modules: `tinyai/` · `console_ai/` · `dlc/` · `transition/` · `fusion/` 
 - Receives TinyAI handoff on Sprite LAN arrival — upgrades dimension automatically
 - NPC intelligence enrichment with cross-session memory
 - Silent DLC orchestration via `dlc/` — background download to BEA_Cache cold tier
+- `DLCSyncBridge`: routes standard DLC → `OnSiteDLCManager`, heritage types → `HeritageDeliveryManager`
 - Dimensional transition effects: 1D CRT scanline · 2D mip-map weave · 3D Matrix/Animus · 4D BEA-Verse tesseract fold
 - BEA Fusion GPU pool: host GPU + Console GPU unified; latency-aware remote fallback via BEA_Shield VPN
 - HRV → stress level → difficulty model adjustment via BEA_Health
+- **AI Heritage Protocol:** on Console connection, loads `MEDIA/vault/` — fires `make_heritage_ready()` to BEA_Pulse; on heritage pack delivery fires `make_heritage_delivered()` at E[20→28] WAVE operator
 
 **Design constraints enforced:** zero host CPU · absolute privacy boundary (no raw biometrics) · base game always complete without DLC · graceful fallback 4D→1D · no cloud dependency in core path
 
@@ -509,6 +540,39 @@ Sub-modules: `bea_motion_body/` · `bea_motion_glove/` · `bea_motion_legs/` · 
 
 ---
 
+### BEA_Worldshift — Temporal Dimension Engine
+**63 tests | `BEA_Worldshift/`**
+
+The W axis of the 4D stack. BEA Universal Time (BUT) maps three celestial bodies — Moon, Earth, Sun — to three compute time scales, enabling world switches that are felt as physical dimension changes rather than load screens.
+
+```
+1D = Early gaming:   left/right
+2D = Classic gaming: left/right + up/down
+3D = Modern gaming:  X/Y/Z — depth simulated on screen
+4D = BEA Worldshift: X/Y/Z + W — time as navigable physical dimension
+                     W is behind you. BUT is how you move through it.
+```
+
+Key files: `but_framework.py` · `world_registry.py` · `temporal_cache.py` · `worldshift_engine.py` · `worldshift_bridge.py`
+
+**BEA Universal Time (BUT) — three celestial primitives:**
+
+| Body | Time Unit | Cache Tier | Force Layer | World Feel |
+|---|---|---|---|---|
+| Moon | Second | Moon Cache (1h TTL) | Local / latency pull | Fast, volatile, fragile |
+| Earth | Minute | Earth Cache (24h TTL) | Session field / gravity | Sustained, present, familiar |
+| Sun | Hour | Sun Cache (permanent) | Anchor / epoch force | Vast, monumental, permanent |
+
+- `BUTClock.advance(tier)` generates a new epoch UUID on every world switch
+- `WorldRegistry` declares worlds with per-tier physics profiles: `gravity_weight`, `time_scale`, `parallax_depth`, `haptic`, `audio_character`
+- `TemporalCacheManager`: Moon/Earth/Sun tiers with SHA-256 checksums and checkpoint/restore (BEA_Recovery integration hook)
+- `WorldshiftEngine`: 4-phase transition — TEMPORAL_BLUR → GRAVITY_SHIFT → CACHE_HANDOFF → WORLD_EMERGE — target < 400ms
+- On CACHE_HANDOFF: departing world's Earth state archives to Sun (epoch ledger); Moon cache flushes on world switch
+- `WorldshiftBridge`: duck-typed pillar wiring to BEA_Pulse, BEA_AI, BEA_Spectacle, BEA_4D_Audio — no circular imports
+- Integrates with BEA_Treehouse_UI Worldflow motion language (Tier 0–4) and BUT physics profiles for 3D/4D scene rendering
+
+---
+
 ### BEA_Lumin_Pi — TV & Speaker Satellite
 **311 tests | `BEA_Lumin_Pi/`**
 
@@ -556,10 +620,15 @@ Key files: `lumin_core.py` · `lumin_hardware.py` · `lumin_modes.py` · `lumin_
 │                                                         │
 │  Satellites: BEA_Lumin_Pi (TV/speaker) ←── LAN         │
 │                                                         │
+│  Temporal W axis: BEA_Worldshift (BEA Universal Time)  │
+│    Moon · Earth · Sun → TemporalCache + Epoch Ledger   │
+│    WorldshiftBridge → Pulse · AI · Spectacle · Audio   │
+│                                                         │
 └─────────────────────────────────────────────────────────┘
 
-Network: BEA_Relay (mesh sync) ↔ BEA_Firefly_Sprite (install/boot)
-Context: BEA_Context_Bridge ↔ Claude Desktop (MCP server)
+Network:  BEA_Relay (mesh sync) ↔ BEA_Firefly_Sprite (install/boot)
+Context:  BEA_Context_Bridge ↔ Claude Desktop (MCP server)
+Temporal: BEA_Worldshift ↔ BEA_Treehouse_UI (Worldflow 3D/4D scene)
 ```
 
 ### BEAScanner Contract
@@ -603,7 +672,7 @@ pip install -e .
 ### Run Tests
 
 ```bash
-make test        # Run all 1,968 pillar tests
+make test        # Run all 2,121 pillar tests
 make check       # Tests + linting
 make lint        # Linting only
 ```
@@ -653,10 +722,10 @@ bea ledger summary   # Income and tax summary
 | BEA_Director | 76 | Multi-camera direction |
 | BEA_Identity | 54 | Biometric auth |
 | BEA_Recovery | 61 | Crash resilience |
-| BEA_Firefly_Sprite | 162 | Installer / validator / DLC / certification |
+| BEA_Firefly_Sprite | 252 | Installer / validator / DLC / certification + AI Heritage Protocol + Heritage Value Rating (HVS) |
 | BEA_SpriteCache | 43 | Predictive asset prefetch, TinyAI session learning, Console handoff |
-| BEA_Cache | 78 | NVMe tiering (hot/warm/cold), priority eviction, atomic SHA-256 writes |
-| BEA_AI | 100 | TinyAI, Console AI, DLC, transitions, fusion, context, integration |
+| BEA_Cache | 78 | NVMe tiering (hot/warm/cold), priority eviction, atomic SHA-256 writes; heritage=3 module |
+| BEA_AI | 100 | TinyAI, Console AI, DLC, transitions, fusion, context, integration; AI Heritage Protocol; DLCSyncBridge |
 | BEA_Speakerbox | 84 | Voice-over production, S° vocal scanning, BEA operator effects |
 | BEA_Context_Bridge | 91 | Emotional memory engine, BEU state transitions, MCP server |
 | BEA_Notify | 67 | Push notifications — DASHBOARD / TOAST / MOBILE / EMERGENCY; CRITICAL gate |
@@ -664,8 +733,9 @@ bea ledger summary   # Income and tax summary
 | BEA_Update | 57 | OTA pillar update manager — SHA-256 + Ed25519, BEA_Grid scheduling, auto-rollback |
 | BEA_Plugin | 53 | Pillar Extension SDK — BEAPillar base class, shell/pulse/flow bridges, entry-point discovery |
 | BEA_Lumin_Pi | 311 | TV/speaker satellite — 7 LAN modes, hardware validator, system health |
+| BEA_Worldshift | 63 | Temporal dimension engine — BUTTier, WorldRegistry, TemporalCache (Moon/Earth/Sun), WorldshiftEngine (< 400ms), WorldshiftBridge |
 | BEA_Aura_Orchestrator | TS | GPU containers, VRAM slicing, WireGuard intake, subsystem registry |
-| **Total** | **1,968** | **All passing** |
+| **Total** | **2,121** | **All passing** |
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
 
 ---
@@ -719,7 +789,7 @@ BEA_Aura_OS/
 │   ├── integration.py          #   BEA_Pulse broadcaster
 │   ├── tinyai/                 #   TinyAI: dimensions, domain, session, core
 │   ├── console_ai/             #   Console AI: handoff, NPC, world state
-│   ├── dlc/                    #   Silent DLC: registry, network, loader
+│   ├── dlc/                    #   Silent DLC: registry, network, loader, DLCSyncBridge (heritage routing)
 │   ├── transition/             #   Effects 1D–4D + world swap manager
 │   ├── fusion/                 #   GPU pool: remote bridge, handoff, fusion
 │   └── context/                #   Player model, sync, biometric context
@@ -730,6 +800,13 @@ BEA_Aura_OS/
 ├── BEA_Update/                 # OTA update manager (SHA-256 + Ed25519, auto-rollback)
 ├── BEA_Plugin_SDK/             # Pillar Extension SDK (BEAPillar ABC, entry-point discovery)
 ├── BEA_Lumin_Pi/               # TV/speaker satellite (7 modes, hardware validator)
+├── BEA_Worldshift/             # Temporal dimension engine — W axis (BUTTier/WorldRegistry/TemporalCache/Engine/Bridge)
+│   ├── but_framework.py        #   BUTTier · BUTFrame · BUTClock (Moon=1s, Earth=60s, Sun=3600s)
+│   ├── world_registry.py       #   WorldTier · WorldDefinition · WorldRegistry + physics profiles
+│   ├── temporal_cache.py       #   TemporalCacheManager (Moon 1h TTL · Earth 24h · Sun permanent)
+│   ├── worldshift_engine.py    #   WorldshiftEngine — 4-phase transition < 400ms
+│   ├── worldshift_bridge.py    #   WorldshiftBridge — duck-typed pillar wiring (Pulse/AI/Spectacle/Audio)
+│   └── tests/                  #   63 tests across 5 suites
 │
 ├── tests/
 │   ├── test_integration.py     # Cross-pillar integration tests
