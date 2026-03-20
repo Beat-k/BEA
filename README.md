@@ -6,7 +6,7 @@
 **Patent:** Provisional Filed February 3, 2026 — 111+ Claims
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
-**Tests:** 2,121 passing across 26 pillar modules
+**Tests:** 2,200 passing across 27 pillar modules
 
 ---
 
@@ -61,9 +61,9 @@ The validation tool is **BEA_Multimeter** (`BEA_Multimeter/bea_multimeter.html`)
 ## The Four Pillars
 
 ### Gaming
-*BEA Spectacle · BEA 4D Audio · BEA Motion Body*
+*BEA Fusion · BEA 4D Audio · BEA Motion Body · BEA_Spectacle*
 
-Immersive gaming on monitors you already own. Not VR — better than flat. Parallax depth, spatial audio, and full-body webcam tracking for 350 million PC gamers who never bought a headset.
+Immersive gaming on monitors you already own. Not VR — better than flat. BEA Fusion fuses motion, audio, visual, and depth into a single Ω experience. BEA_Spectacle adds four resonance sensor bands for real-world scanning. Both run on the Console, both accessible from your pocket.
 
 ### Security
 *BEA Shield*
@@ -84,18 +84,18 @@ Idle GPU hours become passive income. GPU-Fi rents spare cycles to ML trainers (
 
 ## Hardware Tiers
 
-| | **Mini** | **Pro** | **NAS** |
+| | **Home** | **Pro** | **NAS** |
 |---|---|---|---|
-| **Price** | $949 | $1,999 | $2,999 |
-| **GPU** | RTX 5060 Ti 16GB | RTX 5070 Ti 16GB | RTX 5080 24GB |
-| **CPU** | Ryzen 7 5700X | Ryzen 7 5700X | Ryzen 9 5950X |
-| **RAM** | 32 GB DDR4 | 32 GB DDR4 | 64 GB DDR4 |
-| **Storage** | 2 TB NVMe | 8 TB RAID 1 | 16 TB + hot-swap |
-| **Network** | 2.5 GbE + WiFi 6 + 10 GbE SFP+ | same | Dual 10 GbE + IPMI |
-| **GPU-Fi** | Home only | $200–500/mo | Coordination |
-| **GPU-Verse** | Consumer | — | $5k–20k/mo |
+| **Price** | ~$1,175 | ~$1,775 | ~$2,875 |
+| **GPU** | RTX 4060 Ti 16GB | RTX 4070 Ti Super 16GB | RTX 3090 Ti 24GB (used) |
+| **CPU** | Ryzen 7 5700X | Ryzen 9 5900X | Ryzen 9 5950X |
+| **RAM** | 64 GB DDR4 | 96 GB DDR4 | 128 GB DDR4 |
+| **Storage** | 1TB OS NVMe + 1TB Cache NVMe + 1TB Log SSD + 2×2TB SATA | 2TB OS + 2TB Cache + 1TB Log SSD + 2×4TB SATA | 2TB OS + 2TB Cache + 1TB Log SSD + 6×4TB SATA |
+| **Network** | 2.5 GbE | 2.5 GbE | 2.5 GbE + 10 GbE SFP+ optional |
+| **GPU-Fi net est.** | $50–150/mo | $150–400/mo | $500–1,000/mo |
+| **Payback** | 8–24 months | 4–12 months | 3–6 months |
 
-Every tier includes: USB fingerprint reader · BEA Spectacle · BEA 4D Audio · BEA Motion Body · BEA Shield · BEA Health · Physiological Duress Detection
+Every tier includes: USB fingerprint reader · BEA Fusion · BEA 4D Audio · BEA Motion Body · BEA Shield · BEA Health · Physiological Duress Detection · 16GB VRAM minimum enforced in software · BEA_Spectacle (sold separately — USB-C handheld resonance scanner)
 
 ---
 
@@ -197,7 +197,7 @@ Key files: `l_degree_scanner.py` · `lens_scanner.py` · `frame_processor.py` ·
 - L° formula: `(λ_visible / 555 nm) × 360°` — maps 380–740 nm to BEA states
 - 9 scene classes: BRIGHT · DARK · INDOOR · OUTDOOR · SUNNY · INDOOR_LIGHTING · SCREEN · TRANSITIONAL · CUSTOM
 - Eye strain tracking and wellness signal detection
-- Integrates with BEA_Spectacle (vision wear) and BEA_Health
+- Integrates with BEA_Fusion (gaming vision) and BEA_Health
 
 ---
 
@@ -484,11 +484,11 @@ Sub-modules: `src/` · `tests/` · `scripts/` · Docker support
 ---
 
 ### BEA_GPU_Fi — GPU Rental Income Platform
-**`BEA_GPU_Fi/`**
+**48 conduct tests | `BEA_GPU_Fi/`**
 
-Rent spare GPU cycles to ML model trainers through the GPU-Fi marketplace. BEA_Grid manages scheduling; BEA_Ledger handles accounting.
+Rent spare GPU cycles to ML model trainers through the GPU-Fi marketplace. BEA_Grid manages scheduling; BEA_Ledger handles accounting. All participants operate under the **GPU-Fi Network Conduct Standards & Reinstatement Policy v2.0** — enforced in real-time by `src/conduct/`.
 
-Sub-modules: `src/` · `client/` · `cli/` · `config/` · `sdk/` · `docs/` · `kiosk/`
+Sub-modules: `src/` · `src/conduct/` · `client/` · `cli/` · `config/` · `sdk/` · `docs/` · `kiosk/`
 
 - Conservative earnings: $200–500/month (Pro tier)
 - 15% BEATEK platform fee
@@ -496,17 +496,74 @@ Sub-modules: `src/` · `client/` · `cli/` · `config/` · `sdk/` · `docs/` · 
 - Real-time earnings-per-kWh ROI from BEA_Grid integration
 - GPU-Verse tier: host virtual worlds for $5,000–20,000/month (NAS)
 
+**Network Conduct Standards:**
+
+| Tier | Restriction | Fine Range |
+|------|-------------|------------|
+| T1 Guidance | No restriction — warning only | None |
+| T2 Temporary | 7 / 14 / 30 days | $25 – $75 |
+| T3 Extended | 90 / 180 / 365 days | $100 – $500 |
+| T4 Permanent | Indefinite — admin reinstatement only | Case-by-case |
+
+- Home network (`BEA_Aura_Console`) **always preserved** — only public GPU-Fi access is suspended
+- AI/Quantum Anomaly Protocol: 8-signal classifier distinguishes genuine violations from false positives
+- Severity skip: crypto mining / malware / data breach → direct T3 or T4 regardless of history
+- Trust Score 0–100 per participant; probation cap at 60 after T3 reinstatement
+- Reinstatement fines reinvested: 40% victim compensation · 30% network security · 20% operator reward · 10% BEATEK reserve
+- REST API: `GET /conduct/status/{user_id}` · `POST /conduct/report` · `POST /conduct/reinstatement/{user_id}/pay`
+
 ---
 
-### BEA_Spectacle — Vision Wear Integration
-**`BEA_Spectacle/`**
+### BEA_Fusion — Gaming Immersion Platform
+**`BEA_Fusion/` · Formerly BEA_Spectacle**
 
-AR/VR vision wear integration for immersive gaming and daily life on monitors people already own.
+Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω. Four sensory layers fused into a single immersive gaming experience on monitors you already own. Not VR — better than flat.
 
-- Head-tracked parallax rendering on 1–3 monitors
-- Eye-tracking anomaly detection feeds Physiological Duress Detection
-- Integrates with BEA_Lens for light-domain E-motion mapping
-- 350M+ monitor gamers vs 20M headset owners — the larger market
+```
+BEA FUSION FORMULA:
+  Motion   ⊕  Audio  →  kinesthetic_audio
+  Visual   ⊕  Depth  →  spatial_visual
+  kinesthetic_audio ⊕ spatial_visual  →  Ω (Immersive Experience)
+```
+
+- **BEA 4D Audio**: GPU-accelerated spatial audio — DirectML / ROCm / CUDA; HRTF-personalized 3D sound
+- **BEA Motion Body**: 84 anatomical landmarks via webcam — zero wearables, heel locomotion for seated play
+- **EMBER**: Intent prediction — motion anticipated 100–500ms pre-completion for zero-lag response
+- **E-Motion Gaming Intelligence**: E[3] focus → E[28+] duress — live emotional state drives difficulty model via BEA_Health HRV
+- **Physiological Duress Detection**: involuntary stress at E[28+] triggers silent 911 dispatch + evidence save
+- **BEA_Worldshift**: W axis time navigation — Moon (volatile) · Earth (sustained) · Sun (permanent) world layers
+- **BEA Caliburn**: physical controller with integrated Firefly Sprite — one-game law enforced in hardware
+- 350M+ monitor gamers · zero headset required
+
+---
+
+### BEA_Spectacle — Handheld Multi-Band Resonance Scanner
+**79 tests | `BEA_Spectacle/`**
+
+Putting glasses on your smartphone so it can see better. BEA_Spectacle is a USB-C handheld wand that adds four sensor bands to any smartphone — electromagnetic, acoustic, thermal, and bioimpedance — fused via BEA Logic into a single Ω composite output.
+
+```
+FUSION FORMULA:
+  em_acoustic  = EM ⊕ Acoustic        (Step 1)
+  th_bio       = Thermal ⊕ Bioimpedance (Step 2)
+  Ω            = em_acoustic ⊕ th_bio  (Step 3)
+
+  Anomaly: ≠ Diverge(band_A, band_B)  — disagreement IS the signal
+```
+
+Key files: `spectacle_engine.py` · `bands/` · `sprite/` · `fusion/` · `schumann/` · `phone_bridge/` · `console_bridge.py` · `health_bridge.py` · `vault_bridge.py` · `mri_bridge.py` · `band_device/`
+
+- `SpectacleEngine(domain, simulate)` — `calibrate()` · `read()` · `run_session()` · `load_sprite()`
+- **Four Bands**: EMReader · AcousticReader · ThermalReader · BioimpedanceReader — each returns EState 0-31
+- **Resonance Sprite**: domain-constrained 7B model on Coral TPU M.2 — verified < 5ms
+- **SpriteDomain**: MEDICAL · AGRICULTURAL · BUILD · SECURE · EARTH · SPORT · CUSTOM — one device, swap the Sprite
+- **AnomalyDetector** (≠ Diverge): 3-frame + 2-band confirmation before flagging; vacuous truth guard on `is_confirmed()`
+- **ClinicalLevel**: CLEAR (Ω 0-7) · MONITOR (8-15) · FLAG (16-23) · PRIORITY (24-31)
+- **EFRI Layer**: passive Schumann 7.83 Hz baseline anchoring all readings to Earth's field
+- **Console as Cloud**: Sprite handles edge inference alone when away; auto-syncs to Console via BEA_Shield VPN when home
+- **BEA_Spectacle Band**: CNT wearable, Coral TPU, 24h battery — continuous low-resolution monitoring between scans
+- **MRI Bridge**: portable pre-scan triage → DICOM → BEA_AI prefetch for radiologist
+- Weight < 80g · edge inference < 20ms · Console deep analysis < 2s
 
 ---
 
@@ -568,7 +625,7 @@ Key files: `but_framework.py` · `world_registry.py` · `temporal_cache.py` · `
 - `TemporalCacheManager`: Moon/Earth/Sun tiers with SHA-256 checksums and checkpoint/restore (BEA_Recovery integration hook)
 - `WorldshiftEngine`: 4-phase transition — TEMPORAL_BLUR → GRAVITY_SHIFT → CACHE_HANDOFF → WORLD_EMERGE — target < 400ms
 - On CACHE_HANDOFF: departing world's Earth state archives to Sun (epoch ledger); Moon cache flushes on world switch
-- `WorldshiftBridge`: duck-typed pillar wiring to BEA_Pulse, BEA_AI, BEA_Spectacle, BEA_4D_Audio — no circular imports
+- `WorldshiftBridge`: duck-typed pillar wiring to BEA_Pulse, BEA_AI, BEA_Fusion, BEA_4D_Audio — no circular imports
 - Integrates with BEA_Treehouse_UI Worldflow motion language (Tier 0–4) and BUT physics profiles for 3D/4D scene rendering
 
 ---
@@ -609,9 +666,10 @@ Key files: `lumin_core.py` · `lumin_hardware.py` · `lumin_modes.py` · `lumin_
 │   │      │  │ ty   │  │      │  │      │  │      │   │
 │   │4D    │  │      │  │      │  │GPU-Fi│  │Vault │   │
 │   │Audio │  │Shield│  │Health│  │Grid  │  │Relay │   │
-│   │Spec- │  │Ident-│  │      │  │Ledger│  │Flow  │   │
-│   │tacle │  │ity   │  │      │  │      │  │      │   │
-│   │Motion│  │Recov-│  │      │  │      │  │Cache │   │
+│   │Fusion│  │Ident-│  │      │  │Ledger│  │Flow  │   │
+│   │Spec- │  │ity   │  │      │  │      │  │      │   │
+│   │tacle │  │ery   │  │      │  │      │  │      │   │
+│   │Motion│  │      │  │      │  │      │  │Cache │   │
 │   │Body  │  │ery   │  │      │  │      │  │Lens  │   │
 │   └──────┘  └──────┘  └──────┘  └──────┘  └──────┘   │
 │                                                         │
@@ -622,7 +680,7 @@ Key files: `lumin_core.py` · `lumin_hardware.py` · `lumin_modes.py` · `lumin_
 │                                                         │
 │  Temporal W axis: BEA_Worldshift (BEA Universal Time)  │
 │    Moon · Earth · Sun → TemporalCache + Epoch Ledger   │
-│    WorldshiftBridge → Pulse · AI · Spectacle · Audio   │
+│    WorldshiftBridge → Pulse · AI · Fusion · Audio      │
 │                                                         │
 └─────────────────────────────────────────────────────────┘
 
@@ -672,7 +730,7 @@ pip install -e .
 ### Run Tests
 
 ```bash
-make test        # Run all 2,121 pillar tests
+make test        # Run all 2,200 pillar tests
 make check       # Tests + linting
 make lint        # Linting only
 ```
@@ -734,8 +792,10 @@ bea ledger summary   # Income and tax summary
 | BEA_Plugin | 53 | Pillar Extension SDK — BEAPillar base class, shell/pulse/flow bridges, entry-point discovery |
 | BEA_Lumin_Pi | 311 | TV/speaker satellite — 7 LAN modes, hardware validator, system health |
 | BEA_Worldshift | 63 | Temporal dimension engine — BUTTier, WorldRegistry, TemporalCache (Moon/Earth/Sun), WorldshiftEngine (< 400ms), WorldshiftBridge |
+| BEA_Spectacle | 79 | Handheld resonance scanner — 4 bands (EM/Acoustic/Thermal/Bioimpedance), BandCombiner (⊕ 3-step), AnomalyDetector (≠ Diverge, 3-frame+2-band), TrustGate (< 5ms), EFRI 7.83 Hz, SpectacleBand wearable, MRI bridge |
 | BEA_Aura_Orchestrator | TS | GPU containers, VRAM slicing, WireGuard intake, subsystem registry |
-| **Total** | **2,121** | **All passing** |
+| **Total** | **2,200** | **All passing** |
+| BEA_Fusion | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; formerly BEA_Spectacle |
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
 
 ---
@@ -775,7 +835,21 @@ BEA_Aura_OS/
 ├── BEA_Shield/                 # Security daemon
 ├── BEA_Health/                 # Health monitoring
 ├── BEA_GPU_Fi/                 # GPU rental income
-├── BEA_Spectacle/              # Vision wear integration
+├── BEA_Fusion/                 # Gaming immersion platform (formerly BEA_Spectacle)
+├── BEA_Spectacle/              # Handheld multi-band resonance scanner (79 tests)
+│   ├── spectacle_engine.py     #   SpectacleEngine — calibrate/read/run_session/load_sprite
+│   ├── _core.py                #   SpriteDomain · OmegaOutput · ScanReport · ClinicalLevel
+│   ├── bands/                  #   EMReader · AcousticReader · ThermalReader · BioimpedanceReader
+│   ├── sprite/                 #   ResonanceSprite · DomainManager · TrustGate (< 5ms Coral TPU)
+│   ├── fusion/                 #   BandCombiner (⊕) · OmegaRenderer · AnomalyDetector (≠ Diverge)
+│   ├── schumann/               #   EFRILayer — Schumann 7.83 Hz passive baseline
+│   ├── phone_bridge/           #   USBCBridge · AppProtocol · ConsoleRelay (BEA_Shield VPN)
+│   ├── console_bridge.py       #   BEA Aura Console deep analysis (< 2s)
+│   ├── health_bridge.py        #   BEA_Health longitudinal tracking
+│   ├── vault_bridge.py         #   BEA_Vault AES-256-GCM encrypted storage
+│   ├── mri_bridge.py           #   Clinical MRI triage → DICOM → BEA_AI prefetch
+│   ├── band_device/            #   SpectacleBand wearable (24h) · EdgeInference (< 20ms)
+│   └── tests/                  #   79 tests
 ├── BEA_Motion_Body/            # Full-body tracking
 ├── BEA_Speakerbox/             # Professional voice-over production
 ├── BEA_SpriteCache/            # Predictive SSD asset prefetch engine
