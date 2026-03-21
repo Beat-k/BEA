@@ -515,7 +515,7 @@ Sub-modules: `src/` · `src/conduct/` · `client/` · `cli/` · `config/` · `sd
 ---
 
 ### BEA_Fusion — Gaming Immersion Platform
-**`BEA_Fusion/` · Formerly BEA_Spectacle**
+**`BEA_Fusion/` 
 
 Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω. Four sensory layers fused into a single immersive gaming experience on monitors you already own. Not VR — better than flat.
 
