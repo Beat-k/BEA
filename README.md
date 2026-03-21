@@ -795,7 +795,7 @@ bea ledger summary   # Income and tax summary
 | BEA_Spectacle | 79 | Handheld resonance scanner — 4 bands (EM/Acoustic/Thermal/Bioimpedance), BandCombiner (⊕ 3-step), AnomalyDetector (≠ Diverge, 3-frame+2-band), TrustGate (< 5ms), EFRI 7.83 Hz, SpectacleBand wearable, MRI bridge |
 | BEA_Aura_Orchestrator | TS | GPU containers, VRAM slicing, WireGuard intake, subsystem registry |
 | **Total** | **2,200** | **All passing** |
-| BEA_Fusion | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; formerly BEA_Spectacle |
+| BEA_Fusion | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω |
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
 
 ---
