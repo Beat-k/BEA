@@ -61,9 +61,9 @@ The validation tool is **BEA_Multimeter** (`BEA_Multimeter/bea_multimeter.html`)
 ## The Four Pillars
 
 ### Gaming
-*BEA Fusion · BEA 4D Audio · BEA Motion Body · BEA_Spectacle*
+*BEA Nexus · BEA 4D Audio · BEA Motion Body · BEA_Spectacle*
 
-Immersive gaming on monitors you already own. Not VR — better than flat. BEA Fusion fuses motion, audio, visual, and depth into a single Ω experience. BEA_Spectacle adds four resonance sensor bands for real-world scanning. Both run on the Console, both accessible from your pocket.
+Immersive gaming on monitors you already own. Not VR — better than flat. BEA Nexus fuses motion, audio, visual, and depth into a single Ω experience. BEA_Spectacle adds five resonance sensor bands for real-world scanning — including E-Motion WiFi CSI for room-scale ambient sensing. Both run on the Console, both accessible from your pocket.
 
 ### Security
 *BEA Shield*
@@ -95,7 +95,7 @@ Idle GPU hours become passive income. GPU-Fi rents spare cycles to ML trainers (
 | **GPU-Fi net est.** | $50–150/mo | $150–400/mo | $500–1,000/mo |
 | **Payback** | 8–24 months | 4–12 months | 3–6 months |
 
-Every tier includes: USB fingerprint reader · BEA Fusion · BEA 4D Audio · BEA Motion Body · BEA Shield · BEA Health · Physiological Duress Detection · 16GB VRAM minimum enforced in software · BEA_Spectacle (sold separately — USB-C handheld resonance scanner)
+Every tier includes: USB fingerprint reader · BEA Nexus · BEA 4D Audio · BEA Motion Body · BEA Shield · BEA Health · Physiological Duress Detection · 16GB VRAM minimum enforced in software · BEA_Spectacle (sold separately — USB-C handheld resonance scanner)
 
 ---
 
@@ -197,7 +197,7 @@ Key files: `l_degree_scanner.py` · `lens_scanner.py` · `frame_processor.py` ·
 - L° formula: `(λ_visible / 555 nm) × 360°` — maps 380–740 nm to BEA states
 - 9 scene classes: BRIGHT · DARK · INDOOR · OUTDOOR · SUNNY · INDOOR_LIGHTING · SCREEN · TRANSITIONAL · CUSTOM
 - Eye strain tracking and wellness signal detection
-- Integrates with BEA_Fusion (gaming vision) and BEA_Health
+- Integrates with BEA_Nexus (gaming vision) and BEA_Health
 
 ---
 
@@ -400,7 +400,7 @@ Sub-modules: `tinyai/` · `console_ai/` · `dlc/` · `transition/` · `fusion/` 
 - Silent DLC orchestration via `dlc/` — background download to BEA_Cache cold tier
 - `DLCSyncBridge`: routes standard DLC → `OnSiteDLCManager`, heritage types → `HeritageDeliveryManager`
 - Dimensional transition effects: 1D CRT scanline · 2D mip-map weave · 3D Matrix/Animus · 4D BEA-Verse tesseract fold
-- BEA Fusion GPU pool: host GPU + Console GPU unified; latency-aware remote fallback via BEA_Shield VPN
+- BEA Nexus GPU pool: host GPU + Console GPU unified; latency-aware remote fallback via BEA_Shield VPN
 - HRV → stress level → difficulty model adjustment via BEA_Health
 - **AI Heritage Protocol:** on Console connection, loads `MEDIA/vault/` — fires `make_heritage_ready()` to BEA_Pulse; on heritage pack delivery fires `make_heritage_delivered()` at E[20→28] WAVE operator
 
@@ -514,13 +514,13 @@ Sub-modules: `src/` · `src/conduct/` · `client/` · `cli/` · `config/` · `sd
 
 ---
 
-### BEA_Fusion — Gaming Immersion Platform
-**`BEA_Fusion/` 
+### BEA_Nexus — Gaming Immersion Platform
+**`BEA_Nexus/`**
 
 Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω. Four sensory layers fused into a single immersive gaming experience on monitors you already own. Not VR — better than flat.
 
 ```
-BEA FUSION FORMULA:
+BEA_NEXUS FORMULA:
   Motion   ⊕  Audio  →  kinesthetic_audio
   Visual   ⊕  Depth  →  spatial_visual
   kinesthetic_audio ⊕ spatial_visual  →  Ω (Immersive Experience)
@@ -531,7 +531,7 @@ BEA FUSION FORMULA:
 - **EMBER**: Intent prediction — motion anticipated 100–500ms pre-completion for zero-lag response
 - **E-Motion Gaming Intelligence**: E[3] focus → E[28+] duress — live emotional state drives difficulty model via BEA_Health HRV
 - **Physiological Duress Detection**: involuntary stress at E[28+] triggers silent 911 dispatch + evidence save
-- **BEA_Worldshift**: W axis time navigation — Moon (volatile) · Earth (sustained) · Sun (permanent) world layers
+- **BEA_Worldshift**: W axis time navigation — Moon (volatile) · Planet (sustained) · Sun (permanent) world layers
 - **BEA Caliburn**: physical controller with integrated Firefly Sprite — one-game law enforced in hardware
 - 350M+ monitor gamers · zero headset required
 
@@ -540,30 +540,35 @@ BEA FUSION FORMULA:
 ### BEA_Spectacle — Handheld Multi-Band Resonance Scanner
 **79 tests | `BEA_Spectacle/`**
 
-Putting glasses on your smartphone so it can see better. BEA_Spectacle is a USB-C handheld wand that adds four sensor bands to any smartphone — electromagnetic, acoustic, thermal, and bioimpedance — fused via BEA Logic into a single Ω composite output.
+Putting glasses on your smartphone so it can see better. BEA_Spectacle is a USB-C handheld wand that adds five sensor bands to any smartphone — electromagnetic, acoustic, thermal, bioimpedance, and E-Motion (WiFi CSI) — fused via BEA Logic into a single Ω composite output. Three product modes: handheld wand, CNT wearable Band, and Ambient (Console as room-scale sensor).
 
 ```
-FUSION FORMULA:
-  em_acoustic  = EM ⊕ Acoustic        (Step 1)
-  th_bio       = Thermal ⊕ Bioimpedance (Step 2)
-  Ω            = em_acoustic ⊕ th_bio  (Step 3)
+FUSION FORMULA (5-band):
+  em_acoustic  = EM ⊕ Acoustic           (Step 1)
+  th_bio       = Thermal ⊕ Bioimpedance  (Step 2)
+  base_Ω       = em_acoustic ⊕ th_bio    (Step 3)
+  Ω            = base_Ω ⊕ EMotion_state  (Step 4)
 
   Anomaly: ≠ Diverge(band_A, band_B)  — disagreement IS the signal
+  E-Motion: WiFi CSI distortion — reads what the signal felt passing through matter
 ```
 
-Key files: `spectacle_engine.py` · `bands/` · `sprite/` · `fusion/` · `schumann/` · `phone_bridge/` · `console_bridge.py` · `health_bridge.py` · `vault_bridge.py` · `mri_bridge.py` · `band_device/`
+Key files: `spectacle_engine.py` · `ambient_engine.py` · `bands/` · `sprite/` · `fusion/` · `schumann/` · `ambient/` · `phone_bridge/` · `console_bridge.py` · `health_bridge.py` · `vault_bridge.py` · `mri_bridge.py` · `band_device/`
 
 - `SpectacleEngine(domain, simulate)` — `calibrate()` · `read()` · `run_session()` · `load_sprite()`
-- **Four Bands**: EMReader · AcousticReader · ThermalReader · BioimpedanceReader — each returns EState 0-31
-- **Resonance Sprite**: domain-constrained 7B model on Coral TPU M.2 — verified < 5ms
+- `AmbientEngine(domain, console_ip)` — Console WiFi radio in monitor mode; room-scale Ω at 100 Hz, < 500ms update
+- **Five Bands**: EMReader · AcousticReader · ThermalReader · BioimpedanceReader · EMotionReader — each returns EState 0-31
+- **E-Motion (Band 5)**: passive WiFi CSI — reads density, moisture, motion, and occupancy through walls; no new hardware
+- **BEA_Spectacle Ambient**: existing WiFi router + Console Intel AX210 → room-scale Ω; no wand required
+- **Resonance Sprite**: domain-constrained AI on Coral TPU M.2 — trust-verified < 5ms; hot-swappable
 - **SpriteDomain**: MEDICAL · AGRICULTURAL · BUILD · SECURE · EARTH · SPORT · CUSTOM — one device, swap the Sprite
 - **AnomalyDetector** (≠ Diverge): 3-frame + 2-band confirmation before flagging; vacuous truth guard on `is_confirmed()`
 - **ClinicalLevel**: CLEAR (Ω 0-7) · MONITOR (8-15) · FLAG (16-23) · PRIORITY (24-31)
 - **EFRI Layer**: passive Schumann 7.83 Hz baseline anchoring all readings to Earth's field
 - **Console as Cloud**: Sprite handles edge inference alone when away; auto-syncs to Console via BEA_Shield VPN when home
-- **BEA_Spectacle Band**: CNT wearable, Coral TPU, 24h battery — continuous low-resolution monitoring between scans
+- **BEA_Spectacle Band**: CNT wearable, Coral TPU, 24h battery — continuous low-resolution 5-band monitoring between scans
 - **MRI Bridge**: portable pre-scan triage → DICOM → BEA_AI prefetch for radiologist
-- Weight < 80g · edge inference < 20ms · Console deep analysis < 2s
+- Weight < 80g · edge inference < 20ms · Ambient Ω < 500ms · Console deep analysis < 2s
 
 ---
 
@@ -617,15 +622,15 @@ Key files: `but_framework.py` · `world_registry.py` · `temporal_cache.py` · `
 | Body | Time Unit | Cache Tier | Force Layer | World Feel |
 |---|---|---|---|---|
 | Moon | Second | Moon Cache (1h TTL) | Local / latency pull | Fast, volatile, fragile |
-| Earth | Minute | Earth Cache (24h TTL) | Session field / gravity | Sustained, present, familiar |
+| Planet | Minute | Planet Cache (24h TTL) | Session field / gravity | Sustained, present, any planetary world |
 | Sun | Hour | Sun Cache (permanent) | Anchor / epoch force | Vast, monumental, permanent |
 
 - `BUTClock.advance(tier)` generates a new epoch UUID on every world switch
 - `WorldRegistry` declares worlds with per-tier physics profiles: `gravity_weight`, `time_scale`, `parallax_depth`, `haptic`, `audio_character`
-- `TemporalCacheManager`: Moon/Earth/Sun tiers with SHA-256 checksums and checkpoint/restore (BEA_Recovery integration hook)
+- `TemporalCacheManager`: Moon/Planet/Sun tiers with SHA-256 checksums and checkpoint/restore (BEA_Recovery integration hook)
 - `WorldshiftEngine`: 4-phase transition — TEMPORAL_BLUR → GRAVITY_SHIFT → CACHE_HANDOFF → WORLD_EMERGE — target < 400ms
-- On CACHE_HANDOFF: departing world's Earth state archives to Sun (epoch ledger); Moon cache flushes on world switch
-- `WorldshiftBridge`: duck-typed pillar wiring to BEA_Pulse, BEA_AI, BEA_Fusion, BEA_4D_Audio — no circular imports
+- On CACHE_HANDOFF: departing world's Planet state archives to Sun (epoch ledger); Moon cache flushes on world switch
+- `WorldshiftBridge`: duck-typed pillar wiring to BEA_Pulse, BEA_AI, BEA_Nexus, BEA_4D_Audio — no circular imports
 - Integrates with BEA_Treehouse_UI Worldflow motion language (Tier 0–4) and BUT physics profiles for 3D/4D scene rendering
 
 ---
@@ -679,7 +684,7 @@ Key files: `lumin_core.py` · `lumin_hardware.py` · `lumin_modes.py` · `lumin_
 │  Satellites: BEA_Lumin_Pi (TV/speaker) ←── LAN         │
 │                                                         │
 │  Temporal W axis: BEA_Worldshift (BEA Universal Time)  │
-│    Moon · Earth · Sun → TemporalCache + Epoch Ledger   │
+│    Moon · Planet · Sun → TemporalCache + Epoch Ledger  │
 │    WorldshiftBridge → Pulse · AI · Fusion · Audio      │
 │                                                         │
 └─────────────────────────────────────────────────────────┘
@@ -791,11 +796,11 @@ bea ledger summary   # Income and tax summary
 | BEA_Update | 57 | OTA pillar update manager — SHA-256 + Ed25519, BEA_Grid scheduling, auto-rollback |
 | BEA_Plugin | 53 | Pillar Extension SDK — BEAPillar base class, shell/pulse/flow bridges, entry-point discovery |
 | BEA_Lumin_Pi | 311 | TV/speaker satellite — 7 LAN modes, hardware validator, system health |
-| BEA_Worldshift | 63 | Temporal dimension engine — BUTTier, WorldRegistry, TemporalCache (Moon/Earth/Sun), WorldshiftEngine (< 400ms), WorldshiftBridge |
-| BEA_Spectacle | 79 | Handheld resonance scanner — 4 bands (EM/Acoustic/Thermal/Bioimpedance), BandCombiner (⊕ 3-step), AnomalyDetector (≠ Diverge, 3-frame+2-band), TrustGate (< 5ms), EFRI 7.83 Hz, SpectacleBand wearable, MRI bridge |
+| BEA_Worldshift | 63 | Temporal dimension engine — BUTTier, WorldRegistry, TemporalCache (Moon/Planet/Sun), WorldshiftEngine (< 400ms), WorldshiftBridge |
+| BEA_Spectacle | 79 | Handheld resonance scanner — 5 bands (EM/Acoustic/Thermal/Bioimpedance/E-Motion CSI), BandCombiner (⊕ 4-step), AnomalyDetector (≠ Diverge, 3-frame+2-band), TrustGate (< 5ms), EFRI 7.83 Hz, SpectacleBand wearable, Ambient room-scale mode, MRI bridge |
 | BEA_Aura_Orchestrator | TS | GPU containers, VRAM slicing, WireGuard intake, subsystem registry |
 | **Total** | **2,200** | **All passing** |
-| BEA_Fusion | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω |
+| BEA_Nexus | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; 350M+ monitor gamers, zero headset |
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
 
 ---
@@ -835,7 +840,7 @@ BEA_Aura_OS/
 ├── BEA_Shield/                 # Security daemon
 ├── BEA_Health/                 # Health monitoring
 ├── BEA_GPU_Fi/                 # GPU rental income
-├── BEA_Fusion/                 # Gaming immersion platform (formerly BEA_Spectacle)
+├── BEA_Nexus/                  # Gaming immersion platform (formerly BEA_Fusion)
 ├── BEA_Spectacle/              # Handheld multi-band resonance scanner (79 tests)
 │   ├── spectacle_engine.py     #   SpectacleEngine — calibrate/read/run_session/load_sprite
 │   ├── _core.py                #   SpriteDomain · OmegaOutput · ScanReport · ClinicalLevel
@@ -875,9 +880,9 @@ BEA_Aura_OS/
 ├── BEA_Plugin_SDK/             # Pillar Extension SDK (BEAPillar ABC, entry-point discovery)
 ├── BEA_Lumin_Pi/               # TV/speaker satellite (7 modes, hardware validator)
 ├── BEA_Worldshift/             # Temporal dimension engine — W axis (BUTTier/WorldRegistry/TemporalCache/Engine/Bridge)
-│   ├── but_framework.py        #   BUTTier · BUTFrame · BUTClock (Moon=1s, Earth=60s, Sun=3600s)
+│   ├── but_framework.py        #   BUTTier · BUTFrame · BUTClock (Moon=1s, Planet=60s, Sun=3600s)
 │   ├── world_registry.py       #   WorldTier · WorldDefinition · WorldRegistry + physics profiles
-│   ├── temporal_cache.py       #   TemporalCacheManager (Moon 1h TTL · Earth 24h · Sun permanent)
+│   ├── temporal_cache.py       #   TemporalCacheManager (Moon 1h TTL · Planet 24h · Sun permanent)
 │   ├── worldshift_engine.py    #   WorldshiftEngine — 4-phase transition < 400ms
 │   ├── worldshift_bridge.py    #   WorldshiftBridge — duck-typed pillar wiring (Pulse/AI/Spectacle/Audio)
 │   └── tests/                  #   63 tests across 5 suites
