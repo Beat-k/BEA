@@ -8,7 +8,7 @@
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
 **Revision:** v2.0 · March 2026
-**Tests:** 2,415 passing across 28 pillar modules
+**Tests:** 2,734 passing across 30 pillar modules
 
 ---
 
@@ -379,7 +379,7 @@ Key files: `shell_engine.py` · `shell_registry.py` · `shell_schema.py` · `she
 ---
 
 ### BEA_Director — AI Camera Crew System
-**164 tests · 1 skipped | `BEA_Director/` · `BEA_Director_macOS/` · v2.0.0**
+**164 tests · 1 skipped | `BEA_Director/` · v2.0.0**
 
 Automatic multi-camera video cut direction for live productions, gaming streams, and clinical documentation. Four fixed cameras + optional BEATEK Hover™ handheld, orchestrated by E-Motion state and EMBER intent prediction — no physical motors, no human operators.
 
@@ -392,6 +392,21 @@ Key files: `director.py` · `director_scanner.py` · `shot_selector.py` · `outp
 - Anticipatory cuts: EMBER predicts motion 100–500ms ahead — cut lands before the moment peaks
 - Sub-16ms switching latency (sub-frame at 60 fps)
 - cv2 optional — 1 test skipped when OpenCV not installed
+
+---
+
+### BEA_Director_macOS — AI Camera Crew (macOS Edition)
+**194 tests | `BEA_Director_macOS/` · v2.0.0**
+
+Full-featured macOS port of the BEA Director engine. Uses AVFoundation for hardware camera access and a socket-based output switcher instead of the Linux V4L2/DRM stack. Same clinical and gaming cut logic, same v2.0.0 feature set — runs natively on Apple Silicon and Intel Macs.
+
+Key files: `director.py` · `crew_roles.py` · `shot_selector.py` · `confidence_evaluator.py` · `director_log.py` · `highlight_system.py` · `imager_bridge.py`
+
+- Same 5-camera crew (WIDE · MEDIUM · CLOSE · REACTION · HOVER) with EMBER intent routing
+- DirectorLog + HighlightSystem (Phase 2) fully supported
+- ImagerDirectorBridge for BEA Clinical Suite session sync
+- AVFoundation camera intake; socket-based switched output for HDMI/NDI consumers
+- Zero cv2 dependency on macOS path — 194 tests, 0 skipped
 
 ---
 
@@ -800,6 +815,35 @@ Key files: `lumin_core.py` · `lumin_hardware.py` · `lumin_modes.py` · `lumin_
 
 ---
 
+### BEA_Clinical_Suite — Synchronized Resonance Documentation
+**125 tests | `BEA_Clinical_Suite/` · v1.0.0**
+
+The first documentation platform that captures external body position (BEA_Director camera feed) and internal tissue state (BEA_Resonance_Imager Ω reading) on the same Console timestamp — simultaneously, automatically, sovereignly, without cloud. Coordinates Director + Imager as an orchestrator pillar; duck-typed bridges mean the suite runs without either installed.
+
+Sub-modules: `sync/` · `session/` · `display/` · `archive/` · `console_bridge.py` · `health_bridge.py`
+
+```
+CLINICAL FRAME (< 13ms sync budget at 60 fps):
+  Director switched camera  ──┐
+                              ├─► ClinicalFrame (timestamp-paired)
+  Imager Ω composite reading ─┘
+```
+
+- **OmegaLevel (IntEnum):** CLEAR (< 8) · MONITOR (8–15) · FLAG (16–23) · PRIORITY (≥ 24) — maps BEA 32-state E-Motion encoding to clinical escalation tiers
+- **FrameMerger:** pairs Director events with Imager readings within `max_drift_ms=13` — sub-frame accuracy at 60 fps
+- **DriftCorrector:** tracks sync accuracy per session; `within_budget()` alerts when mean drift exceeds 13ms
+- **PatientRecord:** personal Ω baseline — `baseline_delta()` compares this patient's own history, never population averages
+- **HighlightDetector:** auto-flags frames where `omega_level >= PRIORITY AND has_diverge` simultaneously — instant clinician review queue
+- **SessionManager:** start / stream / end lifecycle; `ClinicalSession` streams `ClinicalFrame` events in real time
+- **ClinicalMonitor:** live state display; `is_alert()` activates at FLAG (Ω ≥ 16)
+- **TimelineViewer:** `at_level()` · `at_or_above()` · `with_diverge()` · `for_camera()` · `peak_frame()` — post-session review
+- **ReportGenerator:** markdown clinical summary with Protocol header, Omega statistics, and Clinical Flags section
+- **VaultBridge / SessionPackager / ExportEngine:** local-only storage; AES-256-GCM via BEA_Vault; optional DICOM (pydicom) and HL7 FHIR (hl7apy) — no cloud upload
+- **Sovereign patient data:** session data never leaves the Console — no cloud relay, no third-party API, no telemetry
+- Applications: athletic performance monitoring · physical therapy progress tracking · occupational therapy assessment · research documentation
+
+---
+
 ## BEA_Resonance_Imager — Honest Positioning
 
 The BEA_Resonance_Imager is a genuinely novel system. It is also important to position it accurately.
@@ -1010,6 +1054,7 @@ bea ledger summary   # Income and tax summary
 | BEA_Grid | 58 | Power management |
 | BEA_Shell | 67 | CLI |
 | BEA_Director | 164 | AI camera crew — v2.0.0: HOVER + DirectorLog + HighlightSystem + ImagerDirectorBridge |
+| BEA_Director_macOS | 194 | AI camera crew — macOS edition (AVFoundation + socket); full v2.0.0 feature parity |
 | BEA_Identity | 54 | Biometric auth |
 | BEA_Recovery | 61 | Crash resilience |
 | BEA_Firefly_Sprite | 252 | Installer / validator / DLC / certification + AI Heritage Protocol + Heritage Value Rating (HVS) |
@@ -1026,8 +1071,9 @@ bea ledger summary   # Income and tax summary
 | BEA_Worldshift | 63 | Temporal dimension engine — BUTTier, WorldRegistry, TemporalCache (Moon/Planet/Sun), WorldshiftEngine (< 400ms), WorldshiftBridge |
 | BEA_Spectacle | 122 | Handheld resonance scanner — 5 bands (EM/Acoustic/Thermal/Bioimpedance/E-Motion CSI), BandCombiner (⊕ 4-step), AnomalyDetector (≠ Diverge, 3-frame+2-band), TrustGate (< 5ms), EFRI 7.83 Hz, SpectacleBand wearable, Ambient room-scale mode, MRI bridge |
 | BEA_4D_Shop | 127 | GPU-Verse Workshop — BEA Physics, Gear System™, EmotionBindingSet, WAxisTracker, economy, SpriteTrainer |
+| BEA_Clinical_Suite | 125 | Synchronized Resonance Documentation — Director + Imager on single Console timestamp; OmegaLevel CLEAR/MONITOR/FLAG/PRIORITY; FrameMerger (< 13ms); HighlightDetector; sovereign patient data |
 | BEA_Aura_Orchestrator | TS | GPU containers, VRAM slicing, WireGuard intake, subsystem registry |
-| **Total** | **2,415** | **All passing** |
+| **Total** | **2,734** | **All passing** |
 | BEA_Nexus | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; 350M+ monitor gamers, zero headset |
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
 
@@ -1114,6 +1160,21 @@ BEA_Aura_OS/
 │   ├── worldshift_engine.py    #   WorldshiftEngine — 4-phase transition < 400ms
 │   ├── worldshift_bridge.py    #   WorldshiftBridge — duck-typed pillar wiring (Pulse/AI/Spectacle/Audio)
 │   └── tests/                  #   63 tests across 5 suites
+├── BEA_Clinical_Suite/         # Synchronized Resonance Documentation (125 tests, v1.0.0)
+│   ├── bea_clinical_suite/
+│   │   ├── _core.py            #   OmegaLevel · ClinicalFrame · SessionReport · ClinicalRegion · AssessmentProtocol
+│   │   ├── clinical_suite.py   #   ClinicalSuite orchestrator — start_session/add_frame/end_session
+│   │   ├── sync/               #   ConsoleTimestamp · FrameMerger (< 13ms) · DriftCorrector
+│   │   ├── session/            #   PatientRecord · PatientStore · SessionManager · ClinicalSession · HighlightDetector
+│   │   ├── display/            #   ClinicalMonitor · TimelineViewer · ReportGenerator
+│   │   ├── archive/            #   VaultBridge · SessionPackager · ExportEngine (JSON/DICOM/HL7 optional)
+│   │   ├── console_bridge.py   #   Duck-typed alert push to BEA Aura Console
+│   │   └── health_bridge.py    #   Duck-typed BEA_Health personal baseline integration
+│   ├── README.md
+│   ├── LICENSE
+│   ├── CONTRIBUTING.md
+│   ├── pyproject.toml
+│   └── tests/                  #   125 tests
 ├── BEA_4D_Shop/                # GPU-Verse Workshop — Reality Construction Layer (v1.0.0)
 │   ├── bea_4d_shop/
 │   │   ├── shop_engine.py      #   ShopEngine · MeshConnection · SessionResult
@@ -1196,6 +1257,11 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 - AI Heritage Protocol™
 - BEA Director™
 - BEA Clinical Suite™
+- Synchronized Resonance Documentation™
+- ClinicalFrame™
+- OmegaLevel Anomaly Escalation™
+- Personal Longitudinal Omega Baseline™
+- HighlightDetector™
 
 ---
 
