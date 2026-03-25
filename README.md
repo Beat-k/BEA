@@ -86,7 +86,7 @@ Everything in the ecosystem speaks the same mathematical language.
 | ⊕ | Fire — Combust | **XOR** — bits that differ → emergent new state |
 | ⊖ | Water — Dissolve | **AND NOT** — strip B's bits from A → de-escalate |
 | ⊗ | Air — Fuse | **OR** — union of all active bits → escalate |
-| ⨀ | Solar — Null | **AND** — only shared bits survive → common ground |
+| ⊙ | Solar — Amplify | **AND** — only shared bits survive → common ground |
 | ≠ | Ether — Diverge | **XNOR** — bits that agree → shared baseline |
 | ⧖ | Temporal — Resonate | **floor avg** — resonance midpoint → sync pulse |
 
@@ -178,16 +178,29 @@ LAYER 1  →  BEA_Aura_OS               Reality Engine
 
 | | **Home** | **Pro** | **NAS** |
 |---|---|---|---|
-| **Price** | ~$1,175 | ~$1,775 | ~$2,875 |
+| **Price** | ~$1,275 | ~$1,875 | ~$2,975 |
 | **GPU** | RTX 4060 Ti 16GB | RTX 4070 Ti Super 16GB | RTX 3090 Ti 24GB (used) |
 | **CPU** | Ryzen 7 5700X | Ryzen 9 5900X | Ryzen 9 5950X |
 | **RAM** | 64 GB DDR4 | 96 GB DDR4 | 128 GB DDR4 |
 | **Storage** | 1TB OS NVMe + 1TB Cache NVMe + 1TB Log SSD + 2×2TB SATA | 2TB OS + 2TB Cache + 1TB Log SSD + 2×4TB SATA | 2TB OS + 2TB Cache + 1TB Log SSD + 6×4TB SATA |
+| **Security Module** | Coral Dual Edge TPU (8 TOPS) via SATA adapter | Coral Dual Edge TPU (8 TOPS) via SATA adapter | Coral Dual Edge TPU (8 TOPS) via SATA adapter |
 | **Network** | 2.5 GbE | 2.5 GbE | 2.5 GbE + 10 GbE SFP+ optional |
 | **GPU-Fi net est.** | $50–150/mo | $150–400/mo | $500–1,000/mo |
 | **Payback** | 8–24 months | 4–12 months | 3–6 months |
 
-Every tier includes: USB fingerprint reader · BEA Nexus · BEA 4D Audio · BEA Motion Body · BEA Shield · BEA Health · Physiological Duress Detection · 16GB VRAM minimum enforced in software · BEA_Spectacle (sold separately — USB-C handheld resonance scanner)
+**Console Security Module — standard on all tiers:**
+
+| Component | Part | Interface | Purpose |
+|---|---|---|---|
+| Google Coral M.2 Accelerator | Dual Edge TPU (2 × 4 TOPS = 8 TOPS) | M.2 module | Hardware root of trust |
+| Coral Dual Edge TPU Adapter | M.2 2280 B+M Key, PCIe x1 Gen2 | Hosts Coral M.2 module | Adapter board with mounting screw |
+| NFHK M.2 NGFF → 2.5" SATA Adapter | Black metal enclosure, passive | SATA data + power | Routes TPU to available SATA port |
+| SATA port (console motherboard) | Dedicated — 1 port reserved | SATA | Physical connection to PSU + board |
+
+Edge TPU 1: BEA_Identity attestation · BEA Imprint biometric gate · hardware-signed audit · non-exportable key ops
+Edge TPU 2: Firefly Sprite domain verification · VPN auto-authentication · E[n] identity inference · BEA Logic signal resolution
+
+Every tier includes: BEA Imprint Keyboard · BEA Nexus · BEA 4D Audio · BEA Motion Body · BEA Shield · BEA Health · Physiological Duress Detection · Console Security Module (Coral Dual Edge TPU) · 16GB VRAM minimum enforced in software · BEA_Spectacle (sold separately — USB-C handheld resonance scanner)
 
 ---
 
@@ -234,7 +247,7 @@ Key files: `scanner.py` · `estates.py` · `operators.py` · `s_degree.py` · `l
 
 - 32-state 5-bit encoding: Intensity · Frequency · Phase · Coherence · Latency
 - `EState` IntEnum with all 32 named emotional states
-- 6 pure BEA operators: ⊕ Fire · ⊖ Water · ⊗ Air · ⨀ Solar · ≠ Ether · ⧖ Temporal
+- 6 pure BEA operators: ⊕ Fire · ⊖ Water · ⊗ Air · ⊙ Solar · ≠ Ether · ⧖ Temporal
 - `S°` formula: maps audio frequency to BEA state
 - `L°` formula: maps visible wavelength to BEA state
 - `BEAScanner` base class: all pillar scanners subclass this
