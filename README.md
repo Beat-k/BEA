@@ -4,10 +4,9 @@
 
 **Owner:** Jeremy F. Jackson · BEATEK Holdings, LLC
 **Contact:** jeremyjackson7@proton.me
-**Patent:** Provisional Filed February 3, 2026 — 111+ Claims
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
-**Revision:** v2.0 · March 2026
+**Revision:** v2.1 · March 2026
 **Tests:** 2,734 passing across 30 pillar modules
 
 ---
@@ -184,7 +183,7 @@ LAYER 1  →  BEA_Aura_OS               Reality Engine
 | **RAM** | 64 GB DDR4 | 96 GB DDR4 | 128 GB DDR4 |
 | **Storage** | 1TB OS NVMe + 1TB Cache NVMe + 1TB Log SSD + 2×2TB SATA | 2TB OS + 2TB Cache + 1TB Log SSD + 2×4TB SATA | 2TB OS + 2TB Cache + 1TB Log SSD + 6×4TB SATA |
 | **Security Module** | Coral Dual Edge TPU (8 TOPS) via SATA adapter | Coral Dual Edge TPU (8 TOPS) via SATA adapter | Coral Dual Edge TPU (8 TOPS) via SATA adapter |
-| **Network** | 2.5 GbE | 2.5 GbE | 2.5 GbE + 10 GbE SFP+ optional |
+| **Network** | 10 GbE SFP+ (fiber or coaxial) | 10 GbE SFP+ (fiber or coaxial) | 10 GbE SFP+ (fiber or coaxial) + 2.5 GbE onboard |
 | **GPU-Fi net est.** | $50–150/mo | $150–400/mo | $500–1,000/mo |
 | **Payback** | 8–24 months | 4–12 months | 3–6 months |
 
@@ -200,7 +199,53 @@ LAYER 1  →  BEA_Aura_OS               Reality Engine
 Edge TPU 1: BEA_Identity attestation · BEA Imprint biometric gate · hardware-signed audit · non-exportable key ops
 Edge TPU 2: Firefly Sprite domain verification · VPN auto-authentication · E[n] identity inference · BEA Logic signal resolution
 
-Every tier includes: BEA Imprint Keyboard · BEA Nexus · BEA 4D Audio · BEA Motion Body · BEA Shield · BEA Health · Physiological Duress Detection · Console Security Module (Coral Dual Edge TPU) · 16GB VRAM minimum enforced in software · BEA_Spectacle (sold separately — USB-C handheld resonance scanner)
+Every tier includes: BEA Imprint Keyboard · BEA Nexus · BEA 4D Audio · BEA Motion Body · BEA Shield · BEA Health · Physiological Duress Detection · Console Security Module (Coral Dual Edge TPU) · 10 GbE SFP+ (fiber or coaxial) · 16GB VRAM minimum enforced in software · BEA_Spectacle (sold separately — USB-C handheld resonance scanner)
+
+
+---
+
+## 10 GbE SFP+ — Industry Standard Setting
+
+Every BEA Aura Console ships with a 10 GbE SFP+ port as standard hardware across all tiers. This is an industry first in consumer gaming infrastructure.
+
+### Why 10 GbE Is Non-Negotiable for 4D
+
+Current gaming consoles (PS5, Xbox Series X) ship with 1 GbE. Most gaming PCs ship with 2.5 GbE. Neither is sufficient for the full BEA ecosystem running simultaneously:
+
+```
+Concurrent network workloads on a live BEA Aura Console:
+  BEA Amplify (⊙)     — llama.cpp RPC layer distribution    ~2–4 GB/s bursts
+  GPU-Verse            — virtual world asset streaming        ~1–3 GB/s sustained
+  BEA Director         — multi-camera feed ingestion          ~1–2 GB/s per feed
+  BEA 4D Audio         — spatial audio state sync             ~100 MB/s
+  E[n] multiplayer     — W-axis temporal state sync           ~500 MB/s
+  GPU-Fi               — ML trainer data transfer             ~2–5 GB/s bursts
+  BEA_Shield VPN       — encrypted tunnel overhead            ~200 MB/s
+  BEA Lookout          — camera feeds + event stream          ~500 MB/s
+
+1 GbE ceiling:   125 MB/s total — collapses under 4D load
+2.5 GbE ceiling: 312 MB/s total — still a bottleneck
+10 GbE ceiling:  1,250 MB/s total — room to breathe, room to grow
+```
+
+### Fiber or Coaxial — Your Infrastructure, Your Choice
+
+The SFP+ port accepts either transceiver type:
+
+| Option | Transceiver | Best For |
+|---|---|---|
+| **Fiber** | SFP+ LC duplex multimode/singlemode | New builds, dedicated runs, maximum distance and interference immunity |
+| **Coaxial** | SFP+ to RG6/RG11 adapter | Homes with existing cable runs — repurpose what's already in the walls |
+
+Both deliver the same 10 GbE throughput. BEATEK does not dictate the medium — the port accepts what your infrastructure already has.
+
+### The Industry Positioning
+
+No consumer gaming console has shipped 10 GbE SFP+ as standard. BEATEK is introducing this in the gaming industry through the BEA Aura Console.
+
+When a gaming company is ready to build 4D-capable hardware — a console that can run BEA_Aura_OS licensed content, GPU-Verse sessions, or W-axis multiplayer — 10 GbE SFP+ is the minimum network floor the architecture requires. The BEA Aura Console establishes that floor now, ahead of any licensing deal.
+
+Every BEA Aura Console owner is operating on infrastructure that the next generation of gaming is being built toward. That is not a coincidence — it is the foundation.
 
 ---
 
@@ -1251,6 +1296,7 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 
 ## Registered IP Terms
 
+### Platform & OS
 - BEA_Aura_OS™
 - BEA Reality Engine™
 - Console as Cloud™
@@ -1260,16 +1306,65 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 - E[n] Universal Language™
 - BEA_Aura_OS Four Life Pillars™
 - Binary E-motion Arithmetic™
+- Household Computing Sovereignty™
+
+### Signal Physics & Core
+- BEA_Core™
+- S° Sound Degree™
+- BEA Logic™
+
+### Hardware — Console
+- BEA Console Security Module™
+- Verified BEA Node™
+- NVMe Swap Bridge™
+- BEAResourceSequencer™
+
+### Hardware — Peripherals
+- BEA Imprint™
+- BEA Imprint Keyboard™
+- BEA Imprint Mouse™
+- BEA Imprint Pad™
+
+### Client Software
+- BEA Treehouse™
+- BEA Lookout™
+
+### Inference & Compute
+- BEA Amplify™
+- GPU-Fi™
+- GPU-Verse™
+
+### Audio
+- BEA Speakerbox™
+- BEA Beatbox™
+
+### Voice & AI
+- TinyAI™
+- BEA Pumpkin Pi™
+- BEA Context Bridge™
+- BEA Aura Developer SDK™
+
+### Gaming
 - 4D Shop™
+- 4D Shop Digital Object Protocol™
 - Digital Physics™
 - BEA Physics™
 - Functional Digital Objects™
 - Gear System™
-- 4D Shop Digital Object Protocol™
 - Reality Construction Layer™
 - AI Heritage Protocol™
+
+### Security & Identity
+- BEA Shield™
+- Physiological Duress Detection™
+
+### Camera & Motion
 - BEA Director™
+
+### Medical & Resonance
 - BEA Clinical Suite™
+- BEA Resonance Imager™
+- MRI-Ω™
 - Synchronized Resonance Documentation™
 - ClinicalFrame™
 - OmegaLevel Anomaly Escalation™
@@ -1305,6 +1400,6 @@ That same software running on your BEA Aura Console means you profit from your i
 
 ---
 
-*BEATEK Holdings, LLC · Founded by Jeremy F. Jackson · Patent Pending · 2026*
+*BEATEK Holdings, LLC · Founded by Jeremy F. Jackson · © 2026*
 *Derived from: Temporal Emergence Theory | Resonance Theorem v2.2*
 *Consciousness Emergence Postulate — Jaxxon (Jeremy F. Jackson) & Claude AI*
