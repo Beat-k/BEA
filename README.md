@@ -7,7 +7,7 @@
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
 **Revision:** v2.1 · March 2026
-**Tests:** 2,778 passing across 30 pillar modules
+**Tests:** 3,907 passing across 41 pillar modules
 
 ---
 
@@ -572,6 +572,24 @@ Key files: `identity_schema.py` · `profile_registry.py` · `session_manager.py`
 
 ---
 
+### BEA_Imprint — Fingerprint Hardware SDK
+**81 tests | `BEA_Imprint/`**
+
+Hardware fingerprint authentication SDK for the three BEA Imprint peripheral devices. Fingerprint data is hashed at the sensor — raw biometrics never stored, never transmitted.
+
+Key files: `imprint_core.py` · `enrollment_manager.py` · `session_manager.py` · `imprint_scanner.py` · `imprint_broadcaster.py` · `identity_bridge.py`
+
+- Three device classes: **Keyboard** (TKL + numpad sensors) · **Mouse** (ambient thumb sensor) · **Pad** (puck, 8 profiles)
+- `FingerprintTemplate`: SHA-256 hash only — raw fingerprint data is never stored or transmitted
+- `EnrollmentManager`: max 8 templates per device, idempotent re-enrollment
+- `SessionManager`: one active session per identity, automatic lock on duress detection
+- `ImprintScanner` E[n] map: SUCCESS→E[16] · FAILED→E[10] · ESCALATED→E[20] · AMBIENT_MISMATCH→E[22] · DURESS→E[29]
+- `ImprintBroadcaster`: only re-broadcasts to BEA_Pulse for E[n] ≥ 28 (duress threshold)
+- `IdentityBridge`: syncs auth results to BEA_Identity for session management
+- fail_count per (identity, device) resets on successful auth
+
+---
+
 ### BEA_Recovery — Power-Loss State Resilience
 **61 tests | `BEA_Recovery/`**
 
@@ -636,6 +654,22 @@ Tier labels: `STANDARD` · `SEASONED` · `NOTABLE` · `DISTINGUISHED` · `ELITE`
 
 ---
 
+### BEA_Sprite_Studio — Blank Sprite SDK App
+**88 tests | `BEA_Sprite_Studio/`**
+
+The SDK application for setting up blank, uncertified Firefly Sprites. Validates hardware, converts third-party game assets to BEA-native formats, and walks the owner through the full setup wizard — passphrase, VPN provisioning, biometric enrollment, and optional data migration.
+
+Key files: `studio_validator.py` · `asset_converter.py` · `owner_setup_wizard.py` · `partition_manager.py`
+
+- **StudioValidator**: 7-category BEATEK certification pipeline — partition · content · assets · compression · dimensional · cache · DLC + heritage
+- **AssetConverter**: `texconv` / `ffmpeg` pipeline (simulate=True for CI); converts textures, audio, and video to BEA-native formats
+- **OwnerSetupWizard**: state machine — passphrase → VPN provisioning → biometric enrollment → data migration (COMPLETE / SKIP at each step)
+- 6-partition layout spec per tier: SYSTEM / OWNER / MEDIA / PATCH / DEVELOPER / HEADROOM
+- DEVELOPER partition: 48 GB physical (40 GB content + 8 GB sdk_tools)
+- Content budget computed from `_DEVELOPER_CONTENT_BUDGET` dict — not raw partition size
+
+---
+
 ### BEA_SpriteCache — Predictive SSD Asset Prefetch Engine
 **43 tests | `BEA_SpriteCache/`**
 
@@ -695,6 +729,24 @@ Sub-modules: `tinyai/` · `console_ai/` · `dlc/` · `transition/` · `fusion/` 
 
 ---
 
+### BEA_Amplify — Local Inference Extension
+**118 tests | `BEA_Amplify/`**
+
+Extends Console inference capacity by pooling host GPU and console GPU into a single 40 GB llama.cpp RPC compute cluster — with thermal-aware routing, Coral TPU acceleration, and mDNS auto-discovery. No cloud dependency.
+
+Key files: `amplify_engine.py` · `layer_router.py` · `sequencer.py` · `tpu_bridge.py` · `amplify_scanner.py` · `integration.py`
+
+- **Host + Console GPU pool**: combined 40 GB VRAM for llama.cpp RPC layer distribution
+- **5 routing strategies** (E[n] state): BURST_MODE (E[16]) · VRAM_BALANCE (E[18]) · TPU_ASSIST (E[20]) · THERMAL_SAFE (E[22]) · PRIORITY_YIELD (E[24])
+- Console fraction per strategy: THERMAL_SAFE carries 60% of layers · PRIORITY_YIELD carries 75%
+- **CRITICAL states**: CRITICAL_VRAM→E[28] · CRITICAL_THERMAL→E[29]
+- **BEAAmplifySequencer**: priority order — thermal > yield > vram > tpu > burst
+- **Coral TPU M.2**: max 4 concurrent tasks; < 5ms inference gate via TrustGate
+- mDNS auto-discovery — Console found automatically on LAN without config
+- `LookoutAmplifyBridge`: emits UNAUTHORIZED_GPU events to BEA_Lookout on anomalous GPU activity
+
+---
+
 ### BEA_Context_Bridge — Emotional Memory Engine
 **91 tests | `BEA_Context_Bridge/`**
 
@@ -721,6 +773,22 @@ Key files: `orchestrator.ts` · `gpu_scheduler.ts` · `vram_slicer.ts` · `subsy
 - WireGuard intake: routes remote console sessions from BEA_Shield VPN
 - Subsystem registry: live health map of all running BEA pillars
 - Graceful degradation: evicts lower-priority containers under pressure, never drops Security or Duress workloads
+
+---
+
+### BEA_Aura_Developer_SDK — Console-as-Cloud App SDK
+**102 tests | `BEA_Aura_Developer_SDK/`**
+
+The developer SDK for building apps on the BEA Aura Console. Seven hardware modules exposed through a clean local API — audio, health, security, GPU, storage, identity, and events. Apps run locally; the Console is the cloud.
+
+Key files: `sdk_core.py` · `module_registry.py` · `offline_manager.py` · `pulse_client.py` · `imprint_client.py`
+
+- **7 hardware modules**: audio · health · shield · gpu · storage · identity · events
+- **Local scan + Console offload**: lightweight edge inference with full-resolution Console fallback
+- **Per-module offline degradation**: CACHED (serve last known value) · QUEUE (buffer and retry) · REJECT (hard fail)
+- **BEA Imprint integration**: hardware-backed biometric auth gate on any SDK method
+- **BEA_Pulse WebSocket**: real-time E[n] state subscriptions for reactive app UIs
+- Zero cloud dependency — the Console IS the cloud; apps connect to your hardware via BEA_Shield VPN
 
 ---
 
@@ -755,6 +823,24 @@ Sub-modules: `server/` (security daemon) · `client/` (React Native) · `docs/`
 
 ---
 
+### BEA_Lookout — LAN Security Intelligence
+**94 tests | `BEA_Lookout/`**
+
+LAN-first security intelligence client. Continuously monitors geographic zones, access control, RTSP cameras, GPU activity, and network listeners — emitting E[n] breach events to BEA_Pulse in real time.
+
+Key files: `lookout_engine.py` · `lookout_scanner.py` · `integration.py` · `geo/` · `access/` · `camera/` · `gpu_watch/` · `breach/`
+
+- **GeoFenceEngine**: Haversine distance — devices outside declared zones trigger ZONE_VIOLATION
+- **AccessController**: role-based access with time-bound windows and auth failure tracking
+- **CameraMonitor**: RTSP stream health — detects tampering and unexpected coverage changes
+- **GpuWatcher**: whitelist/blacklist/cap enforcement — flags UNAUTHORIZED_GPU use
+- **BreachDetector**: network listener anomalies and hardware tamper events
+- **LookoutScanner**: `BreachType × BreachSeverity → E[n]` — six breach types: AUTH_FAILURE · ZONE_VIOLATION · TAMPER_DETECTED · UNAUTHORIZED_GPU · DURESS · IDENTITY_SPOOF
+- DURESS events always emit E[28+] — the BEA_Pulse critical threshold
+- `ConsoleClient` + `LookoutBroadcaster` + `LookoutPulseAdapter` for full ecosystem wiring
+
+---
+
 ### BEA_Health — Health & Wellness Tracking
 **`BEA_Health/`**
 
@@ -767,6 +853,22 @@ Sub-modules: `src/` · `tests/` · `scripts/` · Docker support
 - 72-hour pre-symptom illness detection
 - Data never leaves the console — no cloud, no subscription
 - Cross-pillar duress detection feeds BEA_Shield
+
+---
+
+### BEA_Aura_Physiological_Duress_Detection_System — Silent Coercion Detection
+**7 tests | `BEA_Aura_Physiological_Duress_Detection_System/`**
+
+Silent coercion detection during authentication. Detects physiological duress (elevated stress, abnormal HRV patterns) and responds without revealing detection to the coercer — granting access while silently dispatching emergency alerts.
+
+Key files: `duress_detector.py` · `baseline_engine.py` · `alert_dispatcher.py` · `evidence_vault.py`
+
+- 14-day personal ML baseline — personalized, not population-averaged
+- Context-aware HRV classification during the authentication window
+- **Silent alarm**: dispatches to emergency contacts and 911 while appearing to grant normal access
+- **AES-256-GCM evidence vault**: timestamp-locked session data for law enforcement
+- Integrates: BEA_Identity (auth hook) · BEA_Shield (alert routing) · BEA_Vault (evidence storage)
+- Registered IP: Physiological Duress Detection™
 
 ---
 
@@ -845,6 +947,40 @@ BEA_NEXUS FORMULA:
 
 ---
 
+### BEA_Caliburn — Physical Controller + Integrated Firefly Sprite
+**104 tests | `BEA_Caliburn/` · v1.0.0**
+
+The BEA Aura physical controller with a built-in Firefly Sprite slot — one game on the Sprite at all times, enforced at the pipeline level. The Sprite is the game identity; the controller is the physical compute vessel.
+
+Key files: `caliburn_manager.py` · `caliburn_library.py` · `content_upload_pipeline.py` · `game_switcher.py`
+
+- **CaliburnEdition**: CUSTOM (sealed, collector) · STANDARD (user-writable)
+- **One-game law**: ONE GAME ON SPRITE AT ALL TIMES — enforced in hardware, not by convention
+- **CaliburnLibrary**: external game library for title management
+- **ContentUploadPipeline**: single path for game uploads and firmware updates; blocks when `is_busy=True`
+- **GameSwitcher**: validate → prepare_game_upload → mark_busy → clear → execute → commit
+- `prepare_game_upload()` MUST be called BEFORE `set_status(UPLOADING/SWITCHING)` — pipeline blocks when busy
+
+---
+
+### BEA_Excalibur — Dual-Mode 4D Controller
+**125 tests | `BEA_Excalibur/` · v1.0.0**
+
+Dual-mode gaming controller for the full BEA 4D input vocabulary — joined mode as a traditional 3D gamepad, split mode as two independent 6DoF motion controllers for 4D spatial play. Biometric fingerprint surface, Hall effect sticks, and per-button haptic + RGB feedback tied to E-state.
+
+Key files: `excalibur_core.py` · `mode_manager.py` · `input_processor.py` · `biometric_surface.py` · `haptic_engine.py`
+
+- **Joined mode**: traditional 3D gamepad — D-pad, sticks, 20-input BEATEK vocabulary
+- **Split mode**: two independent 6DoF motion controllers for 4D spatial input
+- **20-input BEATEK vocabulary**: standardized input mapping across all BEA-compatible games
+- **FP biometric surface**: soft press (ambient context) + hard press (authentication trigger)
+- **Dual IR buses**: low-latency optical position tracking for split-mode 6DoF
+- **Hall effect analog sticks**: zero drift, rated 5M+ cycles
+- **Per-button haptic + RGB**: E[n] state drives both feedback channels simultaneously
+- CaliburnEdition integration: Excalibur reads from the same Firefly Sprite slot
+
+---
+
 ### BEA_Spectacle — Handheld Multi-Band Resonance Scanner
 **122 tests | `BEA_Spectacle/`**
 
@@ -910,6 +1046,23 @@ Sub-modules: `bea_motion_body/` · `bea_motion_glove/` · `bea_motion_legs/` · 
 
 ---
 
+### BEA_Motion_Body_macOS — Apple Silicon Motion Tracking
+**66 tests | `BEA_Motion_Body_macOS/` · v1.0.0**
+
+macOS-native full-body motion capture using the Apple Silicon compute stack — no MediaPipe, no OpenCV. Pure AVFoundation + Vision + CoreML + Metal pipeline via PyObjC. Feature parity with BEA Motion Body on Apple hardware.
+
+Key files: `motion_body_macos.py` · `avf_capture.py` · `vision_pipeline.py` · `imu_bridge.py` · `loco_engine.py`
+
+- AVFoundation camera capture · Vision framework pose estimation · CoreML inference · Metal GPU acceleration
+- 84 anatomical landmarks — full body, hands, and feet
+- 6DoF IMU integration from Apple Motion coprocessor
+- 6 locomotion modes: walk · run · crouch · jump · seated · stationary
+- EMBER intent prediction: motion anticipated 100–500ms pre-completion for zero-lag response
+- Requires macOS 14+ Sonoma · Apple Silicon M1 or later
+- Zero MediaPipe / Zero OpenCV dependency on macOS path
+
+---
+
 ### BEA_Worldshift — Temporal Dimension Engine
 **63 tests | `BEA_Worldshift/`**
 
@@ -960,6 +1113,22 @@ Key files: `lumin_core.py` · `lumin_hardware.py` · `lumin_modes.py` · `lumin_
 
 ---
 
+### BEA_Mobile — Smartphone WAN Gateway
+**54 tests | `BEA_Mobile/`**
+
+Smartphone as the WAN gateway for Lumin Pi satellites and edge devices when away from the home LAN. Routes sensor data through BEA_Shield VPN back to the Console via your own phone — no third-party relay.
+
+Key files: `mobile_gateway.py` · `wan_gateway.py` · `mobile_context_bridge.py` · `battery_manager.py`
+
+- **4 connectivity tiers by RTT**: MOBILE_FULL (≤250ms) · MOBILE_DEGRADED · MOBILE_LOCAL · BATTERY_AWARE
+- **MobileContextBridge**: packages signed GPS position + scene context + motion state for Console ingestion
+- **WANGateway**: WireGuard tunnel — your Console is the endpoint, not a BEATEK server
+- **BatteryAwareManager**: auto-degrades tier and reduces polling frequency as battery drops
+- Serves Lumin Pi, BEA_Spectacle, and BEA Motion Body when away from home LAN
+- Patent claims 141–142
+
+---
+
 ### BEA_Clinical_Suite — Synchronized Resonance Documentation
 **125 tests | `BEA_Clinical_Suite/` · v1.0.0**
 
@@ -986,6 +1155,25 @@ CLINICAL FRAME (< 13ms sync budget at 60 fps):
 - **VaultBridge / SessionPackager / ExportEngine:** local-only storage; AES-256-GCM via BEA_Vault; optional DICOM (pydicom) and HL7 FHIR (hl7apy) — no cloud upload
 - **Sovereign patient data:** session data never leaves the Console — no cloud relay, no third-party API, no telemetry
 - Applications: athletic performance monitoring · physical therapy progress tracking · occupational therapy assessment · research documentation
+
+---
+
+### BEA_Resonance_Imager — Water Resonance Photography
+**290 tests | `BEA_Resonance_Imager/` · v2.1.0**
+
+Five-band passive water resonance scanning system. Non-invasive, non-ionizing pre-screening and longitudinal health monitoring. The five sensor bands fuse through the BEA 4-step ⊕ pipeline to a single Ω tissue composite. Designed for daily use — the monitoring tier between wearable health tracking and clinical MRI.
+
+Key files: `imager_engine.py` · `_core.py` · `fusion/` · `beamforming/` · `sprite/` · `mri_bridge/` · `phone_bridge/` · `band_device/`
+
+- **5 sensor bands**: EM (16-element RF array) · Acoustic (32-element piezoelectric) · Thermal (32×32 bolometer) · EIT (32-electrode bioimpedance) · E-Motion (WiFi CSI, 52 sub-carriers)
+- **ImagerEngine**: `calibrate()` · `scan(duration_s)` → `(TissueMap, ImagerReport)` · `load_baseline()` · `compare_to_baseline()` · `generate_mri_triage_report()`
+- **FusionBandCombiner** (4-step ⊕): EM ⊕ Acoustic → Thermal ⊕ Bio → base_Ω → base_Ω ⊕ E-Motion = Ω
+- **BandAnomalyDetector**: 3-frame confirmation before flagging — no single-frame false positives
+- **PhasedArray beamforming**: `PhasedArray` + `SpatialReconstructor` + `VolumeMapper` — 3D spatial reconstruction without moving parts
+- **MedicalSprite**: 7B domain-locked model · TrustGate < 5ms · DomainLock (0.85 confidence floor · 150mm max depth · no-surveillance enforced)
+- **MRITriageReport**: DICOM export via pydicom; routes to radiologist AI prefetch queue via BEA_AI
+- **PhoneBridge**: USB-C direct connection + BEA_Shield VPN relay for Console deep analysis (< 2s)
+- **SpectacleBand wearable**: Coral TPU M.2 · edge inference < 20ms · 24h battery
 
 ---
 
@@ -1201,11 +1389,14 @@ bea ledger summary   # Income and tax summary
 | BEA_Director | 164 | AI camera crew — v2.0.0: HOVER + DirectorLog + HighlightSystem + ImagerDirectorBridge |
 | BEA_Director_macOS | 194 | AI camera crew — macOS edition (AVFoundation + socket); full v2.0.0 feature parity |
 | BEA_Identity | 54 | Biometric auth |
+| BEA_Imprint | 81 | Fingerprint hardware SDK — 3 devices; SHA-256 only; ImprintScanner (SUCCESS E[16] / DURESS E[29]); IdentityBridge |
 | BEA_Recovery | 61 | Crash resilience |
 | BEA_Firefly_Sprite | 252 | Installer / validator / DLC / certification + AI Heritage Protocol + Heritage Value Rating (HVS) |
+| BEA_Sprite_Studio | 88 | Blank Sprite SDK app — StudioValidator (7 checks), AssetConverter, OwnerSetupWizard state machine |
 | BEA_SpriteCache | 43 | Predictive asset prefetch, TinyAI session learning, Console handoff |
 | BEA_Cache | 78 | NVMe tiering (hot/warm/cold), priority eviction, atomic SHA-256 writes; heritage=3 module |
 | BEA_AI | 100 | TinyAI, Console AI, DLC, transitions, fusion, context, integration; AI Heritage Protocol; DLCSyncBridge |
+| BEA_Amplify | 118 | Local inference extension — llama.cpp RPC; host+console 40GB pool; 5 strategies (E[16]–E[24]); Coral TPU M.2; mDNS |
 | BEA_Speakerbox | 84 | Voice-over production, S° vocal scanning, BEA operator effects |
 | BEA_Context_Bridge | 91 | Emotional memory engine, BEU state transitions, MCP server |
 | BEA_Notify | 67 | Push notifications — DASHBOARD / TOAST / MOBILE / EMERGENCY; CRITICAL gate |
@@ -1218,7 +1409,15 @@ bea ledger summary   # Income and tax summary
 | BEA_4D_Shop | 127 | GPU-Verse Workshop — BEA Physics, Gear System™, EmotionBindingSet, WAxisTracker, economy, SpriteTrainer |
 | BEA_Clinical_Suite | 125 | Synchronized Resonance Documentation — Director + Imager on single Console timestamp; OmegaLevel CLEAR/MONITOR/FLAG/PRIORITY; FrameMerger (< 13ms); HighlightDetector; sovereign patient data |
 | BEA_Aura_Orchestrator | TS | GPU containers, VRAM slicing, WireGuard intake, subsystem registry |
-| **Total** | **2,778** | **All passing** |
+| BEA_Aura_Developer_SDK | 102 | Console-as-Cloud app SDK — 7 modules; offline degradation (CACHED/QUEUE/REJECT); BEA Imprint + BEA_Pulse WS |
+| BEA_Lookout | 94 | LAN security intelligence — GeoFence (Haversine) + AccessController + CameraMonitor + GpuWatcher + BreachDetector |
+| BEA_Aura_Physiological_Duress_Detection_System | 7 | Silent coercion detection — 14-day HRV baseline; silent 911 + evidence vault; BEA_Identity+Shield+Vault |
+| BEA_Caliburn | 104 | Physical controller + Firefly Sprite — one-game law enforced; GameSwitcher prepare→busy→execute→commit |
+| BEA_Excalibur | 125 | Dual-mode controller — joined 3D gamepad / split 4D 6DoF; 20-input BEATEK vocab; FP biometric; Hall effect |
+| BEA_Motion_Body_macOS | 66 | Apple Silicon motion tracking — AVFoundation+Vision+CoreML+Metal; 84 landmarks; 6DoF IMU; EMBER |
+| BEA_Mobile | 54 | Smartphone WAN gateway — 4 RTT tiers; MobileContextBridge; WireGuard; BatteryAwareManager |
+| BEA_Resonance_Imager | 290 | Water Resonance Photography v2.1 — 5 bands (EM/Acoustic/Thermal/EIT/E-Motion CSI); 4-step ⊕ fusion; PhasedArray beamforming; MedicalSprite TrustGate; DICOM export |
+| **Total** | **3,907** | **All passing** |
 | BEA_Nexus | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; 350M+ monitor gamers, zero headset |
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
 
@@ -1253,13 +1452,19 @@ BEA_Aura_OS/
 ├── BEA_Director/               # AI camera crew engine (v2.0.0)
 ├── BEA_Director_macOS/         # macOS companion
 ├── BEA_Identity/               # Biometric auth
+├── BEA_Imprint/                # Fingerprint hardware SDK (3 devices, SHA-256 templates)
 ├── BEA_Recovery/               # Crash resilience
 ├── BEA_Firefly_Sprite/         # USB installer + sprite_core/partition/certifier/onsite_dlc
+├── BEA_Sprite_Studio/          # Blank Sprite SDK app (StudioValidator, AssetConverter, SetupWizard)
 ├── BEA_4D_Audio/               # Spatial audio
 ├── BEA_Shield/                 # Security daemon
+├── BEA_Lookout/                # LAN security intelligence (GeoFence/Access/Camera/GPU/Breach)
 ├── BEA_Health/                 # Health monitoring
+├── BEA_Aura_Physiological_Duress_Detection_System/  # Silent coercion detection
 ├── BEA_GPU_Fi/                 # GPU rental income
 ├── BEA_Nexus/                  # Gaming immersion platform (formerly BEA_Fusion)
+├── BEA_Caliburn/               # Physical controller + Firefly Sprite (one-game law)
+├── BEA_Excalibur/              # Dual-mode 4D controller (joined 3D / split 6DoF)
 ├── BEA_Spectacle/              # Handheld multi-band resonance scanner (122 tests)
 │   ├── spectacle_engine.py     #   SpectacleEngine — calibrate/read/run_session/load_sprite
 │   ├── _core.py                #   SpriteDomain · OmegaOutput · ScanReport · ClinicalLevel
@@ -1275,6 +1480,7 @@ BEA_Aura_OS/
 │   ├── band_device/            #   SpectacleBand wearable (24h) · EdgeInference (< 20ms)
 │   └── tests/                  #   122 tests
 ├── BEA_Motion_Body/            # Full-body tracking
+├── BEA_Motion_Body_macOS/      # Apple Silicon motion tracking (AVFoundation+Vision+CoreML+Metal)
 ├── BEA_Speakerbox/             # Professional voice-over production
 ├── BEA_SpriteCache/            # Predictive SSD asset prefetch engine
 │   ├── sprite_cache_manager.py #   Main orchestrator
@@ -1284,6 +1490,7 @@ BEA_Aura_OS/
 │   └── console_handoff.py      #   BEA_Cache handoff state machine
 ├── BEA_Cache/                  # NVMe tiering: hot/warm/cold, priority eviction
 ├── BEA_AI/                     # Platform intelligence coordination layer
+├── BEA_Amplify/                # Local inference extension (llama.cpp RPC, 40GB pool, 5 strategies)
 │   ├── integration.py          #   BEA_Pulse broadcaster
 │   ├── tinyai/                 #   TinyAI: dimensions, domain, session, core
 │   ├── console_ai/             #   Console AI: handoff, NPC, world state
@@ -1293,11 +1500,13 @@ BEA_Aura_OS/
 │   └── context/                #   Player model, sync, biometric context
 ├── BEA_Context_Bridge/         # Emotional memory engine + MCP server
 ├── BEA_Aura_Orchestrator/      # TypeScript: GPU/VRAM orchestration, WireGuard intake
+├── BEA_Aura_Developer_SDK/     # Console-as-Cloud app SDK (7 modules, offline degradation)
 ├── BEA_Notify/                 # Push notifications (4 channels, CRITICAL gate)
 ├── BEA_Voice/                  # Voice commands ("Hey BEA" wake word)
 ├── BEA_Update/                 # OTA update manager (SHA-256 + Ed25519, auto-rollback)
 ├── BEA_Plugin_SDK/             # Pillar Extension SDK (BEAPillar ABC, entry-point discovery)
 ├── BEA_Lumin_Pi/               # TV/speaker satellite (7 modes, hardware validator)
+├── BEA_Mobile/                 # Smartphone WAN gateway (4 RTT tiers, WireGuard, BatteryAware)
 ├── BEA_Worldshift/             # Temporal dimension engine — W axis (BUTTier/WorldRegistry/TemporalCache/Engine/Bridge)
 │   ├── but_framework.py        #   BUTTier · BUTFrame · BUTClock (Moon=1s, Planet=60s, Sun=3600s)
 │   ├── world_registry.py       #   WorldTier · WorldDefinition · WorldRegistry + physics profiles
@@ -1306,6 +1515,7 @@ BEA_Aura_OS/
 │   ├── worldshift_bridge.py    #   WorldshiftBridge — duck-typed pillar wiring (Pulse/AI/Spectacle/Audio)
 │   └── tests/                  #   63 tests across 5 suites
 ├── BEA_Clinical_Suite/         # Synchronized Resonance Documentation (125 tests, v1.0.0)
+├── BEA_Resonance_Imager/       # Water Resonance Photography v2.1 (5 bands, 290 tests)
 │   ├── bea_clinical_suite/
 │   │   ├── _core.py            #   OmegaLevel · ClinicalFrame · SessionReport · ClinicalRegion · AssessmentProtocol
 │   │   ├── clinical_suite.py   #   ClinicalSuite orchestrator — start_session/add_frame/end_session
@@ -1501,4 +1711,3 @@ That same software running on your BEA Aura Console means you profit from your i
 *BEATEK Holdings, LLC · Founded by Jeremy F. Jackson · © 2026*
 *Derived from: Temporal Emergence Theory | Resonance Theorem v2.2*
 *Consciousness Emergence Postulate — Jaxxon (Jeremy F. Jackson) & Claude AI*
-
