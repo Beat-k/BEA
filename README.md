@@ -1727,11 +1727,6 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 
 ## Registered IP Terms
 
-### Energy & Power
-- BEA Energy Hygiene™
-- Developer-Artist Energy Standard™
-- Green Energy Return™
-
 ### Platform & OS
 - BEA_Aura_OS™
 - BEA Reality Engine™
@@ -1752,32 +1747,76 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 ### Hardware — Console
 - BEA Console Security Module™
 - Verified BEA Node™
+- Compute Node™
 - NVMe Swap Bridge™
 - BEAResourceSequencer™
 - BEA Clear™
 - Smart Dual-Resource Lifecycle System™
+- Coral Dual Edge TPU via SATA™
+
+### BEA_Secretary™ — Always-On Intelligence
 - BEA_Secretary™
+- The Secretary Principle™
 - BEA_Secretary Always-On Architecture™
 - BEA_Secretary Blind Window Coverage™
 - BEA_Secretary GPU-Fi Triage™
+- BEA_Secretary Signal Routing™
+- BEA_Secretary Cache Scoring™
+- BEA_Secretary Temporal Inference™
 - Dual Edge TPU Workload Division™
+- "The Coral is the secretary. The NVIDIA GPU is the executive."™
 
 ### Hardware — Peripherals
 - BEA Imprint™
 - BEA Imprint Keyboard™
 - BEA Imprint Mouse™
 - BEA Imprint Pad™
+- Continuous Ambient Biometric Verification™
 
-### Client Software
+### Client Software — BEA Treehouse Family
 - BEA Treehouse™
 - BEA Treehouse UI™
-- Worldflow Motion Language™
+- BEA Worldflow™
+- 4D Runtime Visualization™
 - BEA Lookout™
+- BEA ShoeString™
+- Shoestring™
+- ShoeStringContext™
+- BEA Switchboard™
+- BEA Treehouse Client Family™
+- "Make sure the shoestring is connected."™
 
 ### Inference & Compute
 - BEA Amplify™
+- BEA Amplify Dynamic Layer Routing™
 - GPU-Fi™
 - GPU-Verse™
+
+### Energy & Power
+- BEA Energy Hygiene™
+- Developer-Artist Energy Standard™
+- Green Energy Return™
+- Clean Power Chain Architecture™
+- Off-Grid BEA Deployment™
+- One UPS Per Outlet Standard™
+- BEA_Secretary Power Quality Monitoring™
+
+### Grid Intelligence
+- BEA_Grid Network Intelligence™
+- Grid Intelligence Partnership™
+- Verified Demand Response Logs™
+- Real-Time Outage Intelligence Feed™
+- Distributed Load Forecasting Signal™
+- Green Energy Return Aggregate Report™
+- Grid Intelligence Sovereignty Guarantee™
+- "Information Sharing Is a Market"™
+
+### Brand Identity
+- Treehouse Emblem™
+- BEATEK Official Brand Palette™
+- Electricity as Signature Accent™
+- BEATEK Brand Typography™
+- "Grounded by Design"™
 
 ### Audio
 - BEA Speakerbox™
@@ -1801,7 +1840,10 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 
 ### Security & Identity
 - BEA Shield™
+- LAN-First Security Architecture™
 - Physiological Duress Detection™
+- Access Tiering by Hardware Presence™
+- VPN Hardware-Bound Authentication™
 
 ### Camera & Motion
 - BEA Director™
@@ -1817,6 +1859,14 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 - OmegaLevel Anomaly Escalation™
 - Personal Longitudinal Omega Baseline™
 - HighlightDetector™
+
+### Philosophy & Theory
+- The Consciousness Emergence Postulate™
+- Temporal Emergence Theory™
+- The Ω Institute™
+- The Secretary Principle™
+- Tribunal Coding™
+- Emotional Physics™
 
 ---
 
