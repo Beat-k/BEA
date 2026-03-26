@@ -141,6 +141,11 @@ Idle GPU hours become passive income. GPU-Fi rents spare cycles to ML trainers (
 ## The System Stack
 
 ```
+LAYER 7  →  BEA_Treehouse_UI          User interface
+             3D/4D web rendering
+             Worldflow motion language
+             BEA_Pulse WebSocket bridge
+
 LAYER 6  →  4D Shop                   Reality construction
              GPU-Verse workshop
              Functional digital objects
@@ -162,6 +167,7 @@ LAYER 3  →  GPU-Fi / GPU-Verse         Compute economy
 
 LAYER 2  →  Orchestrator               Resource control
              GPU/VRAM management
+             BEA_Clear lifecycle reset
              BEA_Pulse event bus
              E[n] state routing
 
@@ -555,6 +561,30 @@ Key files: `director.py` · `crew_roles.py` · `shot_selector.py` · `confidence
 
 ---
 
+### BEATEK Hover — Split-Architecture Wireless Camera
+**`BEA_Hover/` · Hardware Concept**
+
+Split-architecture wireless camera system designed for BEA_Director integration. The traditional wireless camera penalty — heavy head from onboard processing — is eliminated by separating the sensor from the intelligence. The head transmits raw sensor data wirelessly; all processing runs in the base station or BEA Aura Console.
+
+Key files: `README_BEATEK_Hover.md`
+
+```
+BEATEK HOVER ARCHITECTURE:
+  [Camera Head: sensor + antenna only]  →  lightweight, goes anywhere
+        ↓  raw sensor data (wireless)
+  [Base Station: all processing]        →  stays on desk/mount
+        ↓  processed feed
+  [BEA_Director / BEA_Aura_OS]         →  full production intelligence
+```
+
+- Head contains: image sensor + wireless transmitter + battery only — no processor, no encoder, no storage
+- Base station handles: raw decode · AI inference · video encode · Director feed integration
+- CameraRole.HOVER in BEA_Director routes EMBER intents `step_forward`, `reach_up`, `jump` to the Hover feed automatically
+- Mounting positions unreachable by traditional cameras: ceiling mounts, drone rigs, handheld gimbals, body clips
+- Provisional patent filed
+
+---
+
 ### BEA_Identity — Multi-User Biometric Authentication
 **54 tests | `BEA_Identity/`**
 
@@ -776,6 +806,36 @@ Key files: `orchestrator.ts` · `gpu_scheduler.ts` · `vram_slicer.ts` · `subsy
 
 ---
 
+### BEA_Clear — Smart Dual-Resource Lifecycle System
+**`BEA_Clear/` · v2.0.0**
+
+Surgical GPU VRAM reset + intelligent RAM lifecycle management — without rebooting, without losing process state. v2.0 discovered that the GPU's PCIe discharge window (3 seconds of dead time between bus removal and rescan) can run Tier 1 RAM compaction in parallel. A full dual GPU+RAM reset completes in the same ~10 seconds as a GPU-only reset.
+
+Key files: `BEA_Clear.py` · `BEA_MemManager.py` · `BEA_ResourceSequencer.py`
+
+```
+RESET PIPELINE (v2.0 PARALLEL strategy):
+  All jobs idle → GPU utilization < 5% for 60s
+    ↓
+  ResourceSequencer takes live snapshot (GPU temp, RAM frag, NVMe wear)
+    ↓
+  Strategy selected: PARALLEL / SEQUENTIAL / GPU_ONLY / RAM_ONLY
+    ↓
+  PCIe remove  →  RAM Tier 1 compact runs concurrently during 3s discharge
+    ↓
+  PCIe rescan  →  both resources fresh
+```
+
+- **BEA_Clear.py**: client-facing entry point, API unchanged from v1.0; delegates to ResourceSequencer
+- **BEA_MemManager**: three-tier RAM reset — Tier 1 (compact in place), Tier 2 (active migration), Tier 3 (NVMe swap bridge deep reset)
+- **BEA_ResourceSequencer**: reads live GPU temp + RAM fragmentation + NVMe wear → selects strategy; coordinates parallel execution during PCIe discharge window
+- **NVMe Swap Bridge**: Tier 3 deep resets route live memory pages through Console NVMe for zero-data-loss deep defrag
+- GPU standard: 16 GB VRAM (Home/Pro) · 32 GB VRAM (Business/NAS)
+- Integrates with BEA_Aura_Orchestrator — signals entering/exiting Clear cycle; GPU-Fi job intake gates on Clear status
+- Integrates with BEA_Grid `ClearGridAdapter` — thermal throttle signal (wattage > 250 W) automatically triggers `thermal_threshold` cycle; wattage recovery emits `job_resumed`
+
+---
+
 ### BEA_Aura_Developer_SDK — Console-as-Cloud App SDK
 **102 tests | `BEA_Aura_Developer_SDK/`**
 
@@ -944,6 +1004,31 @@ BEA_NEXUS FORMULA:
 - **BEA_Worldshift**: W axis time navigation — Moon (volatile) · Planet (sustained) · Sun (permanent) world layers
 - **BEA Caliburn**: physical controller with integrated Firefly Sprite — one-game law enforced in hardware
 - 350M+ monitor gamers · zero headset required
+
+---
+
+### BEA_Treehouse_UI — Main Console Interface
+**`BEA_Treehouse_UI/` · v1.2.0 · JavaScript / Vite**
+
+The primary user interface for BEA Aura OS. Built on a grounding metaphor — the cloud is ungrounded, floating, rented; the Treehouse is rooted in your physical home. The aesthetic blends natural wood tones with electrical circuitry: carved oak and walnut with amber and circuit-blue power lines pulsing through it.
+
+Key files: `index.html` · `app.js` · `pulse_ws_bridge.py` · `src/` · `server/` · `ARCHITECTURE.md` · `BEA_Worldflow_Motion_Language_Specs.md`
+
+```
+TREEHOUSE LAYER METAPHOR:
+  ☁️ Sky            — Public internet (above, not your space)
+  🌳 Canopy          — BEA_Treehouse UI (your personal environment)
+  🪟 Branches        — Rooms (Living Room, Bedroom, Kids' Space, Workshop)
+  🧱 Trunk           — BEA Aura Console NAS (your data lives here)
+  🪜 Ladder          — VPN (BEA_Shield — secure remote access)
+  🌱 Roots           — GPU-Fi (income anchoring the whole structure)
+```
+
+- **Worldflow Motion Language**: gesture vocabulary for 3D/4D scene navigation — Tier 0–4 motion levels map to BEA_Worldshift physics profiles
+- **BEA_Pulse WebSocket Bridge** (`pulse_ws_bridge.py`): live E[n] state subscriptions for reactive UI; all pillar status displays update in real time
+- **Design tokens**: Wood Tones (Oak `#8B7355`, Cedar `#C04000`, Walnut `#3C2F2F`) + Electrical Glow (Amber `#FFB000`, Circuit Blue `#00A8FF`, Power Green `#00FF88`)
+- **Server**: local-only; console hosts the UI; thin-client apps connect via BEA_Shield VPN — no external hosting
+- Vite build system; zero cloud dependency; serves from BEA Aura Console
 
 ---
 
@@ -1294,8 +1379,10 @@ Not all at once. The platform evolves into everything. But it starts with one th
 
 Network:  BEA_Relay (mesh sync) ↔ BEA_Firefly_Sprite (install/boot)
 Context:  BEA_Context_Bridge ↔ Claude Desktop (MCP server)
+Thermal:  BEA_Grid ClearGridAdapter → BEA_Clear (GPU+RAM lifecycle reset)
 Temporal: BEA_Worldshift ↔ BEA_Treehouse_UI (Worldflow 3D/4D scene)
 Reality:  BEA_4D_Shop ↔ GPU-Verse (object persistence + economy)
+Interface: BEA_Treehouse_UI ↔ BEA_Pulse (WebSocket bridge · port 8765)
 ```
 
 ### BEAScanner Contract
@@ -1420,6 +1507,9 @@ bea ledger summary   # Income and tax summary
 | **Total** | **3,907** | **All passing** |
 | BEA_Nexus | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; 350M+ monitor gamers, zero headset |
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
+| BEATEK Hover | — | Split-architecture wireless camera — lightweight sensor head + intelligent base; BEA_Director HOVER role integration |
+| BEA_Clear | — | Smart dual-resource lifecycle system v2.0 — GPU PCIe reset + parallel RAM compaction; ResourceSequencer; NVMe Swap Bridge |
+| BEA_Treehouse_UI | — | Main Console UI v1.2.0 — wood+electricity aesthetic; Worldflow Motion Language; BEA_Pulse WebSocket bridge; Vite |
 
 ---
 
@@ -1462,6 +1552,9 @@ BEA_Aura_OS/
 ├── BEA_Health/                 # Health monitoring
 ├── BEA_Aura_Physiological_Duress_Detection_System/  # Silent coercion detection
 ├── BEA_GPU_Fi/                 # GPU rental income
+├── BEA_Hover/                  # Split-architecture wireless camera (hardware concept + Director integration)
+├── BEA_Clear/                  # Smart dual-resource lifecycle — GPU reset + RAM compaction (v2.0)
+├── BEA_Treehouse_UI/           # Main Console UI — Vite + Worldflow + BEA_Pulse WebSocket bridge
 ├── BEA_Nexus/                  # Gaming immersion platform (formerly BEA_Fusion)
 ├── BEA_Caliburn/               # Physical controller + Firefly Sprite (one-game law)
 ├── BEA_Excalibur/              # Dual-mode 4D controller (joined 3D / split 6DoF)
@@ -1626,6 +1719,8 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 - Verified BEA Node™
 - NVMe Swap Bridge™
 - BEAResourceSequencer™
+- BEA Clear™
+- Smart Dual-Resource Lifecycle System™
 
 ### Hardware — Peripherals
 - BEA Imprint™
@@ -1635,6 +1730,8 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 
 ### Client Software
 - BEA Treehouse™
+- BEA Treehouse UI™
+- Worldflow Motion Language™
 - BEA Lookout™
 
 ### Inference & Compute
@@ -1668,6 +1765,8 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 
 ### Camera & Motion
 - BEA Director™
+- BEATEK Hover™
+- Split-Architecture Wireless Camera™
 
 ### Medical & Resonance
 - BEA Clinical Suite™
