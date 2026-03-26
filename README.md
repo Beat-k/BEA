@@ -168,6 +168,7 @@ LAYER 3  →  GPU-Fi / GPU-Verse         Compute economy
 LAYER 2  →  Orchestrator               Resource control
              GPU/VRAM management
              BEA_Clear lifecycle reset
+             BEA_Secretary Coral TPU
              BEA_Pulse event bus
              E[n] state routing
 
@@ -836,6 +837,37 @@ RESET PIPELINE (v2.0 PARALLEL strategy):
 
 ---
 
+### BEA_Secretary — Coral Dual Edge TPU Continuous Intelligence Layer
+**`BEA_Secretary/` · v1.0.0**
+
+The always-on intelligence layer. The Coral Dual Edge TPU (8 TOPS · ~4W) never sleeps — it runs 10 lightweight inference roles permanently on Edge TPU 2 while Edge TPU 1 stays dedicated to BEA_Identity security. The NVIDIA GPU stays free for GPU-Fi, LLM inference, and gaming.
+
+Key files: `secretary_core.py` · `secretary_engine.py` · `secretary_scanner.py` · `secretary_broadcaster.py`
+
+**Edge TPU 1 (dedicated — security):** Identity attestation · Imprint trust gate · non-exportable keys · audit signing → managed by BEA_Identity and BEA_Imprint
+
+**Edge TPU 2 (time-sliced — intelligence, 10 continuous roles):**
+
+| Role | Pillar | What it does |
+|---|---|---|
+| `wake_word` | TinyAI / BEA_Voice | Always-on wake word — GPU stays idle during voice standby |
+| `blind_window` | BEA_Clear | Holds E[n] routing during 3s GPU PCIe discharge window |
+| `signal_routing` | BEA_Pulse | BEA Logic operator math at hardware (microsecond) speed |
+| `network_watch` | BEA_Shield | Continuous behavioral classifier — slow-burn intrusion detection |
+| `health_baseline` | BEA_Health | 24/7 biometric baseline inference — all night at ~2W |
+| `job_triage` | GPU-Fi | Every inbound job screened before GPU is allocated |
+| `power_quality` | BEA_Grid | UPS waveform classifier — 2–3s ahead of threshold-based alerts |
+| `cache_scoring` | BEA_Cache | Learned eviction scoring — replaces LRU heuristics |
+| `scene_confidence` | BEA_Director | Scene pre-processor — GPU activates only for actual cut operations |
+| `temporal_tier` | BEA_Worldshift | Real-time W-axis tier inference at hardware speed |
+
+- Combined E[n] state = max urgency across all 10 roles — any escalation surfaces immediately
+- `triage_job(id, type, vram_gb)` — synchronous screening called before every GPU-Fi allocation
+- `notify_gpu_reset_start/end()` — BEA_Clear integration; Coral holds the light on during GPU discharge
+- Total continuous draw: ~4W (the cost of a phone charger)
+
+---
+
 ### BEA_Aura_Developer_SDK — Console-as-Cloud App SDK
 **102 tests | `BEA_Aura_Developer_SDK/`**
 
@@ -1382,6 +1414,7 @@ Context:  BEA_Context_Bridge ↔ Claude Desktop (MCP server)
 Thermal:  BEA_Grid ClearGridAdapter → BEA_Clear (GPU+RAM lifecycle reset)
 Temporal: BEA_Worldshift ↔ BEA_Treehouse_UI (Worldflow 3D/4D scene)
 Reality:  BEA_4D_Shop ↔ GPU-Verse (object persistence + economy)
+Secretary: BEA_Secretary Coral TPU ↔ all pillars (10 continuous roles · 4W · always-on)
 Interface: BEA_Treehouse_UI ↔ BEA_Pulse (WebSocket bridge · port 8765)
 ```
 
@@ -1509,6 +1542,7 @@ bea ledger summary   # Income and tax summary
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
 | BEATEK Hover | — | Split-architecture wireless camera — lightweight sensor head + intelligent base; BEA_Director HOVER role integration |
 | BEA_Clear | — | Smart dual-resource lifecycle system v2.0 — GPU PCIe reset + parallel RAM compaction; ResourceSequencer; NVMe Swap Bridge |
+| BEA_Secretary | 39 | Coral Dual Edge TPU continuous intelligence — 10 always-on roles; wake word, blind window, signal routing, job triage, power/cache/scene/temporal inference |
 | BEA_Treehouse_UI | — | Main Console UI v1.2.0 — wood+electricity aesthetic; Worldflow Motion Language; BEA_Pulse WebSocket bridge; Vite |
 
 ---
@@ -1554,6 +1588,7 @@ BEA_Aura_OS/
 ├── BEA_GPU_Fi/                 # GPU rental income
 ├── BEA_Hover/                  # Split-architecture wireless camera (hardware concept + Director integration)
 ├── BEA_Clear/                  # Smart dual-resource lifecycle — GPU reset + RAM compaction (v2.0)
+├── BEA_Secretary/              # Coral Dual Edge TPU — 10 continuous intelligence roles (~4W always-on)
 ├── BEA_Treehouse_UI/           # Main Console UI — Vite + Worldflow + BEA_Pulse WebSocket bridge
 ├── BEA_Nexus/                  # Gaming immersion platform (formerly BEA_Fusion)
 ├── BEA_Caliburn/               # Physical controller + Firefly Sprite (one-game law)
@@ -1721,6 +1756,11 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 - BEAResourceSequencer™
 - BEA Clear™
 - Smart Dual-Resource Lifecycle System™
+- BEA_Secretary™
+- BEA_Secretary Always-On Architecture™
+- BEA_Secretary Blind Window Coverage™
+- BEA_Secretary GPU-Fi Triage™
+- Dual Edge TPU Workload Division™
 
 ### Hardware — Peripherals
 - BEA Imprint™
