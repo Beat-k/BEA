@@ -249,6 +249,89 @@ Every BEA Aura Console owner is operating on infrastructure that the next genera
 
 ---
 
+## ⚡ Energy Hygiene — A BEATEK Standard
+
+> **The BEA Aura Console is always-on infrastructure. Treat it like the power asset it is.**
+
+BEATEK promotes UPS (Uninterruptible Power Supply) and voltage regulator use across all installations — not as optional accessories, but as responsible practice. This is part of the developer-artist lifestyle that BEATEK represents: intelligent, intentional, and sustainable in every dimension.
+
+### Why This Matters
+
+The BEA Aura Console runs 24/7. It is your private cloud, your inference node, your security monitor, and your passive income engine — all at once. That means power quality directly affects:
+
+- **Hardware longevity** — voltage spikes degrade GPU, NVMe, and motherboard components silently over time
+- **Data integrity** — sudden power loss mid-write can corrupt NVMe data, interrupt GPU-Fi jobs, and damage the Emotional Memory Grid
+- **GPU-Fi reliability** — ML trainers renting your compute expect uptime; an outage is a conduct violation under GPU-Fi Network Standards
+- **BEA_Identity continuity** — the Coral TPU's non-exportable key and session state require clean shutdown, not hard cuts
+
+### The Recommended Stack
+
+```
+Clean power chain for all BEA Aura Console deployments:
+
+  Utility / Generator / Solar / RV power source
+        ↓
+  Voltage Regulator (AVR)
+  — Smooths input voltage fluctuation before it reaches the UPS
+  — Protects against brownouts, surges, and dirty generator output
+
+        ↓
+  UPS (Uninterruptible Power Supply)
+  — Minimum: pure sine wave output (not simulated sine — GPUs require pure sine)
+  — Sized for: console GPU + CPU + NVMe + networking (typically 1000–1500VA minimum)
+  — Runtime target: enough to gracefully shut down all services (~5–10 minutes)
+
+        ↓
+  BEA Aura Console + 10 GbE switch + modem/router
+```
+
+### Green Energy Return — Why This Helps the Grid
+
+A UPS does more than protect your hardware. When paired with clean energy sources, it participates in a responsible energy loop:
+
+- **Battery buffer** absorbs peak draw spikes — your GPU-Fi burst load never hits the grid raw
+- **Brownout absorption** — instead of pulling unstable current and wasting it as heat, the UPS regulates draw
+- **Clean shutdown on outage** — no phantom loads, no dirty reconnects, no wasted grid cycles
+- **For solar and self-powered setups** — the UPS acts as the bridge between your generation and your load, smoothing the handoff and returning cleaner draw patterns to any shared grid connection
+
+This is recycled, regulated energy returned to the grid in a cleaner state than it arrived. That is green energy hygiene.
+
+### For RV, Off-Grid, and Self-Powered Setups
+
+BEATEK is designed to run anywhere. Generator power, solar arrays, wind, shore power — the BEA Aura Console does not require a utility connection. It requires *clean, stable power.*
+
+```
+RV / Off-Grid deployment example:
+  Solar array or generator
+        ↓
+  Charge controller (solar) or AVR (generator)
+        ↓
+  LiFePO4 battery bank
+        ↓
+  Pure sine wave inverter
+        ↓
+  UPS (inline, for spike protection and graceful shutdown buffer)
+        ↓
+  BEA Aura Console
+```
+
+The GPU-Fi income tier you can sustain off-grid depends on your power budget. Even a Home tier console at ~300W load can run productively on a well-sized solar + battery system — generating passive income while consuming zero grid power.
+
+### The Developer-Artist Energy Standard
+
+BEATEK is introducing a lifestyle culture alongside its technology. The developer-artist practices intentional craft in every layer — code, hardware, network, *and power*.
+
+Good energy hygiene is:
+- **A UPS on every console deployment** — no exceptions
+- **A voltage regulator upstream of that UPS** — especially on generator, RV, or older utility feeds
+- **Pure sine wave output only** — modern GPUs and NVMe drives do not tolerate simulated sine waveforms
+- **Graceful shutdown scripts** — BEA_Aura_OS includes clean shutdown hooks; the UPS USB monitoring port triggers them automatically
+- **Right-sized capacity** — do not undersize. Your console is running GPU-Fi jobs, inference sessions, and security monitoring simultaneously.
+
+> **You built sovereign infrastructure. Power it like it matters — because it does.**
+
+---
+
 ## Console as Cloud
 
 Nothing leaves your hardware. Everything routes home.
@@ -1295,6 +1378,11 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 ---
 
 ## Registered IP Terms
+
+### Energy & Power
+- BEA Energy Hygiene™
+- Developer-Artist Energy Standard™
+- Green Energy Return™
 
 ### Platform & OS
 - BEA_Aura_OS™
