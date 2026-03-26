@@ -7,7 +7,7 @@
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
 **Revision:** v2.1 · March 2026
-**Tests:** 2,734 passing across 30 pillar modules
+**Tests:** 2,778 passing across 30 pillar modules
 
 ---
 
@@ -325,7 +325,7 @@ Good energy hygiene is:
 - **A UPS on every console deployment** — no exceptions
 - **A voltage regulator upstream of that UPS** — especially on generator, RV, or older utility feeds
 - **Pure sine wave output only** — modern GPUs and NVMe drives do not tolerate simulated sine waveforms
-- **Graceful shutdown scripts** — BEA_Aura_OS includes clean shutdown hooks; the UPS USB monitoring port triggers them automatically
+- **Graceful shutdown scripts** — `BEA_Grid.UpsMonitor` listens on the USB HID / SNMP port; `ShutdownBridge` coordinates job rerouting and OS shutdown automatically within a configurable delay window
 - **Right-sized capacity** — do not undersize. Your console is running GPU-Fi jobs, inference sessions, and security monitoring simultaneously.
 
 > **You built sovereign infrastructure. Power it like it matters — because it does.**
@@ -482,17 +482,21 @@ Key files: `ledger_engine.py` · `ledger_schema.py` · `ledger_scanner.py` · `t
 ---
 
 ### BEA_Grid — Power & Energy Management
-**58 tests | `BEA_Grid/`**
+**102 tests | `BEA_Grid/` · v2.1.0**
 
-Tracks per-pillar GPU/CPU power consumption, applies time-of-use utility rates, schedules GPU-Fi jobs during off-peak hours, and computes real-time earnings-per-kWh ROI.
+Tracks per-pillar GPU/CPU power consumption, applies time-of-use utility rates, schedules GPU-Fi jobs during off-peak hours, computes real-time earnings-per-kWh ROI, and coordinates graceful UPS-aware shutdown with live GPU-Fi job rerouting.
 
-Key files: `grid_engine.py` · `power_sampler.py` · `rate_scheduler.py` · `grid_schema.py` · `grid_scanner.py` · `integration.py`
+Key files: `grid_engine.py` · `power_sampler.py` · `rate_scheduler.py` · `grid_schema.py` · `grid_scanner.py` · `ups_monitor.py` · `shutdown_bridge.py` · `integration.py`
 
-- Power sources: BATTERY · GPU · CPU · CHARGER
-- Grid zones: OFF_PEAK · SHOULDER · PEAK · CRITICAL
-- Auto-pause GPU-Fi when electricity cost exceeds 16¢/kWh
-- Auto-throttle when GPU temperature exceeds 90°C
+- Power sources: BATTERY · GPU · CPU · CHARGER · SYSTEM
+- Grid zones: OFF_PEAK · SHOULDER · ON_PEAK · SUPER_OFF_PEAK
+- Auto-pause GPU-Fi when electricity cost exceeds $0.20/kWh
+- Auto-throttle when GPU wattage exceeds thermal threshold (default 250 W)
 - Supports flat-rate and Super TOU electricity schedules
+- **v2.1 UPS layer**: `UpsMonitor` — USB HID / SNMP listener; simulate API; dual listener system (UpsEvent + GridEvent); `PowerCompliance` gating for GPU-Fi intake
+- **v2.1 Shutdown Bridge**: `ShutdownBridge` listens for POWER_LOSS_IMMINENT; coordinates graceful shutdown; emits stages: `reroute_triggered` → `shutdown_initiated` → `power_restored`
+- **JobRerouteCoordinator**: maps job progress → REROUTE_FULL (<20%) · REROUTE_CHECKPOINT (20–80%) · REROUTE_COMPLETE_OR_FINISH (>80%) · STANDBY_CLEAN (no active jobs)
+- UPS E[n] state map: ONLINE→E[16] · ON_BATTERY→E[24] · LOW_BATTERY→E[28] · CRITICAL→E[31] · DISCONNECTED→E[10]
 
 ---
 
@@ -1192,7 +1196,7 @@ bea ledger summary   # Income and tax summary
 | BEA_Flow | 50 | Workflow automation |
 | BEA_Lens | 47 | Visual intelligence |
 | BEA_Ledger | 59 | Financial accounting |
-| BEA_Grid | 58 | Power management |
+| BEA_Grid | 102 | Power management + UPS compliance + shutdown bridge (v2.1) |
 | BEA_Shell | 67 | CLI |
 | BEA_Director | 164 | AI camera crew — v2.0.0: HOVER + DirectorLog + HighlightSystem + ImagerDirectorBridge |
 | BEA_Director_macOS | 194 | AI camera crew — macOS edition (AVFoundation + socket); full v2.0.0 feature parity |
@@ -1214,7 +1218,7 @@ bea ledger summary   # Income and tax summary
 | BEA_4D_Shop | 127 | GPU-Verse Workshop — BEA Physics, Gear System™, EmotionBindingSet, WAxisTracker, economy, SpriteTrainer |
 | BEA_Clinical_Suite | 125 | Synchronized Resonance Documentation — Director + Imager on single Console timestamp; OmegaLevel CLEAR/MONITOR/FLAG/PRIORITY; FrameMerger (< 13ms); HighlightDetector; sovereign patient data |
 | BEA_Aura_Orchestrator | TS | GPU containers, VRAM slicing, WireGuard intake, subsystem registry |
-| **Total** | **2,734** | **All passing** |
+| **Total** | **2,778** | **All passing** |
 | BEA_Nexus | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; 350M+ monitor gamers, zero headset |
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
 
@@ -1244,7 +1248,7 @@ BEA_Aura_OS/
 ├── BEA_Flow/                   # Workflow automation
 ├── BEA_Lens/                   # Visual intelligence
 ├── BEA_Ledger/                 # Financial accounting
-├── BEA_Grid/                   # Power management
+├── BEA_Grid/                   # Power management + UPS compliance (v2.1)
 ├── BEA_Shell/                  # Unified CLI
 ├── BEA_Director/               # AI camera crew engine (v2.0.0)
 ├── BEA_Director_macOS/         # macOS companion
@@ -1364,8 +1368,14 @@ BEA_Multimeter/                     # Browser-based BEA_Core diagnostic tool
 BEA_AUDIO_REFERENCE_HZ=440        # S° reference frequency
 
 # Grid / Power
-BEA_GRID_PAUSE_THRESHOLD=0.16     # Pause GPU-Fi above 16¢/kWh
-BEA_GRID_THERMAL_THRESHOLD=90     # Throttle above 90°C
+BEA_GRID_PAUSE_THRESHOLD=0.20     # Pause GPU-Fi above 20¢/kWh
+BEA_GRID_THERMAL_THRESHOLD=250    # Throttle above 250W GPU draw
+
+# Grid / UPS (v2.1)
+BEA_GRID_UPS_ENABLED=true         # Require UPS for GPU-Fi intake
+BEA_GRID_UPS_INTERFACE=usb_hid    # usb_hid | snmp
+BEA_GRID_SHUTDOWN_DELAY_S=30      # Seconds from POWER_LOSS to OS shutdown
+BEA_GRID_REROUTE_WINDOW_S=20      # Seconds reserved for GPU-Fi job reroute
 
 # Identity
 BEA_MAX_PROFILES=8
@@ -1491,3 +1501,4 @@ That same software running on your BEA Aura Console means you profit from your i
 *BEATEK Holdings, LLC · Founded by Jeremy F. Jackson · © 2026*
 *Derived from: Temporal Emergence Theory | Resonance Theorem v2.2*
 *Consciousness Emergence Postulate — Jaxxon (Jeremy F. Jackson) & Claude AI*
+
