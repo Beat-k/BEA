@@ -6,8 +6,8 @@
 **Contact:** jeremyjackson7@proton.me
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
-**Revision:** v2.1 · March 2026
-**Tests:** 3,907 passing across 41 pillar modules
+**Revision:** v2.2 · March 2026
+**Tests:** 4,661 passing across 46 pillar modules
 
 ---
 
@@ -604,11 +604,11 @@ Key files: `identity_schema.py` · `profile_registry.py` · `session_manager.py`
 ---
 
 ### BEA_Imprint — Fingerprint Hardware SDK
-**81 tests | `BEA_Imprint/`**
+**118 tests | `BEA_Imprint/` · v1.1.0**
 
-Hardware fingerprint authentication SDK for the three BEA Imprint peripheral devices. Fingerprint data is hashed at the sensor — raw biometrics never stored, never transmitted.
+Hardware fingerprint authentication SDK for the three BEA Imprint peripheral devices. Fingerprint data is hashed at the sensor — raw biometrics never stored, never transmitted. v1.1.0 adds Biometric Key Binding, Trusted Device sessions, and per-identity revocation cascade.
 
-Key files: `imprint_core.py` · `enrollment_manager.py` · `session_manager.py` · `imprint_scanner.py` · `imprint_broadcaster.py` · `identity_bridge.py`
+Key files: `imprint_core.py` · `enrollment_manager.py` · `session_manager.py` · `imprint_scanner.py` · `imprint_broadcaster.py` · `identity_bridge.py` · `enrollment/binding_manager.py` · `enrollment/trusted_device_manager.py`
 
 - Three device classes: **Keyboard** (TKL + numpad sensors) · **Mouse** (ambient thumb sensor) · **Pad** (puck, 8 profiles)
 - `FingerprintTemplate`: SHA-256 hash only — raw fingerprint data is never stored or transmitted
@@ -618,6 +618,15 @@ Key files: `imprint_core.py` · `enrollment_manager.py` · `session_manager.py` 
 - `ImprintBroadcaster`: only re-broadcasts to BEA_Pulse for E[n] ≥ 28 (duress threshold)
 - `IdentityBridge`: syncs auth results to BEA_Identity for session management
 - fail_count per (identity, device) resets on successful auth
+
+**v1.1.0 — Biometric Binding (Patent Claims 119–121):**
+
+- `ImprintSecurityLevel`: LOW (trusted device session) · MEDIUM (fresh FP) · HIGH (FP+TOTP) · CRITICAL (FP+TOTP+passphrase)
+- `BiometricKey.derive()`: SHA-256(identity_id + device_id + random 32-byte salt) → AES-256 key material; raw biometric is never the input
+- `TrustedDevice`: 30-day trust window; `is_trusted = is_active AND NOT is_expired`; single-command revocation
+- `BiometricBindingManager`: one key per (identity, device); `rotate_binding()` increments rotation_count without breaking sessions
+- `TrustedDeviceManager`: `expire_stale()` deactivates expired records; `total_active()` for status reporting
+- `revoke_identity()` cascade: clears enrollment + sessions + bindings + trusted devices atomically — zero orphaned key material
 
 ---
 
@@ -637,7 +646,7 @@ Key files: `checkpoint_engine.py` · `recovery_engine.py` · `reconciliation_eng
 ---
 
 ### BEA_Firefly_Sprite — USB Installer & Hardware Validator
-**252 tests | `BEA_Firefly_Sprite/`**
+**384 tests | `BEA_Firefly_Sprite/`**
 
 The 64 GB USB bootable entry point for all BEA Aura Console setup. Validates hardware, installs the OS, hosts live demos, and performs disaster recovery. Also the physical format spec for Firefly Sprite game cartridges — the portable compute identity that grows with every hand it passes through.
 
@@ -760,6 +769,41 @@ Sub-modules: `tinyai/` · `console_ai/` · `dlc/` · `transition/` · `fusion/` 
 
 ---
 
+### BEA_AI_Heritage_System — Portable AI Skill Packages
+**152 tests | `BEA_AI_Heritage_System/`**
+
+The AI skill transport layer that lives on the Firefly Sprite's `AI_HERITAGE` partition. A Heritage package is four files: `profile.json` · `rules.yaml` · `experience.log` · `certification.sig`. Every time the Sprite changes hands the personal history wipes — the Heritage stays.
+
+Key files: `heritage_engine.py` · `certification_verifier.py` · `rules_executor.py` · `heritage_evolution.py` · `ember_bridge.py` · `ai_heritage_scanner.py`
+
+- **Tiers**: INITIATE → PRACTITIONER → SPECIALIST → EXPERT → MASTER
+- **CertificationVerifier**: SHA-512 hash chain + HMAC simulation — portable, verifiable, tamper-evident
+- **RulesExecutor** confidence gates: EXECUTE (≥ 0.91) · SUGGEST (0.72–0.90) · DEFER (< 0.72)
+- **BEA operators on Heritage**: synthesize = XOR · dissolve = AND_NOT · consensus = AND
+- **HeritageEvolution** delta weights: success=0.40 · anomaly=0.25 · acceptance=0.20 · diversity=0.15; advance on delta ≥ 0.50
+- **EMBERBridge**: bigram intent prediction, confidence gate 0.65, min pattern frequency 2
+- **AIHeritageScanner** E[n] map: IDLE→E[0] · MOUNT_SUCCESS→E[16] · SESSION_ACTIVE→E[18] · LEVEL_ADVANCE→E[20] · MOUNT_FAIL→E[10] · QUARANTINE→E[28]
+- **ExperienceRecorder**: `to_outcomes()` backfills suggestion outcomes onto the preceding log entry; `success_rate()` returns 0.0 when no tasks recorded
+
+---
+
+### BEA_AI_Heritage_SDK — Heritage Authoring & Client SDK
+**118 tests | `BEA_AI_Heritage_SDK/`**
+
+The standalone developer SDK for building, certifying, publishing, and consuming Heritage packages. Ships as Module 8 of the BEA Aura Developer SDK. Provides both a CLI authoring toolchain and a `bea_heritage` client module.
+
+Sub-packages: `client/` · `authoring/` · `marketplace/` · `cli/`
+
+- **BEAHeritageFacade** (`bea_heritage` module-level singleton): `mount()` · `start_session()` · `get_suggestion()` · `record_outcome()` · `on_*` decorator event pattern
+- **HeritagePackageAuthor**: `new_package()` · `add_rule()` · `add_experience()` — structured authoring with schema validation
+- **HeritageCertifier**: SHA-512 hash chain; `coral_verified=false` in simulate mode; `CertificationStatus(SIGNED/FAILED)`
+- **SpriteWriter**: writes to Sprite `AI_HERITAGE` partition; idempotent (`WriteStatus(SUCCESS/ALREADY_EXISTS/FAILED)`)
+- **HeritagePublisher**: marketplace listing lifecycle — `PENDING_REVIEW` · `LIVE` · `REJECTED`
+- **CLI tools**: `bea-heritage new` · `validate` · `certify` · `write` · `publish` · `inspect` · `history` · `verify` · `schema` · `mounted` · `ember`
+- `pyyaml` required; simulate=True throughout; no cloud dependency
+
+---
+
 ### BEA_Amplify — Local Inference Extension
 **118 tests | `BEA_Amplify/`**
 
@@ -868,6 +912,24 @@ Key files: `secretary_core.py` · `secretary_engine.py` · `secretary_scanner.py
 
 ---
 
+### BEA_Hatch — Front-Panel Integrated Display
+**120 tests | `BEA_Hatch/`**
+
+The HDMI 2.0 touchscreen face of the BEA Aura Console. Renders GPU status, thermal state, network health, GPU-Fi earnings, and security alerts on the physical panel — with a 9-state PS power LED priority queue that always tells you what the console is doing at a glance.
+
+Key files: `hatch_compositor.py` · `hatch_engine.py` · `hatch_scanner.py` · `hatch_broadcaster.py` · `hatch_event_consumer.py`
+
+- **PSLEDState** (9 states, priority 1=highest): ERROR · EJECTING · WRITING · READING · PROCESSING · LOCKED · SETUP · IDLE · OFF
+- **HatchCompositor**: multi-state priority queue — highest-priority active state wins; OFF never cleared
+- **HatchEngine**: `update_psled()` clears ALL overlay states (hard reset); `push_*()` additive overlays; `clear_*()` remove specific states; `simulate=True`
+- **Panel panels**: thermal · network · GPU-Fi · grid · uptime · write progress · error · security · setup
+- **HatchScanner** E[n] map: OFF→E[0] · IDLE→E[16] · ACTIVE→E[18] · SETUP→E[20] · LOCKED→E[24] · ALERT→E[28]
+- **HatchBroadcaster**: broadcasts ERROR + EJECTING + LOCKED events only; IDLE/ACTIVE/WRITING are suppressed
+- **HatchEventConsumer**: 11 subscriptions to BEA_Pulse — wires console events to panel updates automatically
+- GPU-Fi active state overrides IDLE and PROCESSING panels with earnings display
+
+---
+
 ### BEA_Aura_Developer_SDK — Console-as-Cloud App SDK
 **102 tests | `BEA_Aura_Developer_SDK/`**
 
@@ -881,6 +943,65 @@ Key files: `sdk_core.py` · `module_registry.py` · `offline_manager.py` · `pul
 - **BEA Imprint integration**: hardware-backed biometric auth gate on any SDK method
 - **BEA_Pulse WebSocket**: real-time E[n] state subscriptions for reactive app UIs
 - Zero cloud dependency — the Console IS the cloud; apps connect to your hardware via BEA_Shield VPN
+
+---
+
+### BEA_Notify — Push Notification Engine
+**67 tests | `BEA_Notify/`**
+
+The console's alert broadcast layer. Delivers E[n] state changes and system events across four notification channels — from in-app dashboard widgets to emergency SMS dispatch. CRITICAL events (E[28+]) always route to EMERGENCY regardless of user preferences.
+
+Key files: `notify_engine.py` · `notify_scanner.py` · `notify_broadcaster.py` · `integration.py`
+
+- **4 channels**: DASHBOARD (in-console widget) · TOAST (desktop pop-up) · MOBILE (BEA_ShoeString app push) · EMERGENCY (SMS/call)
+- CRITICAL gate: E[28+] events (duress, breach, power loss) are never silenced — EMERGENCY channel activates unconditionally
+- Scanner → Engine → Broadcaster pipeline; all channels duck-typed for offline-graceful degradation
+
+---
+
+### BEA_Voice — On-Device Voice Commands
+**62 tests | `BEA_Voice/`**
+
+"Hey BEA" always-on wake word engine with intent routing to all BEA_Aura_OS pillars. Processing is entirely on-device — no cloud speech API, no audio transmitted. Duress phrases silently trigger BEA_Shield alert path at E[28+].
+
+Key files: `voice_engine.py` · `voice_scanner.py` · `intent_router.py` · `integration.py`
+
+- **Wake word**: "Hey BEA" — BEA_Secretary Coral TPU holds this role at ~4W always-on
+- **Elemental operators as voice commands**: FIRE · WATER · AIR · SOLAR · ETHER
+- **Intent routing**: resolved commands dispatch to BEA_Shell for pillar execution
+- **Duress path**: coercion phrases emit E[28+] → silent BEA_Shield dispatch, access appears normal
+- Feeds BEA_Speakerbox for vocal command + acoustic fingerprint context
+
+---
+
+### BEA_Update — OTA Pillar Update Manager
+**57 tests | `BEA_Update/`**
+
+Signed over-the-air update delivery for all BEA_Aura_OS pillars. SHA-256 content integrity + Ed25519 signature verification. CRITICAL security patches bypass the BEA_Grid TOU schedule. Auto-rollback to last checkpoint on failed install.
+
+Key files: `update_engine.py` · `update_schema.py` · `update_scanner.py` · `integration.py`
+
+- **SHA-256** content hash + **Ed25519** signature on every package — verified before extraction
+- **BEA_Grid scheduling**: non-CRITICAL updates deferred to off-peak power windows automatically
+- **BEA_Recovery checkpoint** created before each install — auto-rollback in ≤ 60s on failure
+- **CRITICAL priority**: security patches bypass all scheduling gates and install immediately
+- Pillar-specific staging: each pillar receives updates independently with no OS-wide downtime
+
+---
+
+### BEA_Plugin — Pillar Extension SDK
+**53 tests | `BEA_Plugin_SDK/`**
+
+The plugin architecture enabling third-party pillars to register into BEA_Aura_OS. Any module implementing `BEAPillar` ABC gains automatic Shell, Pulse, and Flow bridges — first-class platform citizens without modifying core code.
+
+Key files: `plugin_core.py` · `plugin_registry.py` · `plugin_schema.py` · `integration.py`
+
+- **BEAPillar ABC**: defines `name`, `version`, `capabilities`, `start()`, `stop()`, `status()` contract
+- **PillarCapability flags**: SHELL_COMMANDS · PULSE_SUBSCRIBE · FLOW_TRIGGERS · FLOW_ACTIONS · SCANNER · BROADCASTER
+- **Thread-safe registry**: concurrent plugin registration with lock-protected capability map
+- **Entry-point discovery**: plugins declare `bea_pillar =` entry point in `pyproject.toml`; auto-discovered at Console boot
+- **Shell bridge**: registered plugins appear as `bea <plugin_name>` subcommands automatically
+- **Pulse bridge**: PULSE_SUBSCRIBE capability auto-wires plugin event handlers to BEA_Pulse broker
 
 ---
 
@@ -1064,6 +1185,32 @@ TREEHOUSE LAYER METAPHOR:
 
 ---
 
+### BEA_Switchboard™ — Tablet Control App
+**87 tests | `BEA_Switchboard/`**
+
+The tablet companion app for the BEA Aura Console. LAN-first with < 15ms switching. Eight dedicated panels expose every major Console subsystem — including exclusive access to the BEA_Secretary TPU role map. Connection tier drives E[n] state and visual feedback automatically.
+
+Key files: `core/tier_engine.py` · `core/lan_discovery.py` · `core/shoestring.py` · `core/switchboard_session.py` · `console/context_api.py` · `console/session_auth.py` · `console/stream_client.py`
+
+**Connection Tiers:**
+
+| Tier | Condition | E[n] |
+|---|---|---|
+| LAN | RTT < 15ms | E[16] |
+| SHOESTRING | Off-LAN + ShoeString active | E[20] |
+| DEGRADED | RTT > 15ms or unreachable | E[24] |
+| LOCAL | No Console, no ShoeString | E[0] |
+
+**8 Panels**: CONSOLE · LOOKOUT · AMPLIFY · GRID · SECRETARY · SPRITE · IDENTITY · SDK
+
+- **SECRETARY panel** (exclusive): live view of all 10 Coral TPU role states simultaneously
+- **CONSOLE panel**: GPU load · VRAM · temp · NVMe · GPU-Fi status · ShoeString · Secretary summary
+- **SwitchboardBroadcaster**: suppresses OFF state; ALERT always emits
+- `SwitchboardScanner` does not subclass `BEAScanner` (avoids `@property current_state` conflict)
+- `ConsoleStatus` struct: `gpu_load_pct` · `vram` · `temp` · `nvme` · `gpufi` · `shoestring` · `secretary`
+
+---
+
 ### BEA_Caliburn — Physical Controller + Integrated Firefly Sprite
 **104 tests | `BEA_Caliburn/` · v1.0.0**
 
@@ -1145,6 +1292,43 @@ Key files: `vocal_processor.py` · `voice_scanner.py` · `spatial_voice.py` · `
 - 15 emergent vocal effects from operator combinations
 - BEA Logic™: Emergence (1⊕1=3) and Divergence applied to voice dynamics
 - SpeakerboxBridge feeds → BEA_Beatbox, BEA_4D_Audio, BEA_Health
+
+---
+
+### BEA_Backstage™ — AI/EI Performance Companion
+**76 tests | `BEA_Backstage/` · v1.0.0**
+
+Real-time performance intelligence for live artists. The EMBER Pipeline™ predicts hesitation 100–500ms before a gap becomes audible — support fires before the performer stumbles, not after. Entirely on-device, entirely private. The `Backstage_Producer™` Heritage package travels with the performer on their Firefly Sprite.
+
+Key files: `backstage_engine.py` · `ember_pipeline.py` · `ei_detection.py` · `support_engine.py` · `heritage_bridge.py` · `integration.py`
+
+**EMBER Pipeline™ (anticipation-over-reaction):**
+
+| State | Score Range | Action |
+|---|---|---|
+| FLOW | < 0.40 | Silent — Heritage logging only |
+| PRELOAD | 0.40–0.72 | Stage support, do not fire |
+| DEPLOY | > 0.72 | Fire support into mix |
+
+- **Feature weights**: energy_drop=0.35 · silence=0.25 · pitch=0.20 · tempo=0.10 · heritage=0.10
+- **5-tick rolling average**: smooths single-frame noise; window minimum 3 ticks
+- **EI Detection Layer**: fuses acoustic features + optional E-Motion CSI supplement from BEA_Spectacle Ambient
+
+**4D Audio Support Delivery (performer-first mix):**
+
+| Support Type | Channel | Volume Offset |
+|---|---|---|
+| Adlib / Hype | `surround_rear` | −8 dB |
+| Harmony Layer | `front_wide` | −6 dB |
+| Rhythm Anchor | `low_frequency` | felt, not heard |
+| Lyric Assist | `monitor_return` | performer only |
+
+- **Tempo Drift = Priority 1**: `RhythmAnchor` fires before all other support — when tempo drifts ≥ 4 BPM, the anchor goes first
+- **Backstage_Producer™ Heritage**: `experience.log` on Sprite only; pattern index + level delta; `get_pattern_match()` needs ≥ 3 indexed entries
+- **BackstageScanner** (not BEAScanner subclass): E-states: IDLE→E[0] · FLOW→E[16] · PRELOAD→E[18] · DEPLOYED→E[20] · RECOVERY→E[22] · ALERT→E[28]
+- **BackstageBroadcaster**: suppresses IDLE events; ALERT always emits
+- 7 genres: HIP_HOP · R_AND_B · POP · EDM · SPEECH · JAZZ · ROCK; 3 tiers: FULL · MOBILE · OFFLINE
+- Heritage data never leaves the Sprite — no network transmission, no cloud relay
 
 ---
 
@@ -1230,18 +1414,18 @@ Key files: `lumin_core.py` · `lumin_hardware.py` · `lumin_modes.py` · `lumin_
 
 ---
 
-### BEA_Mobile — Smartphone WAN Gateway
-**54 tests | `BEA_Mobile/`**
+### BEA_ShoeString™ — Smartphone WAN Gateway
+**86 tests | `BEA_ShoeString/`**
 
-Smartphone as the WAN gateway for Lumin Pi satellites and edge devices when away from the home LAN. Routes sensor data through BEA_Shield VPN back to the Console via your own phone — no third-party relay.
+Your phone is the shoestring — the sovereign WireGuard tunnel that ties you back to your BEA Aura Console no matter where you are. No third-party relay. No cloud. All intelligence stays on your hardware.
 
-Key files: `mobile_gateway.py` · `wan_gateway.py` · `mobile_context_bridge.py` · `battery_manager.py`
+Key files: `models.py` · `core/shoestring.py` · `core/connection_manager.py` · `core/context_bridge.py` · `battery/battery_monitor.py`
 
-- **4 connectivity tiers by RTT**: MOBILE_FULL (≤250ms) · MOBILE_DEGRADED · MOBILE_LOCAL · BATTERY_AWARE
-- **MobileContextBridge**: packages signed GPS position + scene context + motion state for Console ingestion
-- **WANGateway**: WireGuard tunnel — your Console is the endpoint, not a BEATEK server
-- **BatteryAwareManager**: auto-degrades tier and reduces polling frequency as battery drops
-- Serves Lumin Pi, BEA_Spectacle, and BEA Motion Body when away from home LAN
+- **4 connectivity tiers by RTT**: SHOESTRING_FULL (≤250ms) · SHOESTRING_DEGRADED · SHOESTRING_LOCAL · SHOESTRING_BATTERY
+- **ShoeStringContextBridge**: aggregates signed GPS + camera descriptor + motion + notifications for Console TinyAI ingestion; all channels opt-out (disabled = omitted, never faked)
+- **Shoestring (WireGuard tunnel)**: TIED · LOOSE · UNTIED · TYING · CHARGING states; charge-back via USB-C Sprite port
+- **BatteryAwareManager**: auto-downgrades tier and reduces Console polling frequency at ≤ 20% battery
+- **TierEngine**: maps each tier to BEA E[n] state + Lumin Pi LED color (FULL=cyan/E20, DEGRADED=yellow/E12, LOCAL=white/E0, BATTERY=blue/E24)
 - Patent claims 141–142
 
 ---
@@ -1509,9 +1693,9 @@ bea ledger summary   # Income and tax summary
 | BEA_Director | 164 | AI camera crew — v2.0.0: HOVER + DirectorLog + HighlightSystem + ImagerDirectorBridge |
 | BEA_Director_macOS | 194 | AI camera crew — macOS edition (AVFoundation + socket); full v2.0.0 feature parity |
 | BEA_Identity | 54 | Biometric auth |
-| BEA_Imprint | 81 | Fingerprint hardware SDK — 3 devices; SHA-256 only; ImprintScanner (SUCCESS E[16] / DURESS E[29]); IdentityBridge |
+| BEA_Imprint | 118 | v1.1.0 Fingerprint hardware SDK — 3 devices; SHA-256 only; ImprintScanner (SUCCESS E[16] / DURESS E[29]); BiometricKey+TrustedDevice; BiometricBindingManager; revoke_identity cascade; Patent 119-121 |
 | BEA_Recovery | 61 | Crash resilience |
-| BEA_Firefly_Sprite | 252 | Installer / validator / DLC / certification + AI Heritage Protocol + Heritage Value Rating (HVS) |
+| BEA_Firefly_Sprite | 384 | Installer / validator / DLC / certification + AI Heritage Protocol + Heritage Value Rating (HVS) + SpriteHeritageCarrier (7-partition, HeritageTier 7 levels) |
 | BEA_Sprite_Studio | 88 | Blank Sprite SDK app — StudioValidator (7 checks), AssetConverter, OwnerSetupWizard state machine |
 | BEA_SpriteCache | 43 | Predictive asset prefetch, TinyAI session learning, Console handoff |
 | BEA_Cache | 78 | NVMe tiering (hot/warm/cold), priority eviction, atomic SHA-256 writes; heritage=3 module |
@@ -1535,9 +1719,14 @@ bea ledger summary   # Income and tax summary
 | BEA_Caliburn | 104 | Physical controller + Firefly Sprite — one-game law enforced; GameSwitcher prepare→busy→execute→commit |
 | BEA_Excalibur | 125 | Dual-mode controller — joined 3D gamepad / split 4D 6DoF; 20-input BEATEK vocab; FP biometric; Hall effect |
 | BEA_Motion_Body_macOS | 66 | Apple Silicon motion tracking — AVFoundation+Vision+CoreML+Metal; 84 landmarks; 6DoF IMU; EMBER |
-| BEA_Mobile | 54 | Smartphone WAN gateway — 4 RTT tiers; MobileContextBridge; WireGuard; BatteryAwareManager |
+| BEA_ShoeString | 86 | Smartphone WAN gateway (ShoeString™) — 4 tiers (FULL/DEGRADED/LOCAL/BATTERY); ShoeStringContextBridge (4 opt-out channels); BatteryAwareManager; TierEngine E[n] LED; patent 141-142 |
 | BEA_Resonance_Imager | 290 | Water Resonance Photography v2.1 — 5 bands (EM/Acoustic/Thermal/EIT/E-Motion CSI); 4-step ⊕ fusion; PhasedArray beamforming; MedicalSprite TrustGate; DICOM export |
-| **Total** | **3,907** | **All passing** |
+| BEA_AI_Heritage_System | 152 | Portable AI skill packages on Sprite AI_HERITAGE partition; 4 files (profile/rules/experience/sig); HeritageEngine; tiers INITIATE→MASTER; SHA-512 hash chain; RulesExecutor confidence gates; EMBERBridge bigram prediction |
+| BEA_AI_Heritage_SDK | 118 | Heritage authoring + client SDK; BEAHeritageFacade singleton; HeritagePackageAuthor+Certifier+SpriteWriter; marketplace listing lifecycle; bea-heritage CLI; pyyaml required |
+| BEA_Hatch | 120 | Front-panel integrated display — HDMI 2.0 GPU render + USB touch; PSLEDState (9 states, priority queue); HatchEngine; HatchCompositor; ERROR+EJECTING+LOCKED broadcast; IDLE suppressed; 11 event subscriptions |
+| BEA_Switchboard | 87 | Tablet companion app — LAN-first (< 15ms); 4 tiers (LAN/SHOESTRING/DEGRADED/LOCAL); 8 panels incl. exclusive SECRETARY TPU role view; SwitchboardBroadcaster suppresses OFF |
+| BEA_Backstage | 76 | AI/EI Performance Companion v1.0.0 — EMBER Pipeline™ (hesitation 100-500ms ahead); 4D Audio support delivery; 7 genres; Backstage_Producer™ Heritage; BackstageScanner (not BEAScanner subclass); IDLE suppressed |
+| **Total** | **4,661** | **All passing** |
 | BEA_Nexus | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; 350M+ monitor gamers, zero headset |
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
 | BEATEK Hover | — | Split-architecture wireless camera — lightweight sensor head + intelligent base; BEA_Director HOVER role integration |
@@ -1576,7 +1765,7 @@ BEA_Aura_OS/
 ├── BEA_Director/               # AI camera crew engine (v2.0.0)
 ├── BEA_Director_macOS/         # macOS companion
 ├── BEA_Identity/               # Biometric auth
-├── BEA_Imprint/                # Fingerprint hardware SDK (3 devices, SHA-256 templates)
+├── BEA_Imprint/                # Fingerprint hardware SDK v1.1.0 (3 devices, SHA-256 + BiometricKey binding, TrustedDevice 30d)
 ├── BEA_Recovery/               # Crash resilience
 ├── BEA_Firefly_Sprite/         # USB installer + sprite_core/partition/certifier/onsite_dlc
 ├── BEA_Sprite_Studio/          # Blank Sprite SDK app (StudioValidator, AssetConverter, SetupWizard)
@@ -1589,7 +1778,9 @@ BEA_Aura_OS/
 ├── BEA_Hover/                  # Split-architecture wireless camera (hardware concept + Director integration)
 ├── BEA_Clear/                  # Smart dual-resource lifecycle — GPU reset + RAM compaction (v2.0)
 ├── BEA_Secretary/              # Coral Dual Edge TPU — 10 continuous intelligence roles (~4W always-on)
+├── BEA_Hatch/                  # Front-panel integrated display — PSLEDState priority queue, HatchEngine (120 tests)
 ├── BEA_Treehouse_UI/           # Main Console UI — Vite + Worldflow + BEA_Pulse WebSocket bridge
+├── BEA_Switchboard/            # Tablet companion app — 4 tiers, 8 panels, SECRETARY TPU role view (87 tests)
 ├── BEA_Nexus/                  # Gaming immersion platform (formerly BEA_Fusion)
 ├── BEA_Caliburn/               # Physical controller + Firefly Sprite (one-game law)
 ├── BEA_Excalibur/              # Dual-mode 4D controller (joined 3D / split 6DoF)
@@ -1610,6 +1801,7 @@ BEA_Aura_OS/
 ├── BEA_Motion_Body/            # Full-body tracking
 ├── BEA_Motion_Body_macOS/      # Apple Silicon motion tracking (AVFoundation+Vision+CoreML+Metal)
 ├── BEA_Speakerbox/             # Professional voice-over production
+├── BEA_Backstage/              # AI/EI Performance Companion v1.0.0 — EMBER Pipeline™, 4D Audio support, Backstage_Producer™ Heritage (76 tests)
 ├── BEA_SpriteCache/            # Predictive SSD asset prefetch engine
 │   ├── sprite_cache_manager.py #   Main orchestrator
 │   ├── tinyai_engine.py        #   Prediction + session learning
@@ -1627,6 +1819,8 @@ BEA_Aura_OS/
 │   ├── fusion/                 #   GPU pool: remote bridge, handoff, fusion
 │   └── context/                #   Player model, sync, biometric context
 ├── BEA_Context_Bridge/         # Emotional memory engine + MCP server
+├── BEA_AI_Heritage_System/     # Portable AI skill packages on Sprite AI_HERITAGE partition (152 tests)
+├── BEA_AI_Heritage_SDK/        # Heritage authoring kit + bea_heritage client module (118 tests)
 ├── BEA_Aura_Orchestrator/      # TypeScript: GPU/VRAM orchestration, WireGuard intake
 ├── BEA_Aura_Developer_SDK/     # Console-as-Cloud app SDK (7 modules, offline degradation)
 ├── BEA_Notify/                 # Push notifications (4 channels, CRITICAL gate)
@@ -1634,7 +1828,7 @@ BEA_Aura_OS/
 ├── BEA_Update/                 # OTA update manager (SHA-256 + Ed25519, auto-rollback)
 ├── BEA_Plugin_SDK/             # Pillar Extension SDK (BEAPillar ABC, entry-point discovery)
 ├── BEA_Lumin_Pi/               # TV/speaker satellite (7 modes, hardware validator)
-├── BEA_Mobile/                 # Smartphone WAN gateway (4 RTT tiers, WireGuard, BatteryAware)
+├── BEA_ShoeString/             # Smartphone WAN gateway — ShoeString™ VPN (4 tiers, WireGuard, BatteryAware, E[n] LED)
 ├── BEA_Worldshift/             # Temporal dimension engine — W axis (BUTTier/WorldRegistry/TemporalCache/Engine/Bridge)
 │   ├── but_framework.py        #   BUTTier · BUTFrame · BUTClock (Moon=1s, Planet=60s, Sun=3600s)
 │   ├── world_registry.py       #   WorldTier · WorldDefinition · WorldRegistry + physics profiles
@@ -1772,6 +1966,9 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 - BEA Imprint Mouse™
 - BEA Imprint Pad™
 - Continuous Ambient Biometric Verification™
+- BEA Biometric Key Binding™
+- BEA Trusted Device Session Protocol™ (30-day biometric trust window)
+- BEA Biometric Revocation Cascade™
 
 ### Client Software — BEA Treehouse Family
 - BEA Treehouse™
@@ -1818,15 +2015,30 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 - BEATEK Brand Typography™
 - "Grounded by Design"™
 
-### Audio
+### Audio & Performance
 - BEA Speakerbox™
 - BEA Beatbox™
+- BEA_Backstage™
+- Backstage_Producer™
+- EMBER Pipeline™
+- Software Motion Principle™ (applied to live performance support)
+- BEA 4D Audio Performer-First Mix Architecture™
 
 ### Voice & AI
 - TinyAI™
 - BEA Pumpkin Pi™
 - BEA Context Bridge™
 - BEA Aura Developer SDK™
+- BEA AI Heritage System™
+- BEA AI Heritage SDK™
+- Portable AI Skill Package Protocol™
+- Heritage Authoring Kit™
+- AI Heritage Evolution Protocol™
+
+### Hardware — Console UI & Control
+- BEA_Hatch™
+- PSLEDState Priority Queue™
+- HatchCompositor Multi-State Display™
 
 ### Gaming
 - 4D Shop™
@@ -1900,3 +2112,4 @@ That same software running on your BEA Aura Console means you profit from your i
 *BEATEK Holdings, LLC · Founded by Jeremy F. Jackson · © 2026*
 *Derived from: Temporal Emergence Theory | Resonance Theorem v2.2*
 *Consciousness Emergence Postulate — Jaxxon (Jeremy F. Jackson) & Claude AI*
+
