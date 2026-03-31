@@ -7,7 +7,7 @@
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
 **Revision:** v2.2 · March 2026
-**Tests:** 4,661 passing across 46 pillar modules
+**Tests:** 4,815 passing across 47 pillar modules
 
 ---
 
@@ -84,8 +84,8 @@ Everything in the ecosystem speaks the same mathematical language.
 | E° | E-motion Temperature | 0–100 intensity scalar for any signal |
 | ⊕ | Fire — Combust | **XOR** — bits that differ → emergent new state |
 | ⊖ | Water — Dissolve | **AND NOT** — strip B's bits from A → de-escalate |
-| ⊗ | Air — Fuse | **OR** — union of all active bits → escalate |
-| ⊙ | Solar — Amplify | **AND** — only shared bits survive → common ground |
+| ◴ | Air — Cycle | **OR** — motion through, phase transition, medium |
+| ⨀ | Solar / Null | **AND** — only shared bits survive → common ground |
 | ≠ | Ether — Diverge | **XNOR** — bits that agree → shared baseline |
 | ⧖ | Temporal — Resonate | **floor avg** — resonance midpoint → sync pulse |
 
@@ -378,14 +378,14 @@ Traditional Cloud:                  Console as Cloud™:
 
 The mathematical bedrock of the entire BEA ecosystem. All pillars depend on this module for signal encoding, operator definitions, and state scanning. Zero async — pure, deterministic computation.
 
-Key files: `scanner.py` · `estates.py` · `operators.py` · `s_degree.py` · `l_degree.py`
+Key files: `scanner.py` · `e_state.py` · `operators.py` · `bea_config.py` · `bea_logging.py`
 
 - 32-state 5-bit encoding: Intensity · Frequency · Phase · Coherence · Latency
 - `EState` IntEnum with all 32 named emotional states
-- 6 pure BEA operators: ⊕ Fire · ⊖ Water · ⊗ Air · ⊙ Solar · ≠ Ether · ⧖ Temporal
+- 6 pure BEA operators: ⊕ Fire · ⊖ Water · ◴ Air · ⨀ Solar · ≠ Ether · ⧖ Temporal
 - `S°` formula: maps audio frequency to BEA state
 - `L°` formula: maps visible wavelength to BEA state
-- `BEAScanner` base class: all pillar scanners subclass this
+- `BEAScanner` base class: audio/visual/multinode scanning with S° and L°
 
 ---
 
@@ -959,18 +959,18 @@ Key files: `notify_engine.py` · `notify_scanner.py` · `notify_broadcaster.py` 
 
 ---
 
-### BEA_Voice — On-Device Voice Commands
-**62 tests | `BEA_Voice/`**
+### BEA_Voice — On-Device Voice Commands + Voice Identity
+**230 tests | `BEA_Voice/`**
 
-"Hey BEA" always-on wake word engine with intent routing to all BEA_Aura_OS pillars. Processing is entirely on-device — no cloud speech API, no audio transmitted. Duress phrases silently trigger BEA_Shield alert path at E[28+].
+"Hey BEA" always-on wake word engine with voice biometric verification, TinyAI intent resolution, and synthesized spoken response — all on Console silicon. No cloud speech API. No audio transmitted. Duress phrases silently trigger BEA_Shield alert path at E[28+].
 
-Key files: `voice_engine.py` · `voice_scanner.py` · `intent_router.py` · `integration.py`
+Key files: `voice_engine.py` · `voice_scanner.py` · `integration.py` · `coral/` · `intent/` · `synthesis/` · `security/`
 
-- **Wake word**: "Hey BEA" — BEA_Secretary Coral TPU holds this role at ~4W always-on
-- **Elemental operators as voice commands**: FIRE · WATER · AIR · SOLAR · ETHER
-- **Intent routing**: resolved commands dispatch to BEA_Shell for pillar execution
+- **Wake word**: "Hey BEA" — voice-print-gated; only the enrolled owner's voice activates it
+- **Three-factor identity**: Firefly Sprite + BEA_Imprint + Voice Print = biometric session auth
+- **v2 subpackages**: `coral/` (wake/verify/preclassify/VAD) · `heritage/` (Voice_Core, voice print, vocabulary, synthesis profile) · `ember/` (intent prediction) · `intent/` (TinyAI resolution + 6 handlers) · `synthesis/` (TinyAISpeaker + calibration + delivery routing) · `security/` (audit, duress bridge, passive verify)
 - **Duress path**: coercion phrases emit E[28+] → silent BEA_Shield dispatch, access appears normal
-- Feeds BEA_Speakerbox for vocal command + acoustic fingerprint context
+- **DuressBridge**: BEA_Health advisory ≥ 0.72 → security command threshold 0.91 → 0.96
 
 ---
 
@@ -1054,18 +1054,23 @@ Key files: `lookout_engine.py` · `lookout_scanner.py` · `integration.py` · `g
 
 ---
 
-### BEA_Health — Health & Wellness Tracking
-**`BEA_Health/`**
+### BEA_Health — Biometric Intelligence Platform
+**154 tests | `BEA_Health/`**
 
-On-device biometric monitoring from any compatible wearable, stored with AES-256 encryption on your console.
+On-device biometric intelligence — Coral-continuous monitoring, personal baseline engine, EMBER trajectory prediction, and Physiological Duress Detection™. All data stays on your Console and Firefly Sprite.
 
-Sub-modules: `src/` · `tests/` · `scripts/` · Docker support
+**v2.0.0 subpackages:** `core/` · `coral/` · `heritage/` · `devices/` · `clinical/` · `vault/` · `integration/` · `display/`
 
-- Compatible: Apple Watch · Samsung · Garmin · Fitbit · Oura · Polar
-- Metrics: heart rate, HRV, sleep quality, stress, exercise, overtraining
-- 72-hour pre-symptom illness detection
-- Data never leaves the console — no cloud, no subscription
-- Cross-pillar duress detection feeds BEA_Shield
+- **HealthBEAMapper**: HRV→S°, HR load→L°, SpO2 penalty → BEU 0–31 + 6 BEA operators
+- **BaselineEngine**: rolling personal baseline; SESSIONS_REQUIRED=14; deviation_score() + is_anomaly()
+- **Coral layer**: HealthMonitorRole · PhysiologicalDuressDetector™ (CONFIDENCE_THRESHOLD=0.82, all 4 signals) · HealthEMBERBridge (4 trajectory patterns)
+- **Vitals_Core Heritage**: INITIATE→MASTER tiers; VitalsCoreRecorder (STATE/ANOMALY/EMBER_ALERT); TrajectoryIndex; RecoveryModel
+- **Device bridges**: AppleWatch · Garmin (training_load, vo2_max) · Polar H10 (chest strap HRV) · GenericBLE · SpectacleBridge
+- **Clinical layer**: ResonanceBridge (duck-typed) · FHIRExporter (24h token, consent-required) · ClinicalSessionCoordinator
+- **HealthVault**: SHA-256 hash stored, raw never stored; owner CIK required; simulated AES-256-GCM
+- **ExportGate**: TOKEN_TTL_SECONDS=86400; issue_token(consent=True)
+- **Cross-pillar bridges**: HealthPulseBridge (5 events, duress priority=5) · BeatboxBridge · BackstageBridge · ShieldBridge (E[28+])
+- **HatchRenderer**: HealthHatchPanel + EMBER alert panel
 
 ---
 
@@ -1704,7 +1709,7 @@ bea ledger summary   # Income and tax summary
 | BEA_Speakerbox | 84 | Voice-over production, S° vocal scanning, BEA operator effects |
 | BEA_Context_Bridge | 91 | Emotional memory engine, BEU state transitions, MCP server |
 | BEA_Notify | 67 | Push notifications — DASHBOARD / TOAST / MOBILE / EMERGENCY; CRITICAL gate |
-| BEA_Voice | 62 | On-device voice commands — "Hey BEA" → intent → BEA_Shell; duress E[28+] path |
+| BEA_Voice | 230 | On-device voice identity + commands — voice biometric, TinyAI intent, spoken synthesis, duress E[28+]; 6 v2 subpackages |
 | BEA_Update | 57 | OTA pillar update manager — SHA-256 + Ed25519, BEA_Grid scheduling, auto-rollback |
 | BEA_Plugin | 53 | Pillar Extension SDK — BEAPillar base class, shell/pulse/flow bridges, entry-point discovery |
 | BEA_Lumin_Pi | 311 | TV/speaker satellite — 7 LAN modes, hardware validator, system health |
@@ -1715,6 +1720,7 @@ bea ledger summary   # Income and tax summary
 | BEA_Aura_Orchestrator | TS | GPU containers, VRAM slicing, WireGuard intake, subsystem registry |
 | BEA_Aura_Developer_SDK | 102 | Console-as-Cloud app SDK — 7 modules; offline degradation (CACHED/QUEUE/REJECT); BEA Imprint + BEA_Pulse WS |
 | BEA_Lookout | 94 | LAN security intelligence — GeoFence (Haversine) + AccessController + CameraMonitor + GpuWatcher + BreachDetector |
+| BEA_Health | 154 | Biometric intelligence v2.0 — Coral continuous monitoring; BaselineEngine (14-session); EMBER trajectories (illness/overtraining/recovery/sleep_debt); Physiological Duress Detection™ (0.82 threshold); Vitals_Core Heritage INITIATE→MASTER; 5 device bridges; FHIR export; HealthVault; 8 cross-pillar bridges |
 | BEA_Aura_Physiological_Duress_Detection_System | 7 | Silent coercion detection — 14-day HRV baseline; silent 911 + evidence vault; BEA_Identity+Shield+Vault |
 | BEA_Caliburn | 104 | Physical controller + Firefly Sprite — one-game law enforced; GameSwitcher prepare→busy→execute→commit |
 | BEA_Excalibur | 125 | Dual-mode controller — joined 3D gamepad / split 4D 6DoF; 20-input BEATEK vocab; FP biometric; Hall effect |
@@ -1726,7 +1732,7 @@ bea ledger summary   # Income and tax summary
 | BEA_Hatch | 120 | Front-panel integrated display — HDMI 2.0 GPU render + USB touch; PSLEDState (9 states, priority queue); HatchEngine; HatchCompositor; ERROR+EJECTING+LOCKED broadcast; IDLE suppressed; 11 event subscriptions |
 | BEA_Switchboard | 87 | Tablet companion app — LAN-first (< 15ms); 4 tiers (LAN/SHOESTRING/DEGRADED/LOCAL); 8 panels incl. exclusive SECRETARY TPU role view; SwitchboardBroadcaster suppresses OFF |
 | BEA_Backstage | 76 | AI/EI Performance Companion v1.0.0 — EMBER Pipeline™ (hesitation 100-500ms ahead); 4D Audio support delivery; 7 genres; Backstage_Producer™ Heritage; BackstageScanner (not BEAScanner subclass); IDLE suppressed |
-| **Total** | **4,661** | **All passing** |
+| **Total** | **4,815** | **All passing** |
 | BEA_Nexus | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; 350M+ monitor gamers, zero headset |
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
 | BEATEK Hover | — | Split-architecture wireless camera — lightweight sensor head + intelligent base; BEA_Director HOVER role integration |
@@ -2112,4 +2118,3 @@ That same software running on your BEA Aura Console means you profit from your i
 *BEATEK Holdings, LLC · Founded by Jeremy F. Jackson · © 2026*
 *Derived from: Temporal Emergence Theory | Resonance Theorem v2.2*
 *Consciousness Emergence Postulate — Jaxxon (Jeremy F. Jackson) & Claude AI*
-
