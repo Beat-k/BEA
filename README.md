@@ -1,4 +1,4 @@
-# BEA_Aura_OS
+# BEA_Aura_DDR4_OS
 
 > **Console as Cloud™ — The Reality Engine of the BEA Aura Console**
 
@@ -6,18 +6,18 @@
 **Contact:** jeremyjackson7@proton.me
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
-**Revision:** v2.2 · March 2026
-**Tests:** 4,815 passing across 47 pillar modules
+**Revision:** v2.3 · April 2026
+**Tests:** 5,213 passing across 48 pillar modules
 
 ---
 
-## What Is BEA_Aura_OS?
+## What Is BEA_Aura_DDR4_OS?
 
-BEA_Aura_OS is not just an operating system.
+BEA_Aura_DDR4_OS is not just an operating system.
 
-An OS manages resources. BEA_Aura_OS does that — but underneath the resource management is something more fundamental. A unified signal-based framework where every domain of the system speaks the same language, operates under the same physics, and evolves under the same intelligence.
+An OS manages resources. BEA_Aura_DDR4_OS does that — but underneath the resource management is something more fundamental. A unified signal-based framework where every domain of the system speaks the same language, operates under the same physics, and evolves under the same intelligence.
 
-> **BEA_Aura_OS is a Reality Engine.**
+> **BEA_Aura_DDR4_OS is a Reality Engine.**
 
 ```
 Compute    =  Matter        (GPU cycles are the substance of the system)
@@ -49,13 +49,13 @@ Storage adapts.
 Compute responds.
 ```
 
-The Smart Cache is the bridge between memory and intelligence. When memory becomes intelligent — when the system knows what matters without being told — the boundary between storage and cognition dissolves. That is what BEA_Aura_OS achieves.
+The Smart Cache is the bridge between memory and intelligence. When memory becomes intelligent — when the system knows what matters without being told — the boundary between storage and cognition dissolves. That is what BEA_Aura_DDR4_OS achieves.
 
 ---
 
 ## The E[n] Universal Language
 
-The single most important architectural decision in BEA_Aura_OS is that every domain speaks the same language.
+The single most important architectural decision in BEA_Aura_DDR4_OS is that every domain speaks the same language.
 
 ```
 Gaming intensity     =  E[n]
@@ -105,7 +105,7 @@ The validation tool is **BEA_Multimeter** (`BEA_Multimeter/bea_multimeter.html`)
 
 ## The Four Life Pillars
 
-BEA_Aura_OS coordinates four sovereign domains through BEA Logic:
+BEA_Aura_DDR4_OS coordinates four sovereign domains through BEA Logic:
 
 ```
 GAMING          ←  BEA Nexus · 4D Audio · E-Motion gaming intelligence
@@ -172,7 +172,7 @@ LAYER 2  →  Orchestrator               Resource control
              BEA_Pulse event bus
              E[n] state routing
 
-LAYER 1  →  BEA_Aura_OS               Reality Engine
+LAYER 1  →  BEA_Aura_DDR4_OS               Reality Engine
              BEA_Core signal-physics
              Four Life Pillars
              Smart Cache intelligence
@@ -189,7 +189,7 @@ LAYER 1  →  BEA_Aura_OS               Reality Engine
 | **CPU** | Ryzen 7 5700X | Ryzen 9 5900X | Ryzen 9 5950X |
 | **RAM** | 64 GB DDR4 | 96 GB DDR4 | 128 GB DDR4 |
 | **Storage** | 1TB OS NVMe + 1TB Cache NVMe + 1TB Log SSD + 2×2TB SATA | 2TB OS + 2TB Cache + 1TB Log SSD + 2×4TB SATA | 2TB OS + 2TB Cache + 1TB Log SSD + 6×4TB SATA |
-| **Security Module** | Coral Dual Edge TPU (8 TOPS) via SATA adapter | Coral Dual Edge TPU (8 TOPS) via SATA adapter | Coral Dual Edge TPU (8 TOPS) via SATA adapter |
+| **Security Module** | Coral Single Edge TPU (4 TOPS) · M.2 Key-M direct seat | Coral Single Edge TPU (4 TOPS) · M.2 Key-M direct seat | Coral Single Edge TPU (4 TOPS) · M.2 Key-M direct seat |
 | **Network** | 10 GbE SFP+ (fiber or coaxial) | 10 GbE SFP+ (fiber or coaxial) | 10 GbE SFP+ (fiber or coaxial) + 2.5 GbE onboard |
 | **GPU-Fi net est.** | $50–150/mo | $150–400/mo | $500–1,000/mo |
 | **Payback** | 8–24 months | 4–12 months | 3–6 months |
@@ -198,15 +198,12 @@ LAYER 1  →  BEA_Aura_OS               Reality Engine
 
 | Component | Part | Interface | Purpose |
 |---|---|---|---|
-| Google Coral M.2 Accelerator | Dual Edge TPU (2 × 4 TOPS = 8 TOPS) | M.2 module | Hardware root of trust |
-| Coral Dual Edge TPU Adapter | M.2 2280 B+M Key, PCIe x1 Gen2 | Hosts Coral M.2 module | Adapter board with mounting screw |
-| NFHK M.2 NGFF → 2.5" SATA Adapter | Black metal enclosure, passive | SATA data + power | Routes TPU to available SATA port |
-| SATA port (console motherboard) | Dedicated — 1 port reserved | SATA | Physical connection to PSU + board |
+| Google Coral M.2 Accelerator | Single Edge TPU · 4 TOPS | M.2 Key-M · B+M Key · 2280 · PCIe x1 | Hardware root of trust |
+| M.2 Key-M slot (console motherboard) | PCIe x4 available · Coral uses x1 | Direct seat · no adapter | Physical host connection |
 
-Edge TPU 1: BEA_Identity attestation · BEA Imprint biometric gate · hardware-signed audit · non-exportable key ops
-Edge TPU 2: Firefly Sprite domain verification · VPN auto-authentication · E[n] identity inference · BEA Logic signal resolution
+Single TPU · 10 roles time-sliced · ~2W constant: identity attestation · BEA Imprint biometric gate · hardware-signed audit · non-exportable key ops · Sprite domain verification · VPN auto-auth · E[n] identity inference · BEA Logic signal resolution · EMBER pipeline · health/duress monitoring
 
-Every tier includes: BEA Imprint Keyboard · BEA Nexus · BEA 4D Audio · BEA Motion Body · BEA Shield · BEA Health · Physiological Duress Detection · Console Security Module (Coral Dual Edge TPU) · 10 GbE SFP+ (fiber or coaxial) · 16GB VRAM minimum enforced in software · BEA_Spectacle (sold separately — USB-C handheld resonance scanner)
+Every tier includes: BEA Imprint Keyboard · BEA Nexus · BEA 4D Audio · BEA Motion Body · BEA Shield · BEA Health · Physiological Duress Detection · Console Security Module (Coral Single Edge TPU) · 10 GbE SFP+ (fiber or coaxial) · 16GB VRAM minimum enforced in software · BEA_Spectacle (sold separately — USB-C handheld resonance scanner)
 
 
 ---
@@ -250,7 +247,7 @@ Both deliver the same 10 GbE throughput. BEATEK does not dictate the medium — 
 
 No consumer gaming console has shipped 10 GbE SFP+ as standard. BEATEK is introducing this in the gaming industry through the BEA Aura Console.
 
-When a gaming company is ready to build 4D-capable hardware — a console that can run BEA_Aura_OS licensed content, GPU-Verse sessions, or W-axis multiplayer — 10 GbE SFP+ is the minimum network floor the architecture requires. The BEA Aura Console establishes that floor now, ahead of any licensing deal.
+When a gaming company is ready to build 4D-capable hardware — a console that can run BEA_Aura_DDR4_OS licensed content, GPU-Verse sessions, or W-axis multiplayer — 10 GbE SFP+ is the minimum network floor the architecture requires. The BEA Aura Console establishes that floor now, ahead of any licensing deal.
 
 Every BEA Aura Console owner is operating on infrastructure that the next generation of gaming is being built toward. That is not a coincidence — it is the foundation.
 
@@ -344,7 +341,7 @@ Good energy hygiene is:
 Nothing leaves your hardware. Everything routes home.
 
 ```
-Edge devices (BEA_Spectacle, BEA Lumin Pi, BEA Motion Body)
+Edge devices (BEA_Spectacle, BEA Lumin Stream, BEA Motion Body)
       ↓  USB-C or BLE
 Smartphone
       ↓  BEA_Shield VPN
@@ -448,7 +445,7 @@ Key files: `relay_node.py` · `relay_sync.py` · `relay_schema.py` · `relay_sca
 ### BEA_Flow — Cross-Pillar Workflow Automation
 **50 tests | `BEA_Flow/`**
 
-Native IFTTT for BEA_Aura_OS. Define trigger/action chains across any combination of pillars, powered by BEA_Pulse events.
+Native IFTTT for BEA_Aura_DDR4_OS. Define trigger/action chains across any combination of pillars, powered by BEA_Pulse events.
 
 Key files: `flow_schema.py` · `flow_engine.py` · `flow_library.py` · `flow_scanner.py` · `integration.py`
 
@@ -510,7 +507,7 @@ Key files: `grid_engine.py` · `power_sampler.py` · `rate_scheduler.py` · `gri
 ### BEA_Shell — Unified CLI
 **67 tests | `BEA_Shell/`**
 
-Single `bea` command routing to all BEA_Aura_OS pillar subcommands. Each pillar self-registers through PillarAdapter subclasses.
+Single `bea` command routing to all BEA_Aura_DDR4_OS pillar subcommands. Each pillar self-registers through PillarAdapter subclasses.
 
 Key files: `shell_engine.py` · `shell_registry.py` · `shell_schema.py` · `shell_coloring.py` · `cli.py` · `integration.py`
 
@@ -575,7 +572,7 @@ BEATEK HOVER ARCHITECTURE:
         ↓  raw sensor data (wireless)
   [Base Station: all processing]        →  stays on desk/mount
         ↓  processed feed
-  [BEA_Director / BEA_Aura_OS]         →  full production intelligence
+  [BEA_Director / BEA_Aura_DDR4_OS]         →  full production intelligence
 ```
 
 - Head contains: image sensor + wireless transmitter + battery only — no processor, no encoder, no storage
@@ -881,16 +878,16 @@ RESET PIPELINE (v2.0 PARALLEL strategy):
 
 ---
 
-### BEA_Secretary — Coral Dual Edge TPU Continuous Intelligence Layer
+### BEA_Secretary — Coral Single Edge TPU Continuous Intelligence Layer
 **`BEA_Secretary/` · v1.0.0**
 
-The always-on intelligence layer. The Coral Dual Edge TPU (8 TOPS · ~4W) never sleeps — it runs 10 lightweight inference roles permanently on Edge TPU 2 while Edge TPU 1 stays dedicated to BEA_Identity security. The NVIDIA GPU stays free for GPU-Fi, LLM inference, and gaming.
+The always-on intelligence layer. The Coral Single Edge TPU (4 TOPS · ~2W constant) never sleeps — it time-slices 10 lightweight inference roles across one chip. Protected roles (identity, heritage, shield, duress) are always scheduled first. The NVIDIA GPU stays free for GPU-Fi, LLM inference, and gaming.
 
 Key files: `secretary_core.py` · `secretary_engine.py` · `secretary_scanner.py` · `secretary_broadcaster.py`
 
-**Edge TPU 1 (dedicated — security):** Identity attestation · Imprint trust gate · non-exportable keys · audit signing → managed by BEA_Identity and BEA_Imprint
+**Protected roles (always-first scheduling):** Identity attestation · Imprint trust gate · non-exportable keys · audit signing · Sprite domain verification · VPN auto-auth
 
-**Edge TPU 2 (time-sliced — intelligence, 10 continuous roles):**
+**All 10 roles time-sliced on single chip:**
 
 | Role | Pillar | What it does |
 |---|---|---|
@@ -908,7 +905,7 @@ Key files: `secretary_core.py` · `secretary_engine.py` · `secretary_scanner.py
 - Combined E[n] state = max urgency across all 10 roles — any escalation surfaces immediately
 - `triage_job(id, type, vram_gb)` — synchronous screening called before every GPU-Fi allocation
 - `notify_gpu_reset_start/end()` — BEA_Clear integration; Coral holds the light on during GPU discharge
-- Total continuous draw: ~4W (the cost of a phone charger)
+- Total continuous draw: ~2W constant (the cost of an LED bulb)
 
 ---
 
@@ -931,18 +928,25 @@ Key files: `hatch_compositor.py` · `hatch_engine.py` · `hatch_scanner.py` · `
 ---
 
 ### BEA_Aura_Developer_SDK — Console-as-Cloud App SDK
-**102 tests | `BEA_Aura_Developer_SDK/`**
+**134 tests | `BEA_Aura_Developer_SDK/` · v2.0.0**
 
-The developer SDK for building apps on the BEA Aura Console. Seven hardware modules exposed through a clean local API — audio, health, security, GPU, storage, identity, and events. Apps run locally; the Console is the cloud.
+The developer SDK for building apps on the BEA Aura Console. Nine hardware modules exposed through a clean local API — audio, health, security, GPU, storage, identity, events, Coral, and Heritage. Apps run locally; the Console is the cloud.
 
 Key files: `sdk_core.py` · `module_registry.py` · `offline_manager.py` · `pulse_client.py` · `imprint_client.py`
 
-- **7 hardware modules**: audio · health · shield · gpu · storage · identity · events
+- **9 hardware modules**: audio · health · shield · gpu · storage · identity · events · coral (NEW) · heritage (NEW)
+- **`bea_coral`**: read-only Coral Secretary health + TOPS status — REJECT when offline
+- **`bea_heritage`**: Heritage package query — list_mounted / get / current_suggestion / ember_state / on_level_advance
+- **`source_type` field** on all results: `"coral"` / `"gpu"` / `"software"` — app knows which inference path fired
+- **ANTICIPATORY channel** in `bea_events`: `on_anticipatory()` decorator with intent filter for pre-action hooks
+- **`Session.coral_verified`**: True when Coral TPU M.2 authenticated the session key
+- **`ConsoleInfo.coral`**: populated at connect time with Coral health snapshot
 - **Local scan + Console offload**: lightweight edge inference with full-resolution Console fallback
 - **Per-module offline degradation**: CACHED (serve last known value) · QUEUE (buffer and retry) · REJECT (hard fail)
 - **BEA Imprint integration**: hardware-backed biometric auth gate on any SDK method
 - **BEA_Pulse WebSocket**: real-time E[n] state subscriptions for reactive app UIs
-- Zero cloud dependency — the Console IS the cloud; apps connect to your hardware via BEA_Shield VPN
+- Hardware tiers: HOME = RTX 4060 Ti · PRO = RTX 4070 Ti Super · NAS = RTX 3090 Ti
+- Operator ◴ Air; zero cloud dependency — the Console IS the cloud; apps connect via BEA_Shield VPN
 
 ---
 
@@ -977,7 +981,7 @@ Key files: `voice_engine.py` · `voice_scanner.py` · `integration.py` · `coral
 ### BEA_Update — OTA Pillar Update Manager
 **57 tests | `BEA_Update/`**
 
-Signed over-the-air update delivery for all BEA_Aura_OS pillars. SHA-256 content integrity + Ed25519 signature verification. CRITICAL security patches bypass the BEA_Grid TOU schedule. Auto-rollback to last checkpoint on failed install.
+Signed over-the-air update delivery for all BEA_Aura_DDR4_OS pillars. SHA-256 content integrity + Ed25519 signature verification. CRITICAL security patches bypass the BEA_Grid TOU schedule. Auto-rollback to last checkpoint on failed install.
 
 Key files: `update_engine.py` · `update_schema.py` · `update_scanner.py` · `integration.py`
 
@@ -992,7 +996,7 @@ Key files: `update_engine.py` · `update_schema.py` · `update_scanner.py` · `i
 ### BEA_Plugin — Pillar Extension SDK
 **53 tests | `BEA_Plugin_SDK/`**
 
-The plugin architecture enabling third-party pillars to register into BEA_Aura_OS. Any module implementing `BEAPillar` ABC gains automatic Shell, Pulse, and Flow bridges — first-class platform citizens without modifying core code.
+The plugin architecture enabling third-party pillars to register into BEA_Aura_DDR4_OS. Any module implementing `BEAPillar` ABC gains automatic Shell, Pulse, and Flow bridges — first-class platform citizens without modifying core code.
 
 Key files: `plugin_core.py` · `plugin_registry.py` · `plugin_schema.py` · `integration.py`
 
@@ -1006,18 +1010,19 @@ Key files: `plugin_core.py` · `plugin_registry.py` · `plugin_schema.py` · `in
 ---
 
 ### BEA_4D_Audio — 4D Environmental Acoustics
-**`BEA_4D_Audio/`**
+**130 tests | `BEA_4D_Audio/` · v2.0.0**
 
-Environmental acoustics simulation with haptic controller synchronization for immersive gaming and VR audio.
+Coral-first environmental acoustics engine for immersive gaming and performance. Five subpackages cover S° scanning, BEA operator effects, Coral haptic gating, HRTF spatial audio, haptic sync, and room-scale E-Motion modulation.
 
-Key files: `audio_engine.py` · `sound_source.py` · `spatial_processor.py` · `reverb_zone.py` · `operator_effects.py` · `s_degree_scanner.py` · `haptic_sync.py`
+**v2.0.0 subpackages:** `core/` (SDegreeScanner · OperatorEffects · ElementalKits · BEALogic) · `coral/` (CoralSDegreeScanner · CoralHapticGate · AudioSpatialEMBER) · `spatial/` (HRTFProcessor · SpatialProcessor · ReverbZones) · `haptic/` (HapticPatternLibrary · HapticSync) · `room/` (RoomEMotionEngine)
 
-- S° scanning: maps frequencies (20 Hz–20 kHz) to BEA states
-- HRTF-personalized 3D spatial audio
-- GPU-accelerated ray-traced acoustics
-- 6 BEA operator acoustic effects in real time
-- VR controller haptic synchronization at sub-10 ms latency
-- Acoustic material properties: absorption, diffusion, reflection coefficients
+- **S° scanning**: maps frequencies 20 Hz–20 kHz to BEA states; Air operator ◴
+- **HRTF-personalized** 3D spatial audio with GPU-accelerated ray-traced acoustics
+- **Coral layer**: CoralSDegreeScanner + CoralHapticGate + AudioSpatialEMBER (EMBER bigrams ≥ 0.65)
+- **RoomEMotionAudioModulator**: scale = 0.5 + (e × 0.8) → [0.5, 1.3] room-reactive amplitude
+- **HapticPatternLibrary**: pattern library keyed per E-state; HapticController.BEA_EXCALIBUR profile
+- **6 BEA operator acoustic effects** in real time; 15 emergent combinations
+- Absolute imports required — no relative imports; tests add `BEA_4D_Audio/` to sys.path directly
 
 ---
 
@@ -1075,7 +1080,7 @@ On-device biometric intelligence — Coral-continuous monitoring, personal basel
 ---
 
 ### BEA_Aura_Physiological_Duress_Detection_System — Silent Coercion Detection
-**7 tests | `BEA_Aura_Physiological_Duress_Detection_System/`**
+**29 tests | `BEA_Aura_Physiological_Duress_Detection_System/` · v2.0.0**
 
 Silent coercion detection during authentication. Detects physiological duress (elevated stress, abnormal HRV patterns) and responds without revealing detection to the coercer — granting access while silently dispatching emergency alerts.
 
@@ -1337,6 +1342,34 @@ Key files: `backstage_engine.py` · `ember_pipeline.py` · `ei_detection.py` · 
 
 ---
 
+### BEA_Horizon — Sovereign External LLM Gateway
+**73 tests | `BEA_Horizon/` · v1.0.0**
+
+The Console's outbound AI proxy. Apps request external AI inference through BEA_Horizon — the Console holds the API keys, inspects every prompt via Coral TPU before egress, enforces per-provider budget limits, and logs every call to BEA_Ledger. No app ever touches a raw API key.
+
+```
+APP → BEA_Horizon → CoralHorizonGateRole (PII scan) → AutoRouter
+                                                          ├── Amplify (local first)
+                                                          └── Provider (Anthropic / OpenAI / Gemini / Mistral / Generic)
+```
+
+Key files: `horizon_engine.py` · `egress_policy.py` · `router.py` · `coral/horizon_gate_role.py` · `vault_bridge.py` · `ledger_bridge.py` · `providers/`
+
+- **CoralHorizonGateRole**: priority 3, 8% TOPS — outbound PII scanner; 6 pattern categories: health_value · financial_figure · biometric_ref · vault_record_id · coordinate_precise · heritage_id
+- **EgressPolicy**: per-pattern action config — STRIP (redact value) · FLAG (pass + alert) · BLOCK (reject call)
+- **Default policy**: health_value → BLOCK · financial_figure → STRIP · biometric_ref → BLOCK · vault_record_id → BLOCK · coordinate_precise → STRIP · heritage_id → STRIP
+- **AutoRouter**: prefer local (Amplify) first when quality ≥ 0.75; falls back to provider when below threshold
+- **5 providers**: Anthropic · OpenAI · Gemini · Mistral · GenericRest (LM Studio / Ollama / vLLM / llama.cpp)
+- **Budget gates**: daily + monthly spend caps; warning emitted at 80% via `horizon.budget_warning` Pulse topic
+- **3 Pulse topics**: `horizon.call_complete` · `horizon.gate_blocked` · `horizon.budget_warning`
+- **HorizonVaultBridge**: API keys stored in BEA_Vault, never in environment variables or app config
+- **HorizonLedgerBridge**: every call recorded — provider, model, tokens in/out, cost, gate action
+- **HorizonIdentityBridge**: permission check before any egress — `horizon_read` permission required
+- `simulate=True` throughout; all adapters and bridges duck-typed; zero hard pillar imports
+- The EI Machine Principle: the Console reads the prompt before the cloud does — intelligence runs here first
+
+---
+
 ### BEA_Motion_Body — Full-Body Motion Capture
 **`BEA_Motion_Body/`**
 
@@ -1402,8 +1435,8 @@ Key files: `but_framework.py` · `world_registry.py` · `temporal_cache.py` · `
 
 ---
 
-### BEA_Lumin_Pi — TV & Speaker Satellite
-**311 tests | `BEA_Lumin_Pi/`**
+### BEA_Lumin_Stream — TV & Speaker Satellite
+**311 tests | `BEA_Lumin_Stream/`**
 
 Raspberry Pi-based satellite node that turns any TV and speaker system into a BEA-aware display terminal. Connects to the BEA Aura Console over LAN, receives E-motion state from BEA_Pulse, and adapts its audio-visual output accordingly. Operates in 7 auto-selected modes based on detected LAN services.
 
@@ -1534,7 +1567,7 @@ The digital eye that gives AI better focus.
 
 ## Execution Phases
 
-BEA_Aura_OS is a platform that evolves. Launch order matters.
+BEA_Aura_DDR4_OS is a platform that evolves. Launch order matters.
 
 ```
 PHASE 1A — Fastest traction:
@@ -1562,7 +1595,7 @@ Not all at once. The platform evolves into everything. But it starts with one th
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    BEA_Aura_OS                          │
+│                    BEA_Aura_DDR4_OS                          │
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
 │  BEA_Shell (unified CLI)          BEA_Aura_Orchestrator │
@@ -1587,7 +1620,7 @@ Not all at once. The platform evolves into everything. But it starts with one th
 │  Foundation: BEA_Core — BEA™ E-motion Framework        │
 │  BEAScanner base · 32 states · S° · L° · E°            │
 │                                                         │
-│  Satellites: BEA_Lumin_Pi (TV/speaker) ←── LAN         │
+│  Satellites: BEA_Lumin_Stream (TV/speaker) ←── LAN         │
 │                                                         │
 │  Temporal W axis: BEA_Worldshift (BEA Universal Time)  │
 │    Moon · Planet · Sun → TemporalCache + Epoch Ledger  │
@@ -1603,8 +1636,9 @@ Context:  BEA_Context_Bridge ↔ Claude Desktop (MCP server)
 Thermal:  BEA_Grid ClearGridAdapter → BEA_Clear (GPU+RAM lifecycle reset)
 Temporal: BEA_Worldshift ↔ BEA_Treehouse_UI (Worldflow 3D/4D scene)
 Reality:  BEA_4D_Shop ↔ GPU-Verse (object persistence + economy)
-Secretary: BEA_Secretary Coral TPU ↔ all pillars (10 continuous roles · 4W · always-on)
+Secretary: BEA_Secretary Coral TPU ↔ all pillars (12 roles · 2 TPU lanes · ~4W always-on)
 Interface: BEA_Treehouse_UI ↔ BEA_Pulse (WebSocket bridge · port 8765)
+LLM Proxy: BEA_Horizon → CoralHorizonGateRole (PII scan) → AutoRouter → Amplify | Provider
 ```
 
 ### BEAScanner Contract
@@ -1704,40 +1738,42 @@ bea ledger summary   # Income and tax summary
 | BEA_Sprite_Studio | 88 | Blank Sprite SDK app — StudioValidator (7 checks), AssetConverter, OwnerSetupWizard state machine |
 | BEA_SpriteCache | 43 | Predictive asset prefetch, TinyAI session learning, Console handoff |
 | BEA_Cache | 78 | NVMe tiering (hot/warm/cold), priority eviction, atomic SHA-256 writes; heritage=3 module |
-| BEA_AI | 100 | TinyAI, Console AI, DLC, transitions, fusion, context, integration; AI Heritage Protocol; DLCSyncBridge |
-| BEA_Amplify | 118 | Local inference extension — llama.cpp RPC; host+console 40GB pool; 5 strategies (E[16]–E[24]); Coral TPU M.2; mDNS |
+| BEA_AI | 195 | TinyAI+Coral+ConsoleAI 3-layer arch v2.0.0; coral/(AISecretaryManager+HandoffTrustGate+BiometricContextProcessor); ember/(3 EMBER bridges, cascade conf≥0.65/min2); HandoffResult enum + receive_v2(); CoralBiometricBridge (CPU fallback); FusionBridge; DLCSyncBridge; 5 BEAIBroadcaster factories |
+| BEA_Amplify | 148 | Local inference extension v2.0.0 — llama.cpp RPC; host+console 40GB pool; 5 strategies (E[16]–E[24]); v2 Coral: CoralAmplifySignalMonitor (VRAM≥0.75/Thermal thresholds) + AmplifyRebalanceEMBER (RISING only, conf=0.78) + TPUCoordinatorV2 (4W budget); AmplifyBroadcaster/PulseAdapter/LookoutAmplifyBridge; mDNS |
 | BEA_Speakerbox | 84 | Voice-over production, S° vocal scanning, BEA operator effects |
 | BEA_Context_Bridge | 91 | Emotional memory engine, BEU state transitions, MCP server |
 | BEA_Notify | 67 | Push notifications — DASHBOARD / TOAST / MOBILE / EMERGENCY; CRITICAL gate |
 | BEA_Voice | 230 | On-device voice identity + commands — voice biometric, TinyAI intent, spoken synthesis, duress E[28+]; 6 v2 subpackages |
 | BEA_Update | 57 | OTA pillar update manager — SHA-256 + Ed25519, BEA_Grid scheduling, auto-rollback |
 | BEA_Plugin | 53 | Pillar Extension SDK — BEAPillar base class, shell/pulse/flow bridges, entry-point discovery |
-| BEA_Lumin_Pi | 311 | TV/speaker satellite — 7 LAN modes, hardware validator, system health |
+| BEA_Lumin_Stream | 311 | TV/speaker satellite — 7 LAN modes, hardware validator, system health |
 | BEA_Worldshift | 63 | Temporal dimension engine — BUTTier, WorldRegistry, TemporalCache (Moon/Planet/Sun), WorldshiftEngine (< 400ms), WorldshiftBridge |
 | BEA_Spectacle | 122 | Handheld resonance scanner — 5 bands (EM/Acoustic/Thermal/Bioimpedance/E-Motion CSI), BandCombiner (⊕ 4-step), AnomalyDetector (≠ Diverge, 3-frame+2-band), TrustGate (< 5ms), EFRI 7.83 Hz, SpectacleBand wearable, Ambient room-scale mode, MRI bridge |
 | BEA_4D_Shop | 127 | GPU-Verse Workshop — BEA Physics, Gear System™, EmotionBindingSet, WAxisTracker, economy, SpriteTrainer |
 | BEA_Clinical_Suite | 125 | Synchronized Resonance Documentation — Director + Imager on single Console timestamp; OmegaLevel CLEAR/MONITOR/FLAG/PRIORITY; FrameMerger (< 13ms); HighlightDetector; sovereign patient data |
 | BEA_Aura_Orchestrator | TS | GPU containers, VRAM slicing, WireGuard intake, subsystem registry |
-| BEA_Aura_Developer_SDK | 102 | Console-as-Cloud app SDK — 7 modules; offline degradation (CACHED/QUEUE/REJECT); BEA Imprint + BEA_Pulse WS |
+| BEA_Aura_Developer_SDK | 134 | Console-as-Cloud app SDK v2.0.0 — 9 modules (incl. coral+heritage); source_type field; ANTICIPATORY channel; Session.coral_verified; ConsoleInfo.coral; hardware tiers HOME/PRO/NAS; operator ◴ Air; offline degradation (CACHED/QUEUE/REJECT) |
 | BEA_Lookout | 94 | LAN security intelligence — GeoFence (Haversine) + AccessController + CameraMonitor + GpuWatcher + BreachDetector |
 | BEA_Health | 154 | Biometric intelligence v2.0 — Coral continuous monitoring; BaselineEngine (14-session); EMBER trajectories (illness/overtraining/recovery/sleep_debt); Physiological Duress Detection™ (0.82 threshold); Vitals_Core Heritage INITIATE→MASTER; 5 device bridges; FHIR export; HealthVault; 8 cross-pillar bridges |
-| BEA_Aura_Physiological_Duress_Detection_System | 7 | Silent coercion detection — 14-day HRV baseline; silent 911 + evidence vault; BEA_Identity+Shield+Vault |
+| BEA_Aura_Physiological_Duress_Detection_System | 29 | Silent coercion detection v2.0.0 — 14-day personal ML baseline; context-aware HRV classification during auth window; silent 911 dispatch + AES-256-GCM evidence vault; integrates BEA_Identity+Shield+Vault |
 | BEA_Caliburn | 104 | Physical controller + Firefly Sprite — one-game law enforced; GameSwitcher prepare→busy→execute→commit |
 | BEA_Excalibur | 125 | Dual-mode controller — joined 3D gamepad / split 4D 6DoF; 20-input BEATEK vocab; FP biometric; Hall effect |
 | BEA_Motion_Body_macOS | 66 | Apple Silicon motion tracking — AVFoundation+Vision+CoreML+Metal; 84 landmarks; 6DoF IMU; EMBER |
 | BEA_ShoeString | 86 | Smartphone WAN gateway (ShoeString™) — 4 tiers (FULL/DEGRADED/LOCAL/BATTERY); ShoeStringContextBridge (4 opt-out channels); BatteryAwareManager; TierEngine E[n] LED; patent 141-142 |
 | BEA_Resonance_Imager | 290 | Water Resonance Photography v2.1 — 5 bands (EM/Acoustic/Thermal/EIT/E-Motion CSI); 4-step ⊕ fusion; PhasedArray beamforming; MedicalSprite TrustGate; DICOM export |
-| BEA_AI_Heritage_System | 152 | Portable AI skill packages on Sprite AI_HERITAGE partition; 4 files (profile/rules/experience/sig); HeritageEngine; tiers INITIATE→MASTER; SHA-512 hash chain; RulesExecutor confidence gates; EMBERBridge bigram prediction |
-| BEA_AI_Heritage_SDK | 118 | Heritage authoring + client SDK; BEAHeritageFacade singleton; HeritagePackageAuthor+Certifier+SpriteWriter; marketplace listing lifecycle; bea-heritage CLI; pyyaml required |
+| BEA_AI_Heritage_System | 156 | Portable AI skill packages on Sprite AI_HERITAGE partition v2.0.0; 4 files (profile/rules/experience/sig); HeritageEngine; tiers INITIATE→MASTER (Title case); SHA-512 hash chain; RulesExecutor (EXECUTE≥0.91/SUGGEST 0.72-0.90/DEFER<0.72); EMBERBridge (_MIN_PATTERN_FREQ=2, conf=0.65); HeritageEvolution delta weights; ExperienceRecorder |
+| BEA_AI_Heritage_SDK | 125 | Heritage authoring + client SDK; BEAHeritageFacade singleton; HeritagePackageAuthor+Certifier+SpriteWriter; marketplace listing lifecycle (PENDING_REVIEW/LIVE/REJECTED); bea-heritage CLI (12 commands); pyyaml required; coral_verified=false in simulate |
 | BEA_Hatch | 120 | Front-panel integrated display — HDMI 2.0 GPU render + USB touch; PSLEDState (9 states, priority queue); HatchEngine; HatchCompositor; ERROR+EJECTING+LOCKED broadcast; IDLE suppressed; 11 event subscriptions |
 | BEA_Switchboard | 87 | Tablet companion app — LAN-first (< 15ms); 4 tiers (LAN/SHOESTRING/DEGRADED/LOCAL); 8 panels incl. exclusive SECRETARY TPU role view; SwitchboardBroadcaster suppresses OFF |
 | BEA_Backstage | 76 | AI/EI Performance Companion v1.0.0 — EMBER Pipeline™ (hesitation 100-500ms ahead); 4D Audio support delivery; 7 genres; Backstage_Producer™ Heritage; BackstageScanner (not BEAScanner subclass); IDLE suppressed |
-| **Total** | **4,815** | **All passing** |
+| **Total** | **5,213** | **All passing** |
 | BEA_Nexus | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; 350M+ monitor gamers, zero headset |
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
 | BEATEK Hover | — | Split-architecture wireless camera — lightweight sensor head + intelligent base; BEA_Director HOVER role integration |
 | BEA_Clear | — | Smart dual-resource lifecycle system v2.0 — GPU PCIe reset + parallel RAM compaction; ResourceSequencer; NVMe Swap Bridge |
-| BEA_Secretary | 39 | Coral Dual Edge TPU continuous intelligence — 10 always-on roles; wake word, blind window, signal routing, job triage, power/cache/scene/temporal inference |
+| BEA_4D_Audio | 130 | 4D Environmental Acoustics v2.0.0 — Coral-first; 5 subpkgs (core/coral/spatial/haptic/room); CoralSDegreeScanner+CoralHapticGate+AudioSpatialEMBER (EMBER ≥0.65); RoomEMotionAudioModulator scale=[0.5,1.3]; HapticController.BEA_EXCALIBUR; Air operator ◴; absolute imports |
+| BEA_Horizon | 73 | Sovereign External LLM Gateway v1.0.0 — Console-as-AI-proxy; CoralHorizonGateRole (priority 3, 8% TOPS, 6 PII patterns); EgressPolicy (STRIP/FLAG/BLOCK); AutoRouter (Amplify-first, quality≥0.75); 5 providers (Anthropic/OpenAI/Gemini/Mistral/GenericRest); HorizonVaultBridge+LedgerBridge+IdentityBridge+PulseBridge; budget gates (80% warn); 3 Pulse topics |
+| BEA_Secretary | 44 | Coral Single Edge TPU continuous intelligence v2.0.0 — 12 roles; TPU1=heritage_trust_gate (ECDSA P-384, 5% TOPS, never preempted) + security/identity; TPU2=time-sliced 11 roles (wake_word/blind_window/signal_routing/network_watch/health_baseline/job_triage/power_quality/cache_scoring/scene_confidence/temporal_tier/ember_processor); cycle ~550ms; combined_e_state=max; ~4W always-on |
 | BEA_Treehouse_UI | — | Main Console UI v1.2.0 — wood+electricity aesthetic; Worldflow Motion Language; BEA_Pulse WebSocket bridge; Vite |
 
 ---
@@ -1745,7 +1781,7 @@ bea ledger summary   # Income and tax summary
 ## Project Structure
 
 ```
-BEA_Aura_OS/
+BEA_Aura_DDR4_OS/
 ├── README.md
 ├── LICENSE
 ├── Makefile
@@ -1783,7 +1819,7 @@ BEA_Aura_OS/
 ├── BEA_GPU_Fi/                 # GPU rental income
 ├── BEA_Hover/                  # Split-architecture wireless camera (hardware concept + Director integration)
 ├── BEA_Clear/                  # Smart dual-resource lifecycle — GPU reset + RAM compaction (v2.0)
-├── BEA_Secretary/              # Coral Dual Edge TPU — 10 continuous intelligence roles (~4W always-on)
+├── BEA_Secretary/              # Coral Single Edge TPU — 10 continuous intelligence roles (~2W always-on)
 ├── BEA_Hatch/                  # Front-panel integrated display — PSLEDState priority queue, HatchEngine (120 tests)
 ├── BEA_Treehouse_UI/           # Main Console UI — Vite + Worldflow + BEA_Pulse WebSocket bridge
 ├── BEA_Switchboard/            # Tablet companion app — 4 tiers, 8 panels, SECRETARY TPU role view (87 tests)
@@ -1833,7 +1869,20 @@ BEA_Aura_OS/
 ├── BEA_Voice/                  # Voice commands ("Hey BEA" wake word)
 ├── BEA_Update/                 # OTA update manager (SHA-256 + Ed25519, auto-rollback)
 ├── BEA_Plugin_SDK/             # Pillar Extension SDK (BEAPillar ABC, entry-point discovery)
-├── BEA_Lumin_Pi/               # TV/speaker satellite (7 modes, hardware validator)
+├── BEA_Horizon/                # Sovereign external LLM gateway — Console AI proxy (v1.0.0)
+│   ├── horizon_engine.py       #   HorizonEngine — complete, identity, gate, route, log
+│   ├── egress_policy.py        #   EgressPolicy — per-pattern STRIP/FLAG/BLOCK config
+│   ├── router.py               #   AutoRouter — Amplify-first local/provider decision
+│   ├── coral/                  #   CoralHorizonGateRole — priority 3, 8% TOPS, 6 PII patterns
+│   ├── providers/              #   Anthropic · OpenAI · Gemini · Mistral · GenericRest adapters
+│   ├── vault_bridge.py         #   HorizonVaultBridge — API keys in BEA_Vault only
+│   ├── identity_bridge.py      #   HorizonIdentityBridge — horizon_read permission gate
+│   ├── ledger_bridge.py        #   HorizonLedgerBridge — per-call cost + usage summary
+│   ├── pulse_bridge.py         #   HorizonPulseBridge — 3 Pulse topics + budget warning
+│   ├── integration.py          #   HorizonPulseAdapter + factory helpers
+│   ├── demo_standalone.py      #   Runnable demo (simulate=True)
+│   └── tests/                  #   73 tests
+├── BEA_Lumin_Stream/               # TV/speaker satellite (7 modes, hardware validator)
 ├── BEA_ShoeString/             # Smartphone WAN gateway — ShoeString™ VPN (4 tiers, WireGuard, BatteryAware, E[n] LED)
 ├── BEA_Worldshift/             # Temporal dimension engine — W axis (BUTTier/WorldRegistry/TemporalCache/Engine/Bridge)
 │   ├── but_framework.py        #   BUTTier · BUTFrame · BUTClock (Moon=1s, Planet=60s, Sun=3600s)
@@ -1928,14 +1977,14 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 ## Registered IP Terms
 
 ### Platform & OS
-- BEA_Aura_OS™
+- BEA_Aura_DDR4_OS™
 - BEA Reality Engine™
 - Console as Cloud™
 - Smart Cache Device™
 - BEA Smart Cache™
 - Behavioral Prefetch™
 - E[n] Universal Language™
-- BEA_Aura_OS Four Life Pillars™
+- BEA_Aura_DDR4_OS Four Life Pillars™
 - Binary E-motion Arithmetic™
 - Household Computing Sovereignty™
 
@@ -1952,7 +2001,7 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 - BEAResourceSequencer™
 - BEA Clear™
 - Smart Dual-Resource Lifecycle System™
-- Coral Dual Edge TPU via SATA™
+- Coral Single Edge TPU · M.2 Key-M Direct Seat™
 
 ### BEA_Secretary™ — Always-On Intelligence
 - BEA_Secretary™
@@ -1963,7 +2012,7 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 - BEA_Secretary Signal Routing™
 - BEA_Secretary Cache Scoring™
 - BEA_Secretary Temporal Inference™
-- Dual Edge TPU Workload Division™
+- Single Edge TPU Time-Slice Schedule™
 - "The Coral is the secretary. The NVIDIA GPU is the executive."™
 
 ### Hardware — Peripherals
@@ -2040,6 +2089,11 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 - Portable AI Skill Package Protocol™
 - Heritage Authoring Kit™
 - AI Heritage Evolution Protocol™
+- BEA_Horizon™
+- Console-as-AI-Proxy™
+- Sovereign LLM Gateway™
+- CoralHorizonGateRole™
+- EI Machine Principle™ ("The Console reads the prompt before the cloud does.")
 
 ### Hardware — Console UI & Control
 - BEA_Hatch™
