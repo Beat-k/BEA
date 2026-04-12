@@ -882,15 +882,21 @@ RESET PIPELINE (v2.0 PARALLEL strategy):
 ---
 
 ### BEA_Secretary — Coral Single Edge TPU Continuous Intelligence Layer
-**`BEA_Secretary/` · v1.0.0**
+**`BEA_Secretary/` · v2.0.0**
 
-The always-on intelligence layer. The Coral Single Edge TPU (4 TOPS · ~2W constant) never sleeps — it time-slices 10 lightweight inference roles across one chip. Protected roles (identity, heritage, shield, duress) are always scheduled first. The NVIDIA GPU stays free for GPU-Fi, LLM inference, and gaming.
+The always-on intelligence layer. The Coral Single Edge TPU (4 TOPS · ~2W constant) never sleeps — 12 roles on one chip: 1 event-driven protected role + 11 time-sliced standard roles. The NVIDIA GPU stays free for GPU-Fi, LLM inference, and gaming.
 
 Key files: `secretary_core.py` · `secretary_engine.py` · `secretary_scanner.py` · `secretary_broadcaster.py`
 
 **Protected roles (always-first scheduling):** Identity attestation · Imprint trust gate · non-exportable keys · audit signing · Sprite domain verification · VPN auto-auth
 
-**All 10 roles time-sliced on single chip:**
+**1 protected event-driven role (preempts all when active):**
+
+| Role | Pillar | What it does |
+|---|---|---|
+| `heritage_trust_gate` | BEA_AI_Heritage_System | ECDSA P-384 cert verification on every Sprite Heritage mount — 5% TOPS, never preempted |
+
+**11 standard roles time-sliced on single chip (~550ms cycle):**
 
 | Role | Pillar | What it does |
 |---|---|---|
@@ -904,8 +910,9 @@ Key files: `secretary_core.py` · `secretary_engine.py` · `secretary_scanner.py
 | `cache_scoring` | BEA_Cache | Learned eviction scoring — replaces LRU heuristics |
 | `scene_confidence` | BEA_Director | Scene pre-processor — GPU activates only for actual cut operations |
 | `temporal_tier` | BEA_Worldshift | Real-time W-axis tier inference at hardware speed |
+| `ember_processor` | BEA_AI_Heritage_System | EMBER bigram prediction — fires ANTICIPATORY events 100–500ms ahead |
 
-- Combined E[n] state = max urgency across all 10 roles — any escalation surfaces immediately
+- Combined E[n] state = max urgency across all 12 roles — any escalation surfaces immediately
 - `triage_job(id, type, vram_gb)` — synchronous screening called before every GPU-Fi allocation
 - `notify_gpu_reset_start/end()` — BEA_Clear integration; Coral holds the light on during GPU discharge
 - Total continuous draw: ~2W constant (the cost of an LED bulb)
@@ -913,11 +920,11 @@ Key files: `secretary_core.py` · `secretary_engine.py` · `secretary_scanner.py
 ---
 
 ### BEA_Hatch — Front-Panel Integrated Display
-**120 tests | `BEA_Hatch/`**
+**141 tests | `BEA_Hatch/`**
 
 The HDMI 2.0 touchscreen face of the BEA Aura Console. Renders GPU status, thermal state, network health, GPU-Fi earnings, and security alerts on the physical panel — with a 9-state PS power LED priority queue that always tells you what the console is doing at a glance.
 
-Key files: `hatch_compositor.py` · `hatch_engine.py` · `hatch_scanner.py` · `hatch_broadcaster.py` · `hatch_event_consumer.py`
+Key files: `hatch_engine.py` · `hatch_compositor.py` · `hatch_models.py` · `integration.py` (HatchScanner + HatchBroadcaster + HatchEventConsumer)
 
 - **PSLEDState** (9 states, priority 1=highest): ERROR · EJECTING · WRITING · READING · PROCESSING · LOCKED · SETUP · IDLE · OFF
 - **HatchCompositor**: multi-state priority queue — highest-priority active state wins; OFF never cleared
@@ -1639,7 +1646,7 @@ Context:  BEA_Context_Bridge ↔ Claude Desktop (MCP server)
 Thermal:  BEA_Grid ClearGridAdapter → BEA_Clear (GPU+RAM lifecycle reset)
 Temporal: BEA_Worldshift ↔ BEA_Treehouse_UI (Worldflow 3D/4D scene)
 Reality:  BEA_4D_Shop ↔ GPU-Verse (object persistence + economy)
-Secretary: BEA_Secretary Coral TPU ↔ all pillars (12 roles · 2 TPU lanes · ~4W always-on)
+Secretary: BEA_Secretary Coral TPU ↔ all pillars (12 roles · 1 chip · ~2W always-on)
 Interface: BEA_Treehouse_UI ↔ BEA_Pulse (WebSocket bridge · port 8765)
 LLM Proxy: BEA_Horizon → CoralHorizonGateRole (PII scan) → AutoRouter → Amplify | Provider
 ```
@@ -1718,6 +1725,32 @@ bea ledger summary   # Income and tax summary
 
 ---
 
+
+---
+
+## BEA Motion Protocol™
+
+Every state transition in BEA_Aura_CSE_OS is an operator transition — and every operator transition has a motion. There are no loading screens. There are no hidden gaps. The system tells you what kind of change is happening (the operator) and when it will be done (Temporal + EMBER).
+
+```
+⊕ Fire     → Burst (80–200ms)      — Something was created that did not exist before
+⊖ Water    → Flow (200–600ms)      — One signal yields to another — directional, no hard cut
+◴ Air      → Rotation (continuous) — An active process is running — loops until resolved
+⨀ Solar    → Collapse (150–400ms)  — All conditions are simultaneously met
+≠ Ether    → Phase shift (100–300ms)— Something outside the predicted pattern occurred
+⧖ Temporal → Pulse (EMBER-driven)  — Synchronizing — the result arrives on the beat
+```
+
+EMBER (`ember_processor` Coral role) predicts state resolution 100–500ms ahead and fires an ANTICIPATORY event on BEA_Pulse. Temporal adjusts its next pulse to land at `predicted_resolution_at`. The transition resolves on the beat — not after it.
+
+The Motion Protocol is defined in `BEA_Core/BEA_Motion_Protocol_README.md` and implemented across:
+- `BEA_Core/motion.py` — `MotionSpec`, `OPERATOR_MOTION_MAP`, `MotionType`
+- `BEA_Hatch` — `PSLED_MOTION_MAP`, panel transition choreography
+- `BEA_Pulse` — ANTICIPATORY channel, `motion_hint` field
+- `BEA_Secretary` — `ember_processor` fires `predicted_resolution_at`
+- `BEA_Treehouse_UI` — branch animations: Fire=flare, Water=dissolve, Air=sway
+- All pillar READMEs — per-event operator tables
+
 ## Test Summary
 
 | Module | Tests | Domain |
@@ -1771,7 +1804,7 @@ bea ledger summary   # Income and tax summary
 | BEA_Backstage | 76 | AI/EI Performance Companion v1.0.0 — EMBER Pipeline™ (hesitation 100-500ms ahead); 4D Audio support delivery; 7 genres; Backstage_Producer™ Heritage; BackstageScanner (not BEAScanner subclass); IDLE suppressed |
 | BEA_4D_Audio | 130 | 4D Environmental Acoustics v2.0.0 — Coral-first; 5 subpkgs (core/coral/spatial/haptic/room); CoralSDegreeScanner+CoralHapticGate+AudioSpatialEMBER (EMBER ≥0.65); RoomEMotionAudioModulator scale=[0.5,1.3]; HapticController.BEA_EXCALIBUR; Air operator ◴; absolute imports |
 | BEA_Horizon | 73 | Sovereign External LLM Gateway v1.0.0 — Console-as-AI-proxy; CoralHorizonGateRole (priority 3, 8% TOPS, 6 PII patterns); EgressPolicy (STRIP/FLAG/BLOCK); AutoRouter (Amplify-first, quality≥0.75); 5 providers (Anthropic/OpenAI/Gemini/Mistral/GenericRest); HorizonVaultBridge+LedgerBridge+IdentityBridge+PulseBridge; budget gates (80% warn); 3 Pulse topics |
-| BEA_Secretary | 44 | Coral Single Edge TPU continuous intelligence v2.0.0 — 12 roles; TPU1=heritage_trust_gate (ECDSA P-384, 5% TOPS, never preempted) + security/identity; TPU2=time-sliced 11 roles (wake_word/blind_window/signal_routing/network_watch/health_baseline/job_triage/power_quality/cache_scoring/scene_confidence/temporal_tier/ember_processor); cycle ~550ms; combined_e_state=max; ~4W always-on |
+| BEA_Secretary | 44 | Coral Single Edge TPU continuous intelligence v2.0.0 — 12 roles; heritage_trust_gate (ECDSA P-384, 5% TOPS, event-driven, never preempted) + 11 time-sliced roles (wake_word/blind_window/signal_routing/network_watch/health_baseline/job_triage/power_quality/cache_scoring/scene_confidence/temporal_tier/ember_processor); cycle ~550ms; combined_e_state=max; ~2W always-on |
 | **Total** | **5,486** | **All passing** |
 | BEA_Nexus | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; 350M+ monitor gamers, zero headset |
 | BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
@@ -1828,8 +1861,8 @@ BEA_Aura_CSE_OS/
 ├── BEA_GPU_Fi/                 # GPU rental income
 ├── BEA_Hover/                  # Split-architecture wireless camera (hardware concept + Director integration)
 ├── BEA_Clear/                  # Smart dual-resource lifecycle — GPU reset + RAM compaction (v2.0)
-├── BEA_Secretary/              # Coral Single Edge TPU — 12 continuous intelligence roles (~4W always-on)
-├── BEA_Hatch/                  # Front-panel integrated display — PSLEDState priority queue, HatchEngine (120 tests)
+├── BEA_Secretary/              # Coral Single Edge TPU — 12 continuous intelligence roles (~2W always-on)
+├── BEA_Hatch/                  # Front-panel integrated display — PSLEDState priority queue, HatchEngine (141 tests)
 ├── BEA_Treehouse_UI/           # Main Console UI — Vite + Worldflow + BEA_Pulse WebSocket bridge
 ├── BEA_Switchboard/            # Tablet companion app — 4 tiers, 8 panels, SECRETARY TPU role view (87 tests)
 ├── BEA_Nexus/                  # Gaming immersion platform (formerly BEA_Fusion)
