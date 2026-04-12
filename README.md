@@ -1,4 +1,4 @@
-# BEA_Aura_DDR4_OS
+# BEA_Aura_CSE_OS
 
 > **Console as Cloud™ — The Reality Engine of the BEA Aura Console**
 
@@ -7,17 +7,17 @@
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
 **Revision:** v2.3 · April 2026
-**Tests:** 5,213 passing across 48 pillar modules
+**Tests:** 5,486 passing across 51 pillar modules
 
 ---
 
-## What Is BEA_Aura_DDR4_OS?
+## What Is BEA_Aura_CSE_OS?
 
-BEA_Aura_DDR4_OS is not just an operating system.
+BEA_Aura_CSE_OS is not just an operating system.
 
-An OS manages resources. BEA_Aura_DDR4_OS does that — but underneath the resource management is something more fundamental. A unified signal-based framework where every domain of the system speaks the same language, operates under the same physics, and evolves under the same intelligence.
+An OS manages resources. BEA_Aura_CSE_OS does that — but underneath the resource management is something more fundamental. A unified signal-based framework where every domain of the system speaks the same language, operates under the same physics, and evolves under the same intelligence.
 
-> **BEA_Aura_DDR4_OS is a Reality Engine.**
+> **BEA_Aura_CSE_OS is a Reality Engine.**
 
 ```
 Compute    =  Matter        (GPU cycles are the substance of the system)
@@ -49,13 +49,13 @@ Storage adapts.
 Compute responds.
 ```
 
-The Smart Cache is the bridge between memory and intelligence. When memory becomes intelligent — when the system knows what matters without being told — the boundary between storage and cognition dissolves. That is what BEA_Aura_DDR4_OS achieves.
+The Smart Cache is the bridge between memory and intelligence. When memory becomes intelligent — when the system knows what matters without being told — the boundary between storage and cognition dissolves. That is what BEA_Aura_CSE_OS achieves.
 
 ---
 
 ## The E[n] Universal Language
 
-The single most important architectural decision in BEA_Aura_DDR4_OS is that every domain speaks the same language.
+The single most important architectural decision in BEA_Aura_CSE_OS is that every domain speaks the same language.
 
 ```
 Gaming intensity     =  E[n]
@@ -105,7 +105,7 @@ The validation tool is **BEA_Multimeter** (`BEA_Multimeter/bea_multimeter.html`)
 
 ## The Four Life Pillars
 
-BEA_Aura_DDR4_OS coordinates four sovereign domains through BEA Logic:
+BEA_Aura_CSE_OS coordinates four sovereign domains through BEA Logic:
 
 ```
 GAMING          ←  BEA Nexus · 4D Audio · E-Motion gaming intelligence
@@ -172,7 +172,7 @@ LAYER 2  →  Orchestrator               Resource control
              BEA_Pulse event bus
              E[n] state routing
 
-LAYER 1  →  BEA_Aura_DDR4_OS               Reality Engine
+LAYER 1  →  BEA_Aura_CSE_OS               Reality Engine
              BEA_Core signal-physics
              Four Life Pillars
              Smart Cache intelligence
@@ -247,7 +247,7 @@ Both deliver the same 10 GbE throughput. BEATEK does not dictate the medium — 
 
 No consumer gaming console has shipped 10 GbE SFP+ as standard. BEATEK is introducing this in the gaming industry through the BEA Aura Console.
 
-When a gaming company is ready to build 4D-capable hardware — a console that can run BEA_Aura_DDR4_OS licensed content, GPU-Verse sessions, or W-axis multiplayer — 10 GbE SFP+ is the minimum network floor the architecture requires. The BEA Aura Console establishes that floor now, ahead of any licensing deal.
+When a gaming company is ready to build 4D-capable hardware — a console that can run BEA_Aura_CSE_OS licensed content, GPU-Verse sessions, or W-axis multiplayer — 10 GbE SFP+ is the minimum network floor the architecture requires. The BEA Aura Console establishes that floor now, ahead of any licensing deal.
 
 Every BEA Aura Console owner is operating on infrastructure that the next generation of gaming is being built toward. That is not a coincidence — it is the foundation.
 
@@ -445,7 +445,7 @@ Key files: `relay_node.py` · `relay_sync.py` · `relay_schema.py` · `relay_sca
 ### BEA_Flow — Cross-Pillar Workflow Automation
 **50 tests | `BEA_Flow/`**
 
-Native IFTTT for BEA_Aura_DDR4_OS. Define trigger/action chains across any combination of pillars, powered by BEA_Pulse events.
+Native IFTTT for BEA_Aura_CSE_OS. Define trigger/action chains across any combination of pillars, powered by BEA_Pulse events.
 
 Key files: `flow_schema.py` · `flow_engine.py` · `flow_library.py` · `flow_scanner.py` · `integration.py`
 
@@ -507,7 +507,7 @@ Key files: `grid_engine.py` · `power_sampler.py` · `rate_scheduler.py` · `gri
 ### BEA_Shell — Unified CLI
 **67 tests | `BEA_Shell/`**
 
-Single `bea` command routing to all BEA_Aura_DDR4_OS pillar subcommands. Each pillar self-registers through PillarAdapter subclasses.
+Single `bea` command routing to all BEA_Aura_CSE_OS pillar subcommands. Each pillar self-registers through PillarAdapter subclasses.
 
 Key files: `shell_engine.py` · `shell_registry.py` · `shell_schema.py` · `shell_coloring.py` · `cli.py` · `integration.py`
 
@@ -559,7 +559,7 @@ Key files: `director.py` · `crew_roles.py` · `shot_selector.py` · `confidence
 
 ---
 
-### BEATEK Hover — Split-Architecture Wireless Camera
+### BEA_Hover — Split-Architecture Wireless Camera
 **`BEA_Hover/` · Hardware Concept**
 
 Split-architecture wireless camera system designed for BEA_Director integration. The traditional wireless camera penalty — heavy head from onboard processing — is eliminated by separating the sensor from the intelligence. The head transmits raw sensor data wirelessly; all processing runs in the base station or BEA Aura Console.
@@ -572,7 +572,7 @@ BEATEK HOVER ARCHITECTURE:
         ↓  raw sensor data (wireless)
   [Base Station: all processing]        →  stays on desk/mount
         ↓  processed feed
-  [BEA_Director / BEA_Aura_DDR4_OS]         →  full production intelligence
+  [BEA_Director / BEA_Aura_CSE_OS]         →  full production intelligence
 ```
 
 - Head contains: image sensor + wireless transmitter + battery only — no processor, no encoder, no storage
@@ -724,18 +724,21 @@ Key files: `sprite_cache_manager.py` · `tinyai_engine.py` · `asset_graph.py` �
 ---
 
 ### BEA_Cache — NVMe Storage Tiering Engine
-**78 tests | `BEA_Cache/`**
+**104 tests | `BEA_Cache/`**
 
 Three-tier NVMe cache manager coordinating hot, warm, and cold storage across all pillars. Atomic SHA-256 verified writes prevent silent data corruption. Priority-driven eviction keeps the most latency-sensitive assets closest to the GPU.
 
-Key files: `cache_engine.py` · `tier_manager.py` · `cache_schema.py` · `cache_scanner.py` · `integration.py`
+Key files: `cache_manager.py` · `cache_registry.py` · `cache_config.py` · `cache_monitor.py` · `cache_io.py` · `coral_policy.py` · `ember_promoter.py`
 
-- Tiers: HOT (VRAM-adjacent) · WARM (system RAM) · COLD (NVMe pool)
-- Priority map: audio=4 · vpn=3 · **heritage=3** · gpu=2 · ai=1
+- Tiers: HOT (pinned/active) · WARM (recently used) · COLD (LRU eviction candidates)
+- Priority map: audio=4 · vpn=3 · **heritage=3** · **coral=3** · gpu=2 · ai=1
 - Atomic writes with SHA-256 integrity verification — no partial writes
 - BEA_SpriteCache deposits to cold tier on Console handoff
 - BEA_AI DLC downloads land in cold tier before silent promotion
-- `bea_heritage` module (priority 3): AI Heritage vault — pro gamer profiles + challenge packs. Heritage profiles are unique and unrecoverable (unlike AI weights which re-infer). Protected from routine eviction permanently.
+- `bea_heritage` module (priority 3): AI Heritage vault — pro gamer profiles + challenge packs. Unique, unrecoverable — permanently pinned.
+- **v2 — CoralAwareEvictionPolicy**: active BEA_Secretary role model files are never evicted mid-cycle; idle roles remain eligible. Duck-typed `is_role_active(role_id)` interface.
+- **v2 — EMBERCachePromoter**: 5 EMBER event types pre-promote entries before first access — `heritage.session_start` → HOT, `ai.ember_zone_prediction` → WARM, `amplify.ember_rebalance_predict` → HOT, and more.
+- **v2 — `promote(name, tier)`**: new public method for anticipatory tier advancement; never demotes.
 
 ---
 
@@ -981,7 +984,7 @@ Key files: `voice_engine.py` · `voice_scanner.py` · `integration.py` · `coral
 ### BEA_Update — OTA Pillar Update Manager
 **57 tests | `BEA_Update/`**
 
-Signed over-the-air update delivery for all BEA_Aura_DDR4_OS pillars. SHA-256 content integrity + Ed25519 signature verification. CRITICAL security patches bypass the BEA_Grid TOU schedule. Auto-rollback to last checkpoint on failed install.
+Signed over-the-air update delivery for all BEA_Aura_CSE_OS pillars. SHA-256 content integrity + Ed25519 signature verification. CRITICAL security patches bypass the BEA_Grid TOU schedule. Auto-rollback to last checkpoint on failed install.
 
 Key files: `update_engine.py` · `update_schema.py` · `update_scanner.py` · `integration.py`
 
@@ -996,7 +999,7 @@ Key files: `update_engine.py` · `update_schema.py` · `update_scanner.py` · `i
 ### BEA_Plugin — Pillar Extension SDK
 **53 tests | `BEA_Plugin_SDK/`**
 
-The plugin architecture enabling third-party pillars to register into BEA_Aura_DDR4_OS. Any module implementing `BEAPillar` ABC gains automatic Shell, Pulse, and Flow bridges — first-class platform citizens without modifying core code.
+The plugin architecture enabling third-party pillars to register into BEA_Aura_CSE_OS. Any module implementing `BEAPillar` ABC gains automatic Shell, Pulse, and Flow bridges — first-class platform citizens without modifying core code.
 
 Key files: `plugin_core.py` · `plugin_registry.py` · `plugin_schema.py` · `integration.py`
 
@@ -1567,7 +1570,7 @@ The digital eye that gives AI better focus.
 
 ## Execution Phases
 
-BEA_Aura_DDR4_OS is a platform that evolves. Launch order matters.
+BEA_Aura_CSE_OS is a platform that evolves. Launch order matters.
 
 ```
 PHASE 1A — Fastest traction:
@@ -1595,7 +1598,7 @@ Not all at once. The platform evolves into everything. But it starts with one th
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    BEA_Aura_DDR4_OS                          │
+│                    BEA_Aura_CSE_OS                          │
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
 │  BEA_Shell (unified CLI)          BEA_Aura_Orchestrator │
@@ -1737,7 +1740,7 @@ bea ledger summary   # Income and tax summary
 | BEA_Firefly_Sprite | 384 | Installer / validator / DLC / certification + AI Heritage Protocol + Heritage Value Rating (HVS) + SpriteHeritageCarrier (7-partition, HeritageTier 7 levels) |
 | BEA_Sprite_Studio | 88 | Blank Sprite SDK app — StudioValidator (7 checks), AssetConverter, OwnerSetupWizard state machine |
 | BEA_SpriteCache | 43 | Predictive asset prefetch, TinyAI session learning, Console handoff |
-| BEA_Cache | 78 | NVMe tiering (hot/warm/cold), priority eviction, atomic SHA-256 writes; heritage=3 module |
+| BEA_Cache | 104 | NVMe tiering (hot/warm/cold), priority eviction, atomic SHA-256 writes; CoralAwareEvictionPolicy + EMBERCachePromoter (v2) |
 | BEA_AI | 195 | TinyAI+Coral+ConsoleAI 3-layer arch v2.0.0; coral/(AISecretaryManager+HandoffTrustGate+BiometricContextProcessor); ember/(3 EMBER bridges, cascade conf≥0.65/min2); HandoffResult enum + receive_v2(); CoralBiometricBridge (CPU fallback); FusionBridge; DLCSyncBridge; 5 BEAIBroadcaster factories |
 | BEA_Amplify | 148 | Local inference extension v2.0.0 — llama.cpp RPC; host+console 40GB pool; 5 strategies (E[16]–E[24]); v2 Coral: CoralAmplifySignalMonitor (VRAM≥0.75/Thermal thresholds) + AmplifyRebalanceEMBER (RISING only, conf=0.78) + TPUCoordinatorV2 (4W budget); AmplifyBroadcaster/PulseAdapter/LookoutAmplifyBridge; mDNS |
 | BEA_Speakerbox | 84 | Voice-over production, S° vocal scanning, BEA operator effects |
@@ -1745,7 +1748,7 @@ bea ledger summary   # Income and tax summary
 | BEA_Notify | 67 | Push notifications — DASHBOARD / TOAST / MOBILE / EMERGENCY; CRITICAL gate |
 | BEA_Voice | 230 | On-device voice identity + commands — voice biometric, TinyAI intent, spoken synthesis, duress E[28+]; 6 v2 subpackages |
 | BEA_Update | 57 | OTA pillar update manager — SHA-256 + Ed25519, BEA_Grid scheduling, auto-rollback |
-| BEA_Plugin | 53 | Pillar Extension SDK — BEAPillar base class, shell/pulse/flow bridges, entry-point discovery |
+| BEA_Plugin_SDK | 53 | Pillar Extension SDK — BEAPillar base class, shell/pulse/flow bridges, entry-point discovery |
 | BEA_Lumin_Stream | 311 | TV/speaker satellite — 7 LAN modes, hardware validator, system health |
 | BEA_Worldshift | 63 | Temporal dimension engine — BUTTier, WorldRegistry, TemporalCache (Moon/Planet/Sun), WorldshiftEngine (< 400ms), WorldshiftBridge |
 | BEA_Spectacle | 122 | Handheld resonance scanner — 5 bands (EM/Acoustic/Thermal/Bioimpedance/E-Motion CSI), BandCombiner (⊕ 4-step), AnomalyDetector (≠ Diverge, 3-frame+2-band), TrustGate (< 5ms), EFRI 7.83 Hz, SpectacleBand wearable, Ambient room-scale mode, MRI bridge |
@@ -1766,22 +1769,28 @@ bea ledger summary   # Income and tax summary
 | BEA_Hatch | 120 | Front-panel integrated display — HDMI 2.0 GPU render + USB touch; PSLEDState (9 states, priority queue); HatchEngine; HatchCompositor; ERROR+EJECTING+LOCKED broadcast; IDLE suppressed; 11 event subscriptions |
 | BEA_Switchboard | 87 | Tablet companion app — LAN-first (< 15ms); 4 tiers (LAN/SHOESTRING/DEGRADED/LOCAL); 8 panels incl. exclusive SECRETARY TPU role view; SwitchboardBroadcaster suppresses OFF |
 | BEA_Backstage | 76 | AI/EI Performance Companion v1.0.0 — EMBER Pipeline™ (hesitation 100-500ms ahead); 4D Audio support delivery; 7 genres; Backstage_Producer™ Heritage; BackstageScanner (not BEAScanner subclass); IDLE suppressed |
-| **Total** | **5,213** | **All passing** |
-| BEA_Nexus | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; 350M+ monitor gamers, zero headset |
-| BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
-| BEATEK Hover | — | Split-architecture wireless camera — lightweight sensor head + intelligent base; BEA_Director HOVER role integration |
-| BEA_Clear | — | Smart dual-resource lifecycle system v2.0 — GPU PCIe reset + parallel RAM compaction; ResourceSequencer; NVMe Swap Bridge |
 | BEA_4D_Audio | 130 | 4D Environmental Acoustics v2.0.0 — Coral-first; 5 subpkgs (core/coral/spatial/haptic/room); CoralSDegreeScanner+CoralHapticGate+AudioSpatialEMBER (EMBER ≥0.65); RoomEMotionAudioModulator scale=[0.5,1.3]; HapticController.BEA_EXCALIBUR; Air operator ◴; absolute imports |
 | BEA_Horizon | 73 | Sovereign External LLM Gateway v1.0.0 — Console-as-AI-proxy; CoralHorizonGateRole (priority 3, 8% TOPS, 6 PII patterns); EgressPolicy (STRIP/FLAG/BLOCK); AutoRouter (Amplify-first, quality≥0.75); 5 providers (Anthropic/OpenAI/Gemini/Mistral/GenericRest); HorizonVaultBridge+LedgerBridge+IdentityBridge+PulseBridge; budget gates (80% warn); 3 Pulse topics |
 | BEA_Secretary | 44 | Coral Single Edge TPU continuous intelligence v2.0.0 — 12 roles; TPU1=heritage_trust_gate (ECDSA P-384, 5% TOPS, never preempted) + security/identity; TPU2=time-sliced 11 roles (wake_word/blind_window/signal_routing/network_watch/health_baseline/job_triage/power_quality/cache_scoring/scene_confidence/temporal_tier/ember_processor); cycle ~550ms; combined_e_state=max; ~4W always-on |
+| **Total** | **5,486** | **All passing** |
+| BEA_Nexus | — | Gaming immersion platform — Motion ⊕ Audio ⊕ Visual ⊕ Depth = Ω; 350M+ monitor gamers, zero headset |
+| BEA_Multimeter | — | Browser-based signal-physics diagnostic tool — State Builder, Signal Scanner, Logic Analyzer |
+| BEA_Hover | — | Split-architecture wireless camera — lightweight sensor head + intelligent base; BEA_Director HOVER role integration |
+| BEA_Clear | — | Smart dual-resource lifecycle system v2.0 — GPU PCIe reset + parallel RAM compaction; ResourceSequencer; NVMe Swap Bridge |
 | BEA_Treehouse_UI | — | Main Console UI v1.2.0 — wood+electricity aesthetic; Worldflow Motion Language; BEA_Pulse WebSocket bridge; Vite |
+| BEA_Cipher | — | Smart microphone app — BEA Treehouse Client Family; ShoeString audio bridge; Coral VAD + phoneme pre-classification; Vocalist_Core Heritage; computed lyrics + EMBER next-phrase |
+| BEA_Pumpkin_Pi | — | Portable Coral edge node — Raspberry Pi 5 + Coral Single Edge TPU; stage performer brain; Firefly Sprite Heritage identity; 10,000mAh LiFePO4 battery |
+| BEA_Gear_System | — | First 4D Shop functional object — BEA Physics gear (torque/Lewis load/wear); prototype for reality construction |
+| BEA_Lookout_macOS | — | macOS security intelligence client — macOS 13 Ventura+; Apple Silicon M1–M4 + Intel; LAN-first BEA_Lookout parity |
+| BEA_ShoeString_macOS | — | macOS ShoeString menubar client — always-tied WAN gateway on macOS; ShoeString™ VPN |
+| BEA_Switchboard_macOS | — | macOS Switchboard companion — native macOS tablet-equivalent coordination surface |
 
 ---
 
 ## Project Structure
 
 ```
-BEA_Aura_DDR4_OS/
+BEA_Aura_CSE_OS/
 ├── README.md
 ├── LICENSE
 ├── Makefile
@@ -1819,7 +1828,7 @@ BEA_Aura_DDR4_OS/
 ├── BEA_GPU_Fi/                 # GPU rental income
 ├── BEA_Hover/                  # Split-architecture wireless camera (hardware concept + Director integration)
 ├── BEA_Clear/                  # Smart dual-resource lifecycle — GPU reset + RAM compaction (v2.0)
-├── BEA_Secretary/              # Coral Single Edge TPU — 10 continuous intelligence roles (~2W always-on)
+├── BEA_Secretary/              # Coral Single Edge TPU — 12 continuous intelligence roles (~4W always-on)
 ├── BEA_Hatch/                  # Front-panel integrated display — PSLEDState priority queue, HatchEngine (120 tests)
 ├── BEA_Treehouse_UI/           # Main Console UI — Vite + Worldflow + BEA_Pulse WebSocket bridge
 ├── BEA_Switchboard/            # Tablet companion app — 4 tiers, 8 panels, SECRETARY TPU role view (87 tests)
@@ -1884,6 +1893,12 @@ BEA_Aura_DDR4_OS/
 │   └── tests/                  #   73 tests
 ├── BEA_Lumin_Stream/               # TV/speaker satellite (7 modes, hardware validator)
 ├── BEA_ShoeString/             # Smartphone WAN gateway — ShoeString™ VPN (4 tiers, WireGuard, BatteryAware, E[n] LED)
+├── BEA_ShoeString_macOS/       # macOS ShoeString menubar client — always-tied WAN gateway
+├── BEA_Switchboard_macOS/      # macOS native Switchboard coordination surface
+├── BEA_Lookout_macOS/          # macOS LAN security intelligence client (Ventura+, M1–M4 + Intel)
+├── BEA_Cipher/                 # Smart mic app — Vocalist_Core Heritage, Coral VAD, computed lyrics (Treehouse Client Family)
+├── BEA_Pumpkin_Pi/             # Portable Coral edge node — Raspberry Pi 5 + Coral TPU; stage performer brain
+├── BEA_Gear_System/            # First functional 4D Shop object — BEA Physics gear prototype
 ├── BEA_Worldshift/             # Temporal dimension engine — W axis (BUTTier/WorldRegistry/TemporalCache/Engine/Bridge)
 │   ├── but_framework.py        #   BUTTier · BUTFrame · BUTClock (Moon=1s, Planet=60s, Sun=3600s)
 │   ├── world_registry.py       #   WorldTier · WorldDefinition · WorldRegistry + physics profiles
@@ -1977,14 +1992,14 @@ BEA_TAX_THRESHOLD_USD=20000       # 1099-K filing threshold
 ## Registered IP Terms
 
 ### Platform & OS
-- BEA_Aura_DDR4_OS™
+- BEA_Aura_CSE_OS™
 - BEA Reality Engine™
 - Console as Cloud™
 - Smart Cache Device™
 - BEA Smart Cache™
 - Behavioral Prefetch™
 - E[n] Universal Language™
-- BEA_Aura_DDR4_OS Four Life Pillars™
+- BEA_Aura_CSE_OS Four Life Pillars™
 - Binary E-motion Arithmetic™
 - Household Computing Sovereignty™
 
