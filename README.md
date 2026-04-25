@@ -6,8 +6,8 @@
 **Contact:** jeremyjackson7@proton.me
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
-**Revision:** v2.4 · April 2026
-**Tests:** 5,919 passing across 52 pillar modules
+**Revision:** v2.5 · April 2026
+**Tests:** 6,438 passing across 53 pillar modules
 
 ---
 
@@ -383,7 +383,7 @@ LAYER 1  →  BEA_Aura_CSE_OS           Reality Engine
 ## Module Overview
 
 ### BEA_Core — Foundational Signal-Physics Layer
-**163 tests | `BEA_Core/`**
+**241 tests | `BEA_Core/` · v2.0.0**
 
 The mathematical bedrock of the entire BEA ecosystem. All pillars depend on this module for signal encoding, operator definitions, and state scanning. Zero async — pure, deterministic computation.
 
@@ -567,7 +567,7 @@ Key files: `director.py` · `director_scanner.py` · `shot_selector.py` · `outp
 ---
 
 ### BEA_Director_macOS — AI Camera Crew (macOS Edition)
-**194 tests | `BEA_Director_macOS/` · v2.0.0**
+**228 tests | `BEA_Director_macOS/` · v3.0.0**
 
 Full-featured macOS port of the BEA Director engine. Uses AVFoundation for hardware camera access and a socket-based output switcher instead of the Linux V4L2/DRM stack.
 
@@ -654,7 +654,7 @@ Key files: `checkpoint_engine.py` · `recovery_engine.py` · `reconciliation_eng
 ---
 
 ### BEA_Firefly_Sprite — USB Installer & Hardware Validator
-**384 tests | `BEA_Firefly_Sprite/`**
+**418 tests | `BEA_Firefly_Sprite/`**
 
 The 64 GB USB bootable entry point for all BEA Aura Console setup. Validates hardware, installs the OS, hosts live demos, and performs disaster recovery. Also the physical format spec for Firefly Sprite game cartridges.
 
@@ -720,7 +720,7 @@ Sub-modules: `tinyai/` · `console_ai/` · `dlc/` · `transition/` · `fusion/` 
 ---
 
 ### BEA_AI_Heritage_System — Portable AI Skill Packages
-**152 tests | `BEA_AI_Heritage_System/`**
+**190 tests | `BEA_AI_Heritage_System/` · v2.0.0**
 
 The AI skill transport layer that lives on the Firefly Sprite's `AI_HERITAGE` partition. A Heritage package is four files: `profile.json` · `rules.yaml` · `experience.log` · `certification.sig`.
 
@@ -732,7 +732,7 @@ The AI skill transport layer that lives on the Firefly Sprite's `AI_HERITAGE` pa
 ---
 
 ### BEA_AI_Heritage_SDK — Heritage Authoring & Client SDK
-**118 tests | `BEA_AI_Heritage_SDK/`**
+**159 tests | `BEA_AI_Heritage_SDK/`**
 
 The standalone developer SDK for building, certifying, publishing, and consuming Heritage packages. Ships as Module 8 of the BEA Aura Developer SDK.
 
@@ -772,7 +772,7 @@ Surgical GPU VRAM reset + intelligent RAM lifecycle management — without reboo
 ---
 
 ### BEA_Secretary — Coral Single Edge TPU Continuous Intelligence Layer
-**`BEA_Secretary/` · v2.0.0**
+**78 tests | `BEA_Secretary/` · v3.0.0**
 
 The always-on intelligence layer. The Coral Single Edge TPU (4 TOPS · ~2W constant) never sleeps — 12 roles on one chip. The NVIDIA GPU stays free for GPU-Fi, LLM inference, and gaming.
 
@@ -810,7 +810,7 @@ HDMI 2.0 touchscreen face of the BEA Aura Console. Renders GPU status, thermal s
 ---
 
 ### BEA_Aura_Developer_SDK — Console-as-Cloud App SDK
-**134 tests | `BEA_Aura_Developer_SDK/` · v2.0.0**
+**168 tests | `BEA_Aura_Developer_SDK/` · v2.0.0**
 
 Nine hardware modules exposed through a clean local API — audio, health, security, GPU, storage, identity, events, Coral, and Heritage. Apps run locally; the Console is the cloud.
 
@@ -904,7 +904,7 @@ Rent spare GPU cycles to ML model trainers through the GPU-Fi marketplace. All p
 ---
 
 ### BEA_4D_Shop — GPU-Verse Workshop
-**127 tests | `BEA_4D_Shop/` · v1.0.0**
+**137 tests | `BEA_4D_Shop/` · v2.0.0**
 
 The Reality Construction Layer. A gear in the 4D Shop doesn't just look like a gear — it IS a gear. Functional digital objects governed by BEA Physics that transfer torque, obey mechanical constraints, interact with other objects, and respond to E-Motion states in real time.
 
@@ -942,7 +942,7 @@ TREEHOUSE LAYER METAPHOR:
 ---
 
 ### BEA_Switchboard™ — Tablet Control App
-**87 tests | `BEA_Switchboard/`**
+**121 tests | `BEA_Switchboard/` · v2.0.0**
 
 LAN-first tablet companion app with < 15ms switching. Eight dedicated panels expose every major Console subsystem — including exclusive access to the BEA_Secretary TPU role map.
 
@@ -977,7 +977,7 @@ Professional voice-over production engine grounded in the BEA E-motion mathemati
 ---
 
 ### BEA_Backstage™ — AI/EI Performance Companion
-**76 tests | `BEA_Backstage/` · v1.0.0**
+**111 tests | `BEA_Backstage/` · v2.0.0**
 
 Real-time performance intelligence for live artists. The EMBER Pipeline™ predicts hesitation 100–500ms before a gap becomes audible.
 
@@ -1048,7 +1048,7 @@ Captures external body position (BEA_Director) and internal tissue state (BEA_Re
 ---
 
 ### BEA_Resonance_Imager — Water Resonance Photography
-**290 tests | `BEA_Resonance_Imager/` · v2.1.0**
+**345 tests | `BEA_Resonance_Imager/` · v2.1.0**
 
 Five-band passive water resonance scanning system. Non-invasive, non-ionizing pre-screening and longitudinal health monitoring. The monitoring tier between wearable health tracking and clinical MRI.
 
@@ -1243,7 +1243,7 @@ bea nas neighbors    # Neighbor security SaaS status
 
 | Module | Tests | Domain |
 |---|---|---|
-| BEA_Core | 163 | Signal-physics foundation |
+| BEA_Core | 241 | Signal-physics foundation · v2.0.0 · E[n] Execution Validator v3.1 |
 | BEA_Pulse | 86 | Event bus v2.0.0 — CoralLane · AnticipatoryChan · EMBER · source_type |
 | BEA_Beatbox | 80 | Emotional audio |
 | BEA_Vault | 78 | Encrypted storage v2.0.0 — Coral security monitor · EMBER duress prediction |
@@ -1254,11 +1254,11 @@ bea nas neighbors    # Neighbor security SaaS status
 | BEA_Grid | 102 | Power management + UPS compliance + shutdown bridge (v2.1) |
 | BEA_Shell | 67 | CLI |
 | BEA_Director | 164 | AI camera crew — v2.0.0 |
-| BEA_Director_macOS | 194 | AI camera crew — macOS edition |
+| BEA_Director_macOS | 228 | AI camera crew — macOS edition · v3.0.0 |
 | BEA_Identity | 54 | Biometric auth |
 | BEA_Imprint | 118 | Fingerprint hardware SDK v1.1.0 |
 | BEA_Recovery | 61 | Crash resilience |
-| BEA_Firefly_Sprite | 384 | Installer / validator / DLC / certification + Heritage |
+| BEA_Firefly_Sprite | 418 | Installer / validator / DLC / certification + Heritage · v2.0.0 — CoralSpriteMonitorRole · SpriteEMBERBridge |
 | BEA_Sprite_Studio | 128 | Blank Sprite SDK app v2.0.0 — CoralStudioMonitorRole · StudioEMBERBridge · source_type |
 | BEA_SpriteCache | 81 | Predictive asset prefetch v2.0.0 — CoralSpriteCacheRole · SpriteCacheEMBERBridge · source_type |
 | BEA_Cache | 104 | NVMe tiering + CoralAwareEvictionPolicy + EMBERCachePromoter (v2) |
@@ -1273,29 +1273,30 @@ bea nas neighbors    # Neighbor security SaaS status
 | BEA_Lumin_Stream | 311 | TV/speaker satellite |
 | BEA_Worldshift | 77 | Temporal dimension engine + Coral EMBER predictor |
 | BEA_Spectacle | 122 | Handheld resonance scanner |
-| BEA_4D_Shop | 127 | GPU-Verse Workshop |
+| BEA_4D_Shop | 137 | GPU-Verse Workshop · v2.0.0 |
 | BEA_Clinical_Suite | 125 | Synchronized Resonance Documentation |
 | BEA_Aura_Orchestrator | TS | GPU containers, VRAM slicing, WireGuard intake |
-| BEA_Aura_Developer_SDK | 134 | Console-as-Cloud app SDK v2.0.0 |
+| BEA_Aura_Developer_SDK | 168 | Console-as-Cloud app SDK v2.0.0 — CoralSDKMonitorRole · SDKEMBERBridge |
 | BEA_Lookout | 94 | LAN security intelligence |
 | BEA_Health | 154 | Biometric intelligence v2.0 |
 | BEA_Aura_Physiological_Duress_Detection_System | 29 | Silent coercion detection v2.0.0 |
 | BEA_Caliburn | 104 | Physical controller + Firefly Sprite |
 | BEA_Excalibur | 125 | Dual-mode 4D controller |
-| BEA_Motion_Body_macOS | 66 | Apple Silicon motion tracking |
-| BEA_ShoeString | 86 | Smartphone WAN gateway |
-| BEA_Resonance_Imager | 290 | Water Resonance Photography v2.1 |
-| BEA_AI_Heritage_System | 156 | Portable AI skill packages |
-| BEA_AI_Heritage_SDK | 125 | Heritage authoring + client SDK |
+| BEA_Motion_Body_macOS | 103 | Apple Silicon motion tracking · v2.0.0 |
+| BEA_ShoeString | 124 | Smartphone WAN gateway · v2.0.0 |
+| BEA_Resonance_Imager | 345 | Water Resonance Photography v2.1 |
+| BEA_AI_Heritage_System | 190 | Portable AI skill packages · v2.0.0 |
+| BEA_AI_Heritage_SDK | 159 | Heritage authoring + client SDK · v2.0.0 — CoralHeritageSDKMonitorRole · HeritageSDKEMBERBridge |
 | BEA_Hatch | 120 | Front-panel integrated display |
-| BEA_Switchboard | 87 | Tablet companion app |
-| BEA_Backstage | 76 | AI/EI Performance Companion v1.0.0 |
+| BEA_Switchboard | 121 | Tablet companion app · v2.0.0 |
+| BEA_Backstage | 111 | AI/EI Performance Companion v2.0.0 |
 | BEA_4D_Audio | 130 | 4D Environmental Acoustics v2.0.0 |
 | BEA_Horizon | 73 | Sovereign External LLM Gateway v1.0.0 |
-| BEA_Secretary | 44 | Coral Single Edge TPU continuous intelligence v2.0.0 |
+| BEA_Secretary | 78 | Coral Single Edge TPU continuous intelligence v3.0.0 |
 | BEA_GPU_Fi | 48 | GPU rental conduct standards |
 | BEA_NAS | 140 | Console NAS layer — filesystem · neighbor security · queue storage |
-| **Total** | **5,846** | **All passing** |
+| BEA_Gear_System | 101 | Standalone physics engine · v2.0.0 — BEA Physics laws · CoralGearMonitorRole · GearEMBERBridge |
+| **Total** | **6,438** | **All passing** |
 
 ---
 
