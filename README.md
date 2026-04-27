@@ -6,8 +6,8 @@
 **Contact:** jeremyjackson7@proton.me
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
-**Revision:** v2.5 · April 2026
-**Tests:** 6,438 passing across 53 pillar modules
+**Revision:** v2.7 · April 2026
+**Tests:** 6,612 passing across 56 pillar modules
 
 ---
 
@@ -816,6 +816,23 @@ Nine hardware modules exposed through a clean local API — audio, health, secur
 
 ---
 
+### BEA_AuraForge — Universal File Generator Toolkit
+**48 tests | `BEA_AuraForge/` · v1.0.0 · Node.js ≥ 18**
+
+Headless CLI and Node.js library that generates configuration, data, and report files for every BEATEK product from structured templates. BEA_AuraForge is the canonical tool for scripting file output across the ecosystem — bootable from any CI pipeline, dev machine, or Sprite setup flow.
+
+Key files: `src/core/index.js` · `src/core/registry.js` · `src/core/renderer.js` · `src/formats/` · `src/products/` · `src/plugins/index.js` · `src/cli/index.js` · `src/index.js`
+
+- **CLI**: `bea-auraforge generate --product bea-veda --type pdf --output ./report.pdf`
+- **Library**: `const { BEA_AuraForge, definePlugin } = require('bea-auraforge')`
+- **Built-in products**: `bea-aura-console` · `bea-motion-body` · `bea-veda`
+- **Supported formats**: json · yaml · xml · csv · txt · pdf (PDFKit) · svg · bvh
+- **Plugin API**: `definePlugin({ name, types, templates })` + `forge.use(plugin)` — any ecosystem module can register its own product type
+- **`{{key}}` template interpolation** + function-valued fields resolved at render time
+- Pure CLI/library — no web server, no network surface, no runtime cloud dependencies
+
+---
+
 ### BEA_Notify — Push Notification Engine
 **67 tests | `BEA_Notify/`**
 
@@ -1023,6 +1040,19 @@ The W axis of the 4D stack. BEA Universal Time (BUT) maps Moon, Earth, and Sun t
 
 ---
 
+### BEA_Pumpkin_Pi — Portable Edge Audio Intelligence
+**79 tests | `BEA_Pumpkin_Pi/` · v1.3.0**
+
+Raspberry Pi 5 + Coral Single Edge TPU (M.2 HAT+ B+M Key) stage performer brain. The Console stays home. The Pumpkin Pi goes on stage. EMBER fires before the stumble.
+
+- **Smart Power Bass Control™**: FULL (100–80%) · BALANCED (80–40%) · CONSERVATION (40–20%) · SURVIVE (20–0%) — TOPS scheduling so the performer never hears battery anxiety
+- **Stage Secretary Profile**: 6 Coral roles — wake_detector · heritage_trust_gate · ember_processor (25%, P2-protected) · voice_biometric (15%, P2-protected) · signal_classifier · session_packager
+- **EMBER Stage Pipeline**: 4 vocal signatures — hesitation_onset · phrase_boundary · interval_approach · breath_signal · 100–500 ms lookahead · ANTICIPATORY lane
+- **Session Modes**: STANDALONE (Pi-only) ↔ CONSOLE_LAN (GPU-backed via LAN)
+- **Coral Monitor**: CoralPumpkinPiMonitorRole · 4 anomalies: EMBER_STALL · VOICE_AUTH_FAILURE · HERITAGE_GATE_FAULT · BATTERY_PLUNGE · PumpkinEMBERBridge RISING-only
+
+---
+
 ### BEA_Lumin_Stream — TV & Speaker Satellite
 **311 tests | `BEA_Lumin_Stream/`**
 
@@ -1044,6 +1074,25 @@ Your phone is the shoestring — the sovereign WireGuard tunnel that ties you ba
 **125 tests | `BEA_Clinical_Suite/` · v1.0.0**
 
 Captures external body position (BEA_Director) and internal tissue state (BEA_Resonance_Imager) on the same Console timestamp — simultaneously, automatically, sovereignly, without cloud.
+
+---
+
+### BEA_Veda — Medical-Exclusive Body Analysis Device
+**47 tests | `BEA_Veda/` · v1.0.0**
+
+On-device clinical and enterprise-tier full-body analysis platform. BEA_Veda is not a consumer wellness tool — it is a medical-grade analysis device licensed exclusively to verified clinicians and enterprise health operators. Biometric data is never transmitted and never leaves the patient's sovereign hardware stack.
+
+Key files: `bea_veda/veda_scanner.py` · `bea_veda/nirvana.py` · `bea_veda/ember_clinical.py` · `bea_veda/clinical_session.py` · `bea_veda/report_generator.py` · `bea_veda/veda_os.py` · `integration.py`
+
+- **Two deployment tiers:**
+  - `CLINICAL` — single GPU, Coral Single TPU, 4-camera array, HIPAA-ready evidence bundle
+  - `ENTERPRISE` — multi-GPU, Coral Dual TPU, 8-camera array, longitudinal multi-patient registry
+- **NirvanaState**: per-patient longitudinal delta tracking — measures how close the patient is to their personal optimum across all five biometric bands
+- **EMBERClinical**: anticipatory pipeline — predicts biometric trajectory 100–500ms ahead; emits `ANTICIPATORY` events via `execution_delta`
+- **VedaScanner**: BEAScanner subclass — maps biometric confidence + camera fault + device fault to E[n] states (E[10] full tracking → E[30] device fault)
+- **ClinicalSession**: imprint-authenticated session lifecycle — `begin()` · `record_frame()` · `end()` · `abort()`; emits signed AES-256-GCM evidence bundle to BEA_Vault on close
+- **BEA_Pulse integration**: `source_type` propagated on all events; `CRITICAL` alerts (E[28+]) never dropped; integrates with BEA_Identity patient profiles and BEA_Clinical_Suite timestamp sync
+- `VedaOS`: headless OS context that boots pipelines, validates hardware tier, and wires all submodules
 
 ---
 
@@ -1290,13 +1339,16 @@ bea nas neighbors    # Neighbor security SaaS status
 | BEA_Hatch | 120 | Front-panel integrated display |
 | BEA_Switchboard | 121 | Tablet companion app · v2.0.0 |
 | BEA_Backstage | 111 | AI/EI Performance Companion v2.0.0 |
+| BEA_Pumpkin_Pi | 79 | Raspberry Pi 5 + Coral TPU stage node · v1.3.0 — Smart Power Bass Control™ · EMBER stage · CoralPumpkinPiMonitorRole |
 | BEA_4D_Audio | 130 | 4D Environmental Acoustics v2.0.0 |
 | BEA_Horizon | 73 | Sovereign External LLM Gateway v1.0.0 |
 | BEA_Secretary | 78 | Coral Single Edge TPU continuous intelligence v3.0.0 |
 | BEA_GPU_Fi | 48 | GPU rental conduct standards |
 | BEA_NAS | 140 | Console NAS layer — filesystem · neighbor security · queue storage |
 | BEA_Gear_System | 101 | Standalone physics engine · v2.0.0 — BEA Physics laws · CoralGearMonitorRole · GearEMBERBridge |
-| **Total** | **6,438** | **All passing** |
+| BEA_Veda | 47 | Medical-exclusive body analysis device v1.0.0 — NirvanaState · EMBERClinical · ClinicalSession · VedaScanner |
+| BEA_AuraForge | 48 | Universal file generator toolkit v1.0.0 — Node.js ≥ 18 · CLI + API · plugin system · 8 formats · Jest |
+| **Total** | **6,612** | **All passing** |
 
 ---
 
@@ -1360,7 +1412,7 @@ That same software running on your BEA Aura Console means you profit from your i
 | **Contributors** | Python engineers, ML/CV specialists, GPU developers, full-stack |
 | **Partners** | Hardware OEMs, distributors, security firms, health tech |
 | **Investors** | Aligned with owned-infrastructure, anti-subscription mission |
-| **Early Adopters** | Console pre-orders launching Q2 2026 |
+| **Early Adopters** | Console pre-orders open — Q2/Q3 2026 |
 
 **Contact:** jeremyjackson7@proton.me
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
