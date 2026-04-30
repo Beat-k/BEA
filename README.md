@@ -7,7 +7,7 @@
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
 **Revision:** v2.7 · April 2026
-**Tests:** 6,612 passing across 56 pillar modules
+**Tests:** 6,731 passing across 57 pillar modules
 
 ---
 
@@ -1040,6 +1040,21 @@ The W axis of the 4D stack. BEA Universal Time (BUT) maps Moon, Earth, and Sun t
 
 ---
 
+### BEA_Mold_Props™ — 3D Scan · Digital Mold · Physical Output · Virtual Input
+**119 tests | `BEA_Mold_Props/` · v1.0.0**
+
+Turns the BEA Motion Body webcam rig into a full photogrammetric scanning pipeline. Capture any physical object, cast it into a digital mold, export a print-ready 3D file, and bind the prop to BEA Imprint as a live input device.
+
+- **Scan Modes**: QUICK (8 regions, ~12s) · STANDARD (12 regions, ~45s) · PRECISION (16 regions, ~3min) · FULL_BODY_PROP (20 regions, ~8min)
+- **EMBER Confidence Gating**: per-region confidence scoring — HIGH (≥0.85) mesh directly · MEDIUM (0.65–0.84) interpolate · LOW (<0.65) RescanFlag raised
+- **MeshForge**: watertight mesh when all regions ≥ 0.65 and no rescan regions — Poisson reconstruction simulation
+- **5 Export Formats**: STL · OBJ · PLY · GLTF · `.bea_prop` (BEATEK native)
+- **PropRegistry**: geometry hash (SHA-256) fingerprint · PropMasterLevel heritage (NOVICE/APPRENTICE/ADEPT/CRAFTSMAN/MASTER) · recognition latency decreases with scans
+- **ImprintBinder**: bind any prop to CONTROLLER/KEYBOARD/MOUSE Imprint layer
+- **Coral Monitor**: CoralMoldPropsMonitorRole P3 3% TOPS · 4 anomalies: SCAN_FAILURE_BURST · CONFIDENCE_DROP_STORM · REGISTRY_MISS_BURST · BINDING_STALL · MoldPropsEMBERBridge RISING-only
+
+---
+
 ### BEA_Pumpkin_Pi — Portable Edge Audio Intelligence
 **79 tests | `BEA_Pumpkin_Pi/` · v1.3.0**
 
@@ -1348,7 +1363,8 @@ bea nas neighbors    # Neighbor security SaaS status
 | BEA_Gear_System | 101 | Standalone physics engine · v2.0.0 — BEA Physics laws · CoralGearMonitorRole · GearEMBERBridge |
 | BEA_Veda | 47 | Medical-exclusive body analysis device v1.0.0 — NirvanaState · EMBERClinical · ClinicalSession · VedaScanner |
 | BEA_AuraForge | 48 | Universal file generator toolkit v1.0.0 — Node.js ≥ 18 · CLI + API · plugin system · 8 formats · Jest |
-| **Total** | **6,612** | **All passing** |
+| BEA_Mold_Props | 119 | 3D scan → digital mold → print-ready output → prop input device · v1.0.0 — EMBER confidence gating · PropRegistry · ImprintBinder · CoralMoldPropsMonitorRole |
+| **Total** | **6,731** | **All passing** |
 
 ---
 
