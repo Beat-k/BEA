@@ -1,4 +1,4 @@
-# BEA_Aura_CSE_OS
+# BEA_Aura_CDE_OS
 
 > **Console as Cloud™ — The Reality Engine of the BEA Aura Console**
 
@@ -6,18 +6,18 @@
 **Contact:** jeremyjackson7@proton.me
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
-**Revision:** v2.7 · April 2026
-**Tests:** 6,731 passing across 57 pillar modules
+**Revision:** v2.9 · May 2026
+**Tests:** 7,299 passing across 61 pillar modules
 
 ---
 
-## What Is BEA_Aura_CSE_OS?
+## What Is BEA_Aura_CDE_OS?
 
-BEA_Aura_CSE_OS is not just an operating system.
+BEA_Aura_CDE_OS is not just an operating system.
 
-An OS manages resources. BEA_Aura_CSE_OS does that — but underneath the resource management is something more fundamental. A unified signal-based framework where every domain of the system speaks the same language, operates under the same physics, and evolves under the same intelligence.
+An OS manages resources. BEA_Aura_CDE_OS does that — but underneath the resource management is something more fundamental. A unified signal-based framework where every domain of the system speaks the same language, operates under the same physics, and evolves under the same intelligence.
 
-> **BEA_Aura_CSE_OS is a Reality Engine.**
+> **BEA_Aura_CDE_OS is a Reality Engine.**
 
 ```
 Compute    =  Matter        (GPU cycles are the substance of the system)
@@ -49,13 +49,13 @@ Storage adapts.
 Compute responds.
 ```
 
-The Smart Cache is the bridge between memory and intelligence. When memory becomes intelligent — when the system knows what matters without being told — the boundary between storage and cognition dissolves. That is what BEA_Aura_CSE_OS achieves.
+The Smart Cache is the bridge between memory and intelligence. When memory becomes intelligent — when the system knows what matters without being told — the boundary between storage and cognition dissolves. That is what BEA_Aura_CDE_OS achieves.
 
 ---
 
 ## The E[n] Universal Language
 
-The single most important architectural decision in BEA_Aura_CSE_OS is that every domain speaks the same language.
+The single most important architectural decision in BEA_Aura_CDE_OS is that every domain speaks the same language.
 
 ```
 Gaming intensity     =  E[n]
@@ -105,7 +105,7 @@ The validation tool is **BEA_Multimeter** (`BEA_Multimeter/bea_multimeter.html`)
 
 ## The Four Life Pillars
 
-BEA_Aura_CSE_OS coordinates four sovereign domains through BEA Logic:
+BEA_Aura_CDE_OS coordinates four sovereign domains through BEA Logic:
 
 ```
 GAMING          ←  BEA Nexus · 4D Audio · E-Motion gaming intelligence
@@ -140,26 +140,26 @@ Idle GPU hours become passive income. GPU-Fi rents spare cycles to ML trainers. 
 
 ## The Console Role
 
-The BEA Aura Console is the **background GPU compute node** of the BEA platform. Headless. No display output. No desktop overhead. The host device is the foreground. The Console is the back-end crew. The Coral Single Edge TPU is the bridge between them.
+The BEA Aura Console is the **background GPU compute node** of the BEA platform. Headless. No display output. No desktop overhead. The host device is the foreground. The Console is the back-end crew. The Coral Dual Edge TPU is the bridge between them.
 
 ```
-HOST DEVICE  →  CORAL SINGLE EDGE TPU BRIDGE  →  CONSOLE GPU
-(front-end)         (~2W · always-on)              (back-end)
-foreground            intelligence                   compute
+HOST DEVICE  →  CORAL DUAL EDGE TPU BRIDGE  →  CONSOLE GPU
+(front-end)         (~2W · always-on)             (back-end)
+foreground            intelligence                  compute
 
-Front-end GPU + Coral Single Edge TPU bridge + Back-end GPU
+Front-end GPU + Coral Dual Edge TPU bridge + Back-end GPU
 = Full 4D intelligence stack
 At consumer power levels · on owned hardware
 No cloud · no workarounds · clean water flow
 ```
 
-The Coral Single Edge TPU is why the Console can be headless and still intelligent. It watches continuously at ~2W constant — classifying signals, running EMBER, verifying Heritage certs — while the GPU waits. The GPU fires only when the Coral decides something needs more than 4 TOPS. The secretary calls the executive. The executive does not idle.
+The Coral Dual Edge TPU is why the Console can be headless and still intelligent. It watches continuously at ~2W constant — classifying signals, running EMBER, verifying Heritage certs — while the GPU waits. The GPU fires only when the Coral decides something needs more than 8 TOPS. The secretary calls the executive. The executive does not idle.
 
 ---
 
 ## Hardware Tiers
 
-All three tiers run the full BEA_Aura_CSE_OS software stack. All three have NAS capabilities via BEA_NAS. The difference is compute headroom and income ceiling.
+All three tiers run the full BEA_Aura_CDE_OS software stack. All three have NAS capabilities via BEA_NAS. The difference is compute headroom and income ceiling.
 
 | | **DDR4** | **DDR5** | **Datacenter** |
 |---|---|---|---|
@@ -170,7 +170,7 @@ All three tiers run the full BEA_Aura_CSE_OS software stack. All three have NAS 
 | **GPU** | NVIDIA RTX · 16GB VRAM min · owner choice | NVIDIA RTX · 16GB VRAM min · owner choice | NVIDIA RTX · 16GB VRAM min × 2 · owner choice |
 | **OS NVMe** | 2TB Samsung 990 Pro | 2TB Samsung 990 Pro | 4TB Samsung 990 Pro |
 | **Cache/Vault SSD** | 2TB Samsung 870 QVO SATA | 2TB Samsung 870 QVO SATA | 4TB Samsung 870 QVO SATA |
-| **TPU** | Coral Single Edge TPU · 4 TOPS | Coral Single Edge TPU · 4 TOPS | Coral Dual Edge TPU · 8 TOPS |
+| **TPU** | Coral Dual Edge TPU · 8 TOPS | Coral Dual Edge TPU · 8 TOPS | 2× Coral Dual Edge TPU · 16 TOPS |
 | **Storage Bays** | 3–4 vault bays | 3–4 vault bays | Up to 8 bays (vault + queue pool) |
 | **Network** | 10 GbE SFP+ | 10 GbE SFP+ | 25 GbE SFP28 + 10 GbE SFP+ |
 | **GPU-Fi Income** | $150–400/mo est. | $400–900/mo est. | $1,500–4,000/mo est. |
@@ -183,7 +183,7 @@ All three tiers run the full BEA_Aura_CSE_OS software stack. All three have NAS 
 CPU:    16 cores minimum · any AMD or Intel
 RAM:    128GB minimum · DDR4 or DDR5 · dual-channel
 GPU:    NVIDIA · 16GB VRAM minimum · CUDA required
-TPU:    Coral Single Edge TPU · B+M Key · M.2 · 4 TOPS
+TPU:    Coral Dual Edge TPU · M.2 2280 B+M Key · via adapter · 8 TOPS
 NVMe:   1TB minimum OS drive
 SATA:   1TB minimum cache/vault drive
 ```
@@ -192,14 +192,14 @@ SATA:   1TB minimum cache/vault drive
 
 | Component | DDR4 / DDR5 | Datacenter |
 |---|---|---|
-| **TPU** | Coral Single Edge TPU · 4 TOPS | Coral Dual Edge TPU · 8 TOPS |
-| **Interface** | M.2 B+M Key · M.2 Slot 2 · direct seat | M.2 B+M Key · M.2 Slot 2 · direct seat |
+| **TPU** | Coral Dual Edge TPU · 8 TOPS | 2× Coral Dual Edge TPU · 16 TOPS |
+| **Interface** | M.2 2280 B+M Key · adapter · Slot 1 | M.2 2280 B+M Key × 2 · adapter · Slots 1–2 |
 | **Power** | ~2W constant | ~4W constant |
-| **Roles** | 10 Secretary roles time-sliced | 10 standard roles + `queue_storage_gate` role (Chip 2) |
+| **Roles** | 10 Secretary roles time-sliced across 2 chips | 10 standard roles + `queue_storage_gate` role (TPU 2) · TPU 3 & 4 for secondary GPU |
 
-**The Coral Rule:** Single TPU + GPU is complete and correct on DDR4/DDR5. Dual TPU on a standard Console is never right — it is overkill and wrong. Dual TPU on Datacenter is earned by queue gate volume.
+**The Coral Standard:** Dual Edge TPU is the minimum across all Console tiers. The M.2 2280 B+M Key adapter provides isolated dual-lane PCIe power flow — stable bus, constant draw, no contention. Datacenter runs 2× Dual Edge (4 chips total) to serve two GPUs cleanly.
 
-Every tier includes: BEA Imprint Keyboard · BEA Nexus · BEA 4D Audio · BEA Motion Body · BEA Shield · BEA Health · Physiological Duress Detection · Console Security Module (Coral Single Edge TPU) · 10 GbE SFP+ · 16GB VRAM minimum enforced in software · BEA_NAS (shared filesystem + neighbor security)
+Every tier includes: BEA Imprint Keyboard · BEA Nexus · BEA 4D Audio · BEA Motion Body · BEA Shield · BEA Health · Physiological Duress Detection · Console Security Module (Coral Dual Edge TPU) · 10 GbE SFP+ · 16GB VRAM minimum enforced in software · BEA_NAS (shared filesystem + neighbor security)
 
 ---
 
@@ -367,11 +367,11 @@ LAYER 3  →  GPU-Fi / GPU-Verse         Compute economy
 LAYER 2  →  Orchestrator               Resource control
              GPU/VRAM management
              BEA_Clear lifecycle reset
-             BEA_Secretary Coral Single Edge TPU
+             BEA_Secretary Coral Dual Edge TPU
              BEA_Pulse event bus
              E[n] state routing
 
-LAYER 1  →  BEA_Aura_CSE_OS           Reality Engine
+LAYER 1  →  BEA_Aura_CDE_OS           Reality Engine
              BEA_Core signal-physics
              Four Life Pillars
              BEA_NAS shared filesystem
@@ -466,7 +466,7 @@ Key files: `relay_node.py` · `relay_sync.py` · `relay_schema.py` · `relay_sca
 ### BEA_Flow — Cross-Pillar Workflow Automation
 **50 tests | `BEA_Flow/`**
 
-Native IFTTT for BEA_Aura_CSE_OS. Define trigger/action chains across any combination of pillars, powered by BEA_Pulse events.
+Native IFTTT for BEA_Aura_CDE_OS. Define trigger/action chains across any combination of pillars, powered by BEA_Pulse events.
 
 Key files: `flow_schema.py` · `flow_engine.py` · `flow_library.py` · `flow_scanner.py` · `integration.py`
 
@@ -529,7 +529,7 @@ Key files: `grid_engine.py` · `power_sampler.py` · `rate_scheduler.py` · `gri
 ### BEA_Shell — Unified CLI
 **67 tests | `BEA_Shell/`**
 
-Single `bea` command routing to all BEA_Aura_CSE_OS pillar subcommands. Each pillar self-registers through PillarAdapter subclasses.
+Single `bea` command routing to all BEA_Aura_CDE_OS pillar subcommands. Each pillar self-registers through PillarAdapter subclasses.
 
 Key files: `shell_engine.py` · `shell_registry.py` · `shell_schema.py` · `shell_coloring.py` · `cli.py` · `integration.py`
 
@@ -592,7 +592,7 @@ BEATEK HOVER ARCHITECTURE:
         ↓  raw sensor data (wireless)
   [Base Station: all processing]        →  stays on desk/mount
         ↓  processed feed
-  [BEA_Director / BEA_Aura_CSE_OS]     →  full production intelligence
+  [BEA_Director / BEA_Aura_CDE_OS]     →  full production intelligence
 ```
 
 - Head contains: image sensor + wireless transmitter + battery only
@@ -635,6 +635,46 @@ Key files: `imprint_core.py` · `enrollment_manager.py` · `session_manager.py` 
 - `BiometricKey.derive()`: SHA-256(identity_id + device_id + random 32-byte salt) → AES-256 key material
 - `TrustedDevice`: 30-day trust window; single-command revocation
 - `revoke_identity()` cascade: clears enrollment + sessions + bindings + trusted devices atomically
+
+**BEA_Imprint Ecosystem — three input sub-modules:**
+
+#### BEA_Imprint_Keyboard — Virtual Keyboard Input
+**126 tests | `BEA_Imprint/BEA_Imprint_Keyboard/` · v1.0.0**
+
+Transforms any webcam into a full virtual keyboard. Skeletal finger tracking maps every key press to the complete standard keyboard layout — no physical keyboard required.
+
+- **8 Modules**: `FingerKeyMapper` · `KeyPrecisionEngine` · `KeyDebounceLayer` · `GestureHotkeyLayer` · `TypingPostureCalibration` · `AccessibilityKeyboard` · `VirtualKbdDriver` · `KeyboardMacroEngine`
+- Full QWERTY + numpad + function row + modifiers from finger position and curl depth
+- `KeyEvent` frozen dataclass: `key_code`, `modifiers`, `confidence`, `source_type="software"`
+- E[n] map: IDLE=E[0] · ACTIVE=E[16] · KEY_DETECTED=E[18] · HOTKEY_FIRED=E[20] · ACCESSIBILITY=E[22] · MACRO_FIRED=E[24] · TRACKING_LOST=E[28]
+- Coral: `CoralKeyboardMonitorRole` P3 3% TOPS · 4 anomalies: KEY_STORM · TRACKING_LOSS · CONFIDENCE_DRIFT · PHANTOM_KEY_BURST · `KeyboardEMBERBridge` RISING-only
+
+#### BEA_Imprint_Mouse — Air Mouse & Drawing Tablet
+**118 tests | `BEA_Imprint/BEA_Imprint_Mouse/` · v1.0.0**
+
+Transforms any webcam-equipped space into a full virtual mouse surface — cursor control, gesture recognition, digital drawing, and accessibility input without touching hardware.
+
+- **8 Modes**: `AIR_MOUSE` · `PRECISION` · `DRAWING_TABLET` · `GAMING` · `ACCESSIBILITY` · `GESTURE_MACRO` · `MULTI_SCREEN` · `PHONE_TRACKPAD`
+- `AirMouse`: exponential smoothing + per-button 150 ms debounce · coordinates normalized to [0.0, 1.0]
+- `PrecisionMode`: speed-sensitive scaling — slower hand = finer control + `HoverZone` regions
+- `AirDrawingTablet`: velocity-mapped pressure + palm rejection + stroke history
+- `AccessibilityMouse`: micro-gesture amplification + dwell click (sustained hover ≥ 800 ms)
+- E[n] map: IDLE=E[0] · ACTIVE=E[16] · GESTURE=E[18] · CLICK=E[20] · DRAWING=E[22] · MACRO=E[24] · TRACKING_LOST=E[28]
+- Coral: `CoralMouseMonitorRole` P3 3% TOPS · 4 anomalies: GESTURE_MISS_BURST · TRACKING_LOSS · CURSOR_STALL · MACRO_COLLISION · `MouseEMBERBridge` RISING-only
+
+#### BEA_Imprint_Controller — Virtual Gamepad · 20-Input BEATEK Vocabulary
+**146 tests | `BEA_Imprint/BEA_Imprint_Controller/` · v1.0.0**
+
+Transforms any webcam into a full virtual gamepad — the complete BEA Excalibur 20-input vocabulary in the air. The same language, the same philosophy, zero hardware between your hands and the game.
+
+- **8 Modules**: `AirGamepad` · `SplitModeController` · `AnalogPrecisionEngine` · `SixDoFExtended` · `GestureMacroLayer` · `PostureCalibration` · `AccessibilityController` · `VirtualHIDDriver`
+- Full 20-input Excalibur vocabulary: face buttons · analog sticks · triggers · D-pad · shoulders · BRG · I/O switch · seams · nav clicks · PALM_PRESS (biometric confirm)
+- Two-step split confirm: I/O latch (`request_split`) → BRG tap (`confirm_split`) — mirrors physical Excalibur
+- `SixDoFExtended`: per-hand XYZ position + pitch/yaw/roll active in SPLIT mode
+- `GestureMacroLayer`: per-game `.bea` profiles + chain sequences (up to 8 gestures) — cross-compatible with Excalibur hardware
+- `VirtualHIDDriver`: XInput · DirectInput · SDL2 · OpenVR · Excalibur Native · Custom
+- E[n] map: IDLE=E[0] · ACTIVE=E[16] · INPUT=E[18] · SPLIT=E[20] · SIX_DOF=E[22] · MACRO=E[24] · TRACKING_LOST=E[28]
+- Coral: `CoralControllerMonitorRole` P3 3% TOPS · 4 anomalies: INPUT_STORM · TRACKING_LOSS · SPLIT_INSTABILITY · CONFIDENCE_DRIFT · `ControllerEMBERBridge` RISING-only
 
 ---
 
@@ -741,11 +781,11 @@ The standalone developer SDK for building, certifying, publishing, and consuming
 ### BEA_Amplify — Local Inference Extension
 **118 tests | `BEA_Amplify/`**
 
-Extends Console inference capacity by pooling host GPU and console GPU into a single 40 GB llama.cpp RPC compute cluster — with thermal-aware routing, Coral Single Edge TPU acceleration, and mDNS auto-discovery.
+Extends Console inference capacity by pooling host GPU and console GPU into a single 40 GB llama.cpp RPC compute cluster — with thermal-aware routing, Coral Dual Edge TPU acceleration, and mDNS auto-discovery.
 
 - **Host + Console GPU pool**: combined 40 GB VRAM for llama.cpp RPC layer distribution
 - **5 routing strategies** (E[n] state): BURST_MODE · VRAM_BALANCE · TPU_ASSIST · THERMAL_SAFE · PRIORITY_YIELD
-- **Coral Single Edge TPU M.2**: max 4 concurrent tasks; < 5ms inference gate via TrustGate
+- **Coral Dual Edge TPU M.2**: max 8 concurrent tasks; < 5ms inference gate via TrustGate
 - mDNS auto-discovery — Console found automatically on LAN without config
 
 ---
@@ -771,10 +811,10 @@ Surgical GPU VRAM reset + intelligent RAM lifecycle management — without reboo
 
 ---
 
-### BEA_Secretary — Coral Single Edge TPU Continuous Intelligence Layer
+### BEA_Secretary — Coral Dual Edge TPU Continuous Intelligence Layer
 **78 tests | `BEA_Secretary/` · v3.0.0**
 
-The always-on intelligence layer. The Coral Single Edge TPU (4 TOPS · ~2W constant) never sleeps — 12 roles on one chip. The NVIDIA GPU stays free for GPU-Fi, LLM inference, and gaming.
+The always-on intelligence layer. The Coral Dual Edge TPU (8 TOPS · ~2W constant) never sleeps — 12 roles across 2 chips. The NVIDIA GPU stays free for GPU-Fi, LLM inference, and gaming.
 
 **1 protected event-driven role (preempts all when active):**
 
@@ -782,7 +822,7 @@ The always-on intelligence layer. The Coral Single Edge TPU (4 TOPS · ~2W const
 |---|---|---|
 | `heritage_trust_gate` | BEA_AI_Heritage_System | ECDSA P-384 cert verification on every Sprite Heritage mount |
 
-**11 standard roles time-sliced on single chip (~550ms cycle):**
+**11 standard roles time-sliced across dual chips (~550ms cycle):**
 
 | Role | Pillar | What it does |
 |---|---|---|
@@ -1003,7 +1043,7 @@ Real-time performance intelligence for live artists. The EMBER Pipeline™ predi
 ### BEA_Horizon — Sovereign External LLM Gateway
 **73 tests | `BEA_Horizon/` · v1.0.0**
 
-The Console's outbound AI proxy. Apps request external AI inference through BEA_Horizon — the Console holds the API keys, inspects every prompt via Coral Single Edge TPU before egress, enforces per-provider budget limits, and logs every call to BEA_Ledger.
+The Console's outbound AI proxy. Apps request external AI inference through BEA_Horizon — the Console holds the API keys, inspects every prompt via Coral Dual Edge TPU before egress, enforces per-provider budget limits, and logs every call to BEA_Ledger.
 
 ```
 APP → BEA_Horizon → CoralHorizonGateRole (PII scan) → AutoRouter
@@ -1058,7 +1098,7 @@ Turns the BEA Motion Body webcam rig into a full photogrammetric scanning pipeli
 ### BEA_Pumpkin_Pi — Portable Edge Audio Intelligence
 **79 tests | `BEA_Pumpkin_Pi/` · v1.3.0**
 
-Raspberry Pi 5 + Coral Single Edge TPU (M.2 HAT+ B+M Key) stage performer brain. The Console stays home. The Pumpkin Pi goes on stage. EMBER fires before the stumble.
+Raspberry Pi 5 + Coral Dual Edge TPU (M.2 HAT+ B+M Key) stage performer brain. The Console stays home. The Pumpkin Pi goes on stage. EMBER fires before the stumble.
 
 - **Smart Power Bass Control™**: FULL (100–80%) · BALANCED (80–40%) · CONSERVATION (40–20%) · SURVIVE (20–0%) — TOPS scheduling so the performer never hears battery anxiety
 - **Stage Secretary Profile**: 6 Coral roles — wake_detector · heritage_trust_gate · ember_processor (25%, P2-protected) · voice_biometric (15%, P2-protected) · signal_classifier · session_packager
@@ -1186,7 +1226,7 @@ PHASE 1C — Long term:
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    BEA_Aura_CSE_OS                      │
+│                    BEA_Aura_CDE_OS                      │
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
 │  BEA_Shell (unified CLI)          BEA_Aura_Orchestrator │
@@ -1228,7 +1268,7 @@ Context:   BEA_Context_Bridge ↔ Claude Desktop (MCP server)
 Thermal:   BEA_Grid ClearGridAdapter → BEA_Clear (GPU+RAM lifecycle reset)
 Temporal:  BEA_Worldshift ↔ BEA_Treehouse_UI (Worldflow 3D/4D scene)
 Reality:   BEA_4D_Shop ↔ GPU-Verse (object persistence + economy)
-Secretary: BEA_Secretary Coral Single Edge TPU ↔ all pillars (12 roles · 1 chip · ~2W always-on)
+Secretary: BEA_Secretary Coral Dual Edge TPU ↔ all pillars (12 roles · 2 chips · ~2W always-on)
 Interface: BEA_Treehouse_UI ↔ BEA_Pulse (WebSocket bridge · port 8765)
 LLM Proxy: BEA_Horizon → CoralHorizonGateRole → AutoRouter → Amplify | Provider
 NAS:       BEA_NAS ↔ BEA_Relay ↔ BEA_Vault ↔ BEA_Shield (all tiers)
@@ -1238,7 +1278,7 @@ NAS:       BEA_NAS ↔ BEA_Relay ↔ BEA_Vault ↔ BEA_Shield (all tiers)
 
 ## BEA Motion Protocol™
 
-Every state transition in BEA_Aura_CSE_OS is an operator transition — and every operator transition has a motion.
+Every state transition in BEA_Aura_CDE_OS is an operator transition — and every operator transition has a motion.
 
 ```
 ⊕ Fire     → Burst (80–200ms)       — Something was created that did not exist before
@@ -1321,6 +1361,9 @@ bea nas neighbors    # Neighbor security SaaS status
 | BEA_Director_macOS | 228 | AI camera crew — macOS edition · v3.0.0 |
 | BEA_Identity | 54 | Biometric auth |
 | BEA_Imprint | 118 | Fingerprint hardware SDK v1.1.0 |
+| BEA_Imprint_Keyboard | 126 | Virtual keyboard — 20-finger skeletal mapping · CoralKeyboardMonitorRole · KeyboardEMBERBridge |
+| BEA_Imprint_Mouse | 118 | Air mouse + drawing tablet + accessibility · 8 modes · CoralMouseMonitorRole · MouseEMBERBridge |
+| BEA_Imprint_Controller | 146 | Virtual gamepad — full 20-input Excalibur vocabulary · split/6DoF · CoralControllerMonitorRole |
 | BEA_Recovery | 61 | Crash resilience |
 | BEA_Firefly_Sprite | 418 | Installer / validator / DLC / certification + Heritage · v2.0.0 — CoralSpriteMonitorRole · SpriteEMBERBridge |
 | BEA_Sprite_Studio | 128 | Blank Sprite SDK app v2.0.0 — CoralStudioMonitorRole · StudioEMBERBridge · source_type |
@@ -1357,14 +1400,15 @@ bea nas neighbors    # Neighbor security SaaS status
 | BEA_Pumpkin_Pi | 79 | Raspberry Pi 5 + Coral TPU stage node · v1.3.0 — Smart Power Bass Control™ · EMBER stage · CoralPumpkinPiMonitorRole |
 | BEA_4D_Audio | 130 | 4D Environmental Acoustics v2.0.0 |
 | BEA_Horizon | 73 | Sovereign External LLM Gateway v1.0.0 |
-| BEA_Secretary | 78 | Coral Single Edge TPU continuous intelligence v3.0.0 |
+| BEA_Secretary | 78 | Coral Dual Edge TPU continuous intelligence v3.0.0 |
 | BEA_GPU_Fi | 48 | GPU rental conduct standards |
 | BEA_NAS | 140 | Console NAS layer — filesystem · neighbor security · queue storage |
 | BEA_Gear_System | 101 | Standalone physics engine · v2.0.0 — BEA Physics laws · CoralGearMonitorRole · GearEMBERBridge |
 | BEA_Veda | 47 | Medical-exclusive body analysis device v1.0.0 — NirvanaState · EMBERClinical · ClinicalSession · VedaScanner |
 | BEA_AuraForge | 48 | Universal file generator toolkit v1.0.0 — Node.js ≥ 18 · CLI + API · plugin system · 8 formats · Jest |
 | BEA_Mold_Props | 119 | 3D scan → digital mold → print-ready output → prop input device · v1.0.0 — EMBER confidence gating · PropRegistry · ImprintBinder · CoralMoldPropsMonitorRole |
-| **Total** | **6,731** | **All passing** |
+| BEA_Stomp | 178 | USB HID foot pedal input SDK v1.0.0 — 5 modes (PERCUSSION/PIANO/GAMING/CREATIVE/ACCESSIBILITY) · VelocityEngine · ComboDetector · MIDI/HID/Keyboard drivers · CoralStompMonitorRole · StompEMBERBridge |
+| **Total** | **7,299** | **All passing** |
 
 ---
 
@@ -1405,7 +1449,7 @@ BEA_NAS_QUEUE_STORAGE_ENABLED=false  # Datacenter only
 
 *(Full list maintained in `BEA_IP_REGISTRY.md`)*
 
-Core platform terms include: BEA_Aura_CSE_OS™ · BEA Reality Engine™ · Console as Cloud™ · Smart Cache Device™ · E[n] Universal Language™ · BEA_Aura_CSE_OS Four Life Pillars™ · Physiological Duress Detection™ · BEA_Secretary™ · The Secretary Principle™ · GPU-Fi™ · GPU-Verse™ · Queue Storage Protocol™ · BEA_NAS™ · Neighbor Security-as-a-Service™ · BEA Motion Protocol™ · EMBER Pipeline™ · Software Motion Principle™ · Console-as-AI-Proxy™ · EI Machine Principle™
+Core platform terms include: BEA_Aura_CDE_OS™ · BEA Reality Engine™ · Console as Cloud™ · Smart Cache Device™ · E[n] Universal Language™ · BEA_Aura_CDE_OS Four Life Pillars™ · Physiological Duress Detection™ · BEA_Secretary™ · The Secretary Principle™ · GPU-Fi™ · GPU-Verse™ · Queue Storage Protocol™ · BEA_NAS™ · Neighbor Security-as-a-Service™ · BEA Motion Protocol™ · EMBER Pipeline™ · Software Motion Principle™ · Console-as-AI-Proxy™ · EI Machine Principle™
 
 ---
 
