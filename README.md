@@ -3,7 +3,7 @@
 > **Console as Cloud™ — The Reality Engine of the BEA Aura Console**
 
 **Owner:** Jeremy F. Jackson · BEATEK Holdings, LLC
-**Contact:** jeremyjackson7@proton.me
+**Contact:** jeremy.jackson0@beatek.io
 **License:** MIT (community) / Commercial (partners)
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
 **Revision:** v2.9 · May 2026
@@ -1474,7 +1474,7 @@ That same software running on your BEA Aura Console means you profit from your i
 | **Investors** | Aligned with owned-infrastructure, anti-subscription mission |
 | **Early Adopters** | Console pre-orders open — Q2/Q3 2026 |
 
-**Contact:** jeremyjackson7@proton.me
+**Contact:** jeremy.jackson0@beatek.io
 **GitHub:** [github.com/BEAT-K](https://github.com/BEAT-K)
 **License:** MIT (community) / Commercial (partners)
 
